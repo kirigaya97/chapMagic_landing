@@ -31,3 +31,28 @@
     @apply bg-obsidian text-ivory font-body antialiased;
   }
 }
+
+/* ═══ Gold Scrollbar ═══ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #B8941F);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  width: 8px;
+  background: linear-gradient(180deg, #E8C860, #D4AF37);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #D4AF37 transparent;
+}
