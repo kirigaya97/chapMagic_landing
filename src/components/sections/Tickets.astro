@@ -1,0 +1,73 @@
+---
+import Button from "../ui/Button.astro";
+import Reveal from "../ui/Reveal.astro";
+import GoldenBorder from "../ui/GoldenBorder.astro";
+
+interface Props {
+    t: {
+        sectionTitle: string;
+        subtitle: string;
+        cta: string;
+    };
+    atrapaloUrl: string;
+}
+
+const { t, atrapaloUrl } = Astro.props;
+---
+
+<section id="tickets" class="py-section-mobile md:py-section bg-obsidian px-6">
+    <div
+        class="max-w-5xl mx-auto rounded-card p-12 md:p-20 text-center relative border border-gold/20 shadow-2xl shadow-gold/5 ticket-card group"
+    >
+        <GoldenBorder selector=".ticket-card" borderRadius={12} />
+        <!-- Decorative background elements -->
+        <div class="absolute inset-0 rounded-card overflow-hidden -z-10">
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-gold/10"
+            >
+            </div>
+            <div
+                class="absolute -top-24 -right-24 w-48 h-48 bg-gold/20 rounded-full blur-3xl"
+            >
+            </div>
+            <div
+                class="absolute -bottom-24 -left-24 w-48 h-48 bg-gold/20 rounded-full blur-3xl"
+            >
+            </div>
+        </div>
+
+        <Reveal>
+            <h2
+                class="text-3xl md:text-6xl font-heading text-ivory mb-6 leading-tight"
+            >
+                {t.sectionTitle}
+            </h2>
+        </Reveal>
+
+        <Reveal>
+            <p
+                class="text-xl md:text-2xl text-ivory-muted font-body mb-12 max-w-2xl mx-auto italic"
+            >
+                {t.subtitle}
+            </p>
+        </Reveal>
+
+        <Reveal>
+            <Button
+                variant="gold"
+                href={atrapaloUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xl px-12 py-5"
+            >
+                {t.cta}
+            </Button>
+        </Reveal>
+
+        <p
+            class="mt-8 text-sm text-gold/60 uppercase tracking-widest font-body"
+        >
+            Venta exclusiva en Atrapalo.com
+        </p>
+    </div>
+</section>

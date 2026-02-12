@@ -1,0 +1,178 @@
+---
+interface Quote {
+  text: string;
+  author: string;
+  role: string;
+}
+
+interface Props {
+  t: {
+    sectionTitle: string;
+    quotes: Quote[];
+  };
+}
+
+const { t } = Astro.props;
+---
+
+<section id="jury" class="bg-obsidian relative">
+    <!-- Scroll-pinned container: height = 100vh per quote + 1 for the heading -->
+    <div class="jury-vip-wrapper relative" style={`height: ${(t.quotes.length + 1) * 100}vh;`}>
+        <!-- Pinned viewport -->
+        <div class="jury-vip-pinned h-screen w-full sticky top-0 flex items-center justify-center overflow-hidden">
+
+            <!-- Background glow effects -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[180px]"></div>
+            </div>
+
+            <!-- Giant decorative quote mark (background) -->
+            <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 text-gold/[0.03] pointer-events-none" fill="currentColor" viewBox="0 0 32 32">
+                <path d="M10 8v8h6a6 6 0 0 1-6 6v2a8 8 0 0 0 8-8V8h-8zm12 0v8h6a6 6 0 0 1-6 6v2a8 8 0 0 0 8-8V8h-8z"></path>
+            </svg>
+
+            <!-- Section Title (fades out as first quote arrives) -->
+            <div class="jury-vip-title absolute inset-0 flex flex-col items-center justify-center px-6 z-10">
+                <span class="text-gold font-heading italic text-lg md:text-xl mb-4 block">Reconocimiento Internacional</span>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-heading text-ivory leading-tight text-center">
+                    {t.sectionTitle}
+                </h2>
+                <div class="w-24 h-1 bg-gold mt-6 mx-auto"></div>
+            </div>
+
+            <!-- Quote cards (stacked, each fades in/out) -->
+            {t.quotes.map((quote, index) => (
+                <div
+                    class={`jury-vip-quote absolute inset-0 flex items-center justify-center px-6 z-10 opacity-0`}
+                    data-index={index}
+                >
+                    <div class="max-w-4xl mx-auto text-center">
+                        <!-- Stars row -->
+                        <div class="flex justify-center gap-2 mb-8">
+                            {[...Array(5)].map(() => (
+                                <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                            ))}
+                        </div>
+
+                        <!-- Quote text -->
+                        <p class="text-2xl md:text-4xl lg:text-5xl font-heading italic text-ivory leading-snug mb-10">
+                            "{quote.text}"
+                        </p>
+
+                        <!-- Gold divider -->
+                        <div class="w-16 h-0.5 bg-gold/40 mx-auto mb-8"></div>
+
+                        <!-- Attribution -->
+                        <p class="text-gold font-heading font-bold text-xl md:text-2xl">{quote.author}</p>
+                        <p class="text-ivory-muted text-sm uppercase tracking-[0.3em] mt-2">{quote.role}</p>
+                    </div>
+                </div>
+            ))}
+
+            <!-- Scroll progress bar -->
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+                {t.quotes.map((_, index) => (
+                    <div
+                        class="jury-vip-dot w-2 h-2 rounded-full bg-ivory/20 transition-all duration-500"
+                        data-dot={index}
+                    ></div>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    function initJuryVIP() {
+        const wrapper = document.querySelector(".jury-vip-wrapper") as HTMLElement;
+        if (!wrapper) return;
+
+        const titleEl = wrapper.querySelector(".jury-vip-title") as HTMLElement;
+        const quotes = wrapper.querySelectorAll(".jury-vip-quote") as NodeListOf<HTMLElement>;
+        const dots = wrapper.querySelectorAll(".jury-vip-dot") as NodeListOf<HTMLElement>;
+        const totalSteps = quotes.length + 1; // +1 for the title
+
+        // Kill any existing ScrollTriggers for this element (Astro page transitions)
+        ScrollTrigger.getAll().forEach(st => {
+            if (st.vars.trigger === wrapper) st.kill();
+        });
+
+        ScrollTrigger.create({
+            trigger: wrapper,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.5,
+            onUpdate: (self) => {
+                const progress = self.progress; // 0 to 1
+                const step = progress * totalSteps;
+
+                // Title: visible from step 0 to 1, fades out as step approaches 1
+                const titleOpacity = Math.max(0, 1 - Math.max(0, step - 0.3) / 0.7);
+                const titleScale = 1 + (1 - titleOpacity) * 0.05;
+                gsap.set(titleEl, {
+                    opacity: titleOpacity,
+                    scale: titleScale,
+                    filter: `blur(${(1 - titleOpacity) * 8}px)`,
+                });
+
+                // Each quote occupies step range [i+1, i+2]
+                quotes.forEach((quote, i) => {
+                    const quoteStart = i + 0.8;  // Start fading in slightly early
+                    const quoteEnd = i + 2;      // Start fading out
+                    const localProgress = (step - quoteStart) / 1;
+
+                    let opacity = 0;
+                    let yOffset = 40;
+                    let blur = 10;
+                    let scale = 0.95;
+
+                    if (localProgress > 0 && localProgress <= 1) {
+                        // Fading in
+                        const fadeIn = Math.min(localProgress / 0.3, 1);
+                        opacity = fadeIn;
+                        yOffset = 40 * (1 - fadeIn);
+                        blur = 10 * (1 - fadeIn);
+                        scale = 0.95 + 0.05 * fadeIn;
+                    } else if (localProgress > 1 && step < quoteEnd) {
+                        // Fully visible
+                        opacity = 1;
+                        yOffset = 0;
+                        blur = 0;
+                        scale = 1;
+                    } else if (step >= quoteEnd && step < quoteEnd + 0.5) {
+                        // Fading out
+                        const fadeOut = 1 - (step - quoteEnd) / 0.5;
+                        opacity = Math.max(0, fadeOut);
+                        yOffset = -30 * (1 - fadeOut);
+                        blur = 8 * (1 - fadeOut);
+                        scale = 1 + 0.03 * (1 - fadeOut);
+                    }
+
+                    gsap.set(quote, {
+                        opacity: opacity,
+                        y: yOffset,
+                        filter: `blur(${blur}px)`,
+                        scale: scale,
+                    });
+                });
+
+                // Update dots
+                dots.forEach((dot, i) => {
+                    const quoteStart = i + 1;
+                    const isActive = step >= quoteStart - 0.2 && step < quoteStart + 1.5;
+                    dot.style.backgroundColor = isActive ? "#D4AF37" : "rgba(255,255,255,0.2)";
+                    dot.style.transform = isActive ? "scale(1.5)" : "scale(1)";
+                });
+            },
+        });
+    }
+
+    document.addEventListener("astro:page-load", initJuryVIP);
+</script>

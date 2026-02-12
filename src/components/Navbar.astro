@@ -1,0 +1,323 @@
+---
+import siteConfig from "../data/site-config.json";
+import Button from "./ui/Button.astro";
+
+interface Props {
+    currentLang: "es" | "en";
+}
+
+const { currentLang } = Astro.props;
+const t = siteConfig.translations[currentLang].nav;
+const navigation = siteConfig.navigation;
+---
+
+<!-- Fixed Header Container -->
+<header
+    id="main-nav"
+    class="fixed top-0 left-0 w-full z-[100] transition-all duration-500 -translate-y-full opacity-0 pt-6"
+>
+    <div class="max-w-6xl mx-auto px-6">
+        <!-- Desktop Pill Menu -->
+        <nav
+            class="hidden lg:flex items-center justify-between bg-obsidian-light/80 backdrop-blur-xl border border-white/10 px-8 py-3 rounded-full shadow-2xl shadow-black/50"
+        >
+            <div class="flex items-center gap-12">
+                <a
+                    href={`/${currentLang}/`}
+                    class="text-xl font-heading font-bold text-ivory tracking-tighter"
+                >
+                    CHAP<span class="text-gold">MAGIC</span>
+                </a>
+
+                <ul class="flex items-center gap-8">
+                    {
+                        navigation.map((item) => (
+                            <li>
+                                <a
+                                    href={`/${currentLang}/${item.href}`}
+                                    class="text-sm font-body uppercase tracking-widest text-ivory-muted hover:text-gold transition-colors duration-300"
+                                >
+                                    {t[item.id as keyof typeof t]}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <!-- Integrated Language Toggle -->
+                <div
+                    class="flex bg-obsidian/50 rounded-full border border-gold/10 p-1"
+                >
+                    <a
+                        href="/es/"
+                        class={`px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-300 ${currentLang === "es" ? "bg-gold text-obsidian" : "text-ivory-muted hover:text-gold"}`}
+                    >
+                        ES
+                    </a>
+                    <a
+                        href="/en/"
+                        class={`px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-300 ${currentLang === "en" ? "bg-gold text-obsidian" : "text-ivory-muted hover:text-gold"}`}
+                    >
+                        EN
+                    </a>
+                </div>
+
+                <Button
+                    href={`/${currentLang}/#contact`}
+                    variant="gold"
+                    class="py-2 px-6 text-sm"
+                >
+                    {t.bookNow}
+                </Button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Pill -->
+        <div
+            class="lg:hidden flex items-center justify-between bg-obsidian-light/80 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full shadow-2xl"
+        >
+            <a
+                href={`/${currentLang}/`}
+                class="text-lg font-heading font-bold text-ivory tracking-tighter"
+            >
+                CHAP<span class="text-gold">MAGIC</span>
+            </a>
+
+            <div class="flex items-center gap-4">
+                <button
+                    id="mobile-menu-btn"
+                    class="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 focus:outline-none z-[80]"
+                    aria-label="Toggle Menu"
+                >
+                    <span
+                        class="hamburger-line w-full h-0.5 bg-gold transition-all duration-300"
+                    ></span>
+                    <span
+                        class="hamburger-line w-full h-0.5 bg-gold transition-all duration-300"
+                    ></span>
+                    <span
+                        class="hamburger-line w-full h-0.5 bg-gold transition-all duration-300"
+                    ></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Overlay (Outside Header for absolute viewport coverage) -->
+<div
+    id="mobile-menu-overlay"
+    class="fixed inset-0 bg-obsidian z-[70] opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col items-center justify-start pt-32 overflow-y-auto"
+>
+    <!-- Background Decor -->
+    <div
+        class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20"
+    >
+        <div
+            class="absolute -top-[10%] -left-[10%] w-[80%] h-[80%] bg-gold/10 rounded-full blur-[150px]"
+        >
+        </div>
+        <div
+            class="absolute -bottom-[10%] -right-[10%] w-[80%] h-[80%] bg-gold/5 rounded-full blur-[150px]"
+        >
+        </div>
+    </div>
+
+    <nav class="relative z-10 w-full px-12">
+        <ul class="flex flex-col items-center gap-6">
+            {
+                navigation.map((item) => (
+                    <li class="mobile-nav-item opacity-0 translate-y-4">
+                        <a
+                            href={`/${currentLang}/${item.href}`}
+                            class="text-4xl md:text-5xl font-heading font-bold text-ivory hover:text-gold transition-colors block text-center"
+                        >
+                            {t[item.id as keyof typeof t]}
+                        </a>
+                    </li>
+                ))
+            }
+            <li class="mobile-nav-item opacity-0 translate-y-4 pt-8">
+                <Button
+                    href={`/${currentLang}/#contact`}
+                    variant="gold"
+                    class="text-xl px-12 py-5"
+                >
+                    {t.bookNow}
+                </Button>
+            </li>
+            <li
+                class="mobile-nav-item opacity-0 translate-y-4 pt-4 flex gap-4 text-center justify-center"
+            >
+                <a
+                    href="/es/"
+                    class={`text-sm ${currentLang === "es" ? "text-gold" : "text-ivory-muted"}`}
+                    >ES</a
+                >
+                <span class="text-white/20">|</span>
+                <a
+                    href="/en/"
+                    class={`text-sm ${currentLang === "en" ? "text-gold" : "text-ivory-muted"}`}
+                    >EN</a
+                >
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    import gsap from "gsap";
+
+    function initNavbar() {
+        const header = document.getElementById("main-nav");
+        const btn = document.getElementById("mobile-menu-btn");
+        const overlay = document.getElementById("mobile-menu-overlay");
+        const lines = document.querySelectorAll(".hamburger-line");
+        const navItems = document.querySelectorAll(".mobile-nav-item");
+        let isOpen = false;
+
+        if (!header || !btn || !overlay) return;
+
+        // Scroll Logic: Hide on top, show on scroll (More sensitive)
+        const handleScroll = () => {
+            if (window.scrollY > 30) {
+                header.classList.remove("-translate-y-full", "opacity-0");
+            } else {
+                header.classList.add("-translate-y-full", "opacity-0");
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        // Run once in case user starts scrolled down
+        handleScroll();
+
+        // Mobile Logic
+        btn.addEventListener("click", () => {
+            isOpen = !isOpen;
+
+            if (isOpen) {
+                document.body.style.overflow = "hidden";
+                overlay.classList.remove("pointer-events-none");
+
+                // Snappier black fade
+                gsap.to(overlay, {
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "power2.out",
+                });
+
+                // Faster line animation to 'X'
+                gsap.to(lines[0], {
+                    y: 8,
+                    rotation: 45,
+                    duration: 0.3,
+                    ease: "power2.inOut",
+                });
+                gsap.to(lines[1], { opacity: 0, duration: 0.2 });
+                gsap.to(lines[2], {
+                    y: -8,
+                    rotation: -45,
+                    duration: 0.3,
+                    ease: "power2.inOut",
+                });
+
+                // Staggered fade, glide and scale - Snappy but Premium
+                gsap.fromTo(
+                    navItems,
+                    { opacity: 0, y: 30, scale: 0.95 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        stagger: 0.07,
+                        duration: 0.8,
+                        delay: 0.1,
+                        ease: "expo.out",
+                    },
+                );
+            } else {
+                document.body.style.overflow = "";
+
+                // Snappier fade out
+                gsap.to(overlay, {
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () =>
+                        overlay.classList.add("pointer-events-none"),
+                });
+
+                // Faster line reset
+                gsap.to(lines, {
+                    y: 0,
+                    rotation: 0,
+                    opacity: 1,
+                    duration: 0.3,
+                    ease: "power2.inOut",
+                });
+
+                // Reset items
+                gsap.to(navItems, {
+                    opacity: 0,
+                    y: 15,
+                    duration: 0.3,
+                    ease: "power2.in",
+                });
+            }
+        });
+
+        // Smooth scroll for nav links (including localized ones like /es/#shows)
+        document.querySelectorAll("a").forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                const link = e.currentTarget as HTMLAnchorElement;
+                const href = link.getAttribute("href");
+                if (!href) return;
+
+                // Check if it's a hash link
+                const isHashLink = href.includes("#");
+                if (!isHashLink) return;
+
+                const targetId = href.substring(href.indexOf("#"));
+                if (!targetId || targetId === "#") return;
+
+                // Only smooth scroll if on the same page
+                const isCurrentPage =
+                    link.pathname === window.location.pathname ||
+                    link.pathname === window.location.pathname + "/";
+
+                if (isCurrentPage) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+
+                        // Close mobile menu if open
+                        if (isOpen) {
+                            btn.click();
+                        }
+
+                        const offset = 100; // Header height + spacing
+                        const targetPosition =
+                            targetElement.getBoundingClientRect().top +
+                            window.scrollY -
+                            offset;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: "smooth",
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", initNavbar);
+</script>
+
+<style>
+    #mobile-menu-overlay {
+        transition-property: opacity;
+    }
+</style>

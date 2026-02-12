@@ -1,0 +1,42 @@
+---
+interface Props {
+    href?: string;
+    variant?: "primary" | "secondary" | "gold" | "outline";
+    class?: string;
+    id?: string;
+    [x: string]: any;
+}
+
+const {
+    href,
+    variant = "primary",
+    class: className,
+    id,
+    ...rest
+} = Astro.props;
+
+const variants = {
+    primary: "bg-ivory text-obsidian hover:bg-ivory-muted",
+    secondary:
+        "bg-obsidian-light text-ivory border border-smoke hover:border-gold/30",
+    gold: "bg-gradient-to-r from-gold-dark via-gold to-gold-light text-obsidian font-semibold hover:shadow-lg hover:shadow-gold/20 hover:scale-105 active:scale-95",
+    outline:
+        "bg-transparent text-gold border border-gold hover:bg-gold hover:text-obsidian",
+};
+
+const baseClass =
+    "inline-block px-8 py-4 rounded-full transition-all duration-300 font-body text-center cursor-pointer";
+const finalClass = `${baseClass} ${variants[variant as keyof typeof variants]} ${className || ""}`;
+---
+
+{
+    href ? (
+        <a href={href} class={finalClass} id={id} {...rest}>
+            <slot />
+        </a>
+    ) : (
+        <button class={finalClass} id={id} {...rest}>
+            <slot />
+        </button>
+    )
+}

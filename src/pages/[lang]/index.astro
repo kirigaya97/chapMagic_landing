@@ -1,0 +1,51 @@
+---
+import siteConfig from "../../data/site-config.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Section imports
+import Hero from "../../components/sections/Hero.astro";
+import Shows from "../../components/sections/Shows.astro";
+import JuryVIP from "../../components/sections/JuryVIP.astro";
+import Stats from "../../components/sections/Stats.astro";
+import Tickets from "../../components/sections/Tickets.astro";
+import Contact from "../../components/sections/Contact.astro";
+import Footer from "../../components/sections/Footer.astro";
+
+// UI components
+import Navbar from "../../components/Navbar.astro";
+import WhatsAppButton from "../../components/WhatsAppButton.astro";
+import SmoothScroll from "../../components/SmoothScroll.astro";
+
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+
+// Validate lang and narrow type for TypeScript
+if (lang !== "es" && lang !== "en") {
+    return Astro.redirect("/es/");
+}
+
+const t = siteConfig.translations[lang as "es" | "en"];
+---
+
+<BaseLayout lang={lang} title={t.meta.title} description={t.meta.description}>
+    <SmoothScroll />
+    <Navbar currentLang={lang as "es" | "en"} />
+    <WhatsAppButton
+        whatsapp={siteConfig.contact.whatsapp}
+        message={t.whatsapp.prefillMessage}
+    />
+
+    <main>
+        <Hero t={t.hero} videoSrc={siteConfig.links.heroVideoSrc} />
+        <Shows t={t.shows} />
+        <JuryVIP t={t.jury} />
+        <Stats t={t.stats} />
+        <Tickets t={t.tickets} atrapaloUrl={siteConfig.links.atrapalo} />
+        <Contact t={t.contact} />
+    </main>
+
+    <Footer t={t.footer} lang={lang || "es"} />
+</BaseLayout>

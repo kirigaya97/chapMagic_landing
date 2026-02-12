@@ -1,0 +1,79 @@
+---
+import siteConfig from "../../data/site-config.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/sections/Footer.astro";
+
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+
+if (lang !== "es" && lang !== "en") {
+    return Astro.redirect("/es/");
+}
+
+const t = siteConfig.translations[lang as "es" | "en"];
+const content = (t as any).privacy;
+---
+
+<BaseLayout
+    lang={lang}
+    title={`${content.title} | ChapMagic`}
+    description={t.meta.description}
+>
+    <Navbar currentLang={lang as "es" | "en"} />
+
+    <main class="pt-32 pb-24 px-6 bg-obsidian min-h-screen">
+        <div class="max-w-3xl mx-auto">
+            <h1
+                class="text-4xl md:text-6xl font-heading font-bold text-ivory mb-4 reveal"
+            >
+                {content.title}
+            </h1>
+            <p class="text-gold/60 text-sm mb-12 reveal">
+                {content.lastUpdated}
+            </p>
+
+            <div class="space-y-12">
+                {
+                    content.sections.map((section: any) => (
+                        <section class="reveal">
+                            <h3 class="text-xl font-heading font-bold text-gold mb-4">
+                                {section.h3}
+                            </h3>
+                            <p class="text-ivory-muted leading-relaxed font-body">
+                                {section.p}
+                            </p>
+                        </section>
+                    ))
+                }
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-smoke/30 reveal">
+                <a
+                    href={`/${lang}/`}
+                    class="text-ivory hover:text-gold transition-colors inline-flex items-center gap-2 group"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    {lang === "es" ? "Volver al inicio" : "Back to home"}
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <Footer t={t.footer} lang={lang || "es"} />
+</BaseLayout>

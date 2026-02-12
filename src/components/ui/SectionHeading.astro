@@ -1,0 +1,29 @@
+---
+interface Props {
+    title: string;
+    subtitle?: string;
+    align?: "left" | "center";
+    class?: string;
+}
+
+const { title, subtitle, align = "center", class: className } = Astro.props;
+---
+
+<div
+    class={`mb-12 ${align === "center" ? "text-center" : "text-left"} ${className || ""}`}
+>
+    {
+        subtitle && (
+            <span class="text-gold font-heading italic text-lg md:text-xl mb-4 block">
+                {subtitle}
+            </span>
+        )
+    }
+    <h2
+        class="text-3xl md:text-5xl lg:text-6xl font-heading text-ivory leading-tight"
+    >
+        {title}
+    </h2>
+    <div class={`w-24 h-1 bg-gold mt-6 ${align === "center" ? "mx-auto" : ""}`}>
+    </div>
+</div>

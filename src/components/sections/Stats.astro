@@ -1,0 +1,55 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import Counter from "../ui/Counter";
+import GoldenBorder from "../ui/GoldenBorder.astro";
+
+interface StatItem {
+    value: number;
+    label: string;
+    prefix: string;
+}
+
+interface Props {
+    t: {
+        sectionTitle: string;
+        items: StatItem[];
+    };
+}
+
+const { t } = Astro.props;
+---
+
+<section
+    id="stats"
+    class="py-section-mobile md:py-section bg-obsidian-light px-6 relative overflow-hidden"
+>
+    <!-- Subtle background accent -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[120px] -z-10"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <SectionHeading
+            title={t.sectionTitle}
+            subtitle="Una trayectoria de impacto"
+        />
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {
+                t.items.map((stat) => (
+                    <div class="stat-card relative p-6 bg-obsidian-light/30 rounded-card border border-smoke/50 backdrop-blur-sm group transition-transform duration-500 hover:-translate-y-2">
+                        <Counter
+                            client:visible
+                            target={stat.value}
+                            label={stat.label}
+                            prefix={stat.prefix}
+                            duration={2.5}
+                        />
+                        <GoldenBorder selector=".stat-card" borderRadius={12} />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

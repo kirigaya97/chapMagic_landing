@@ -1,0 +1,202 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import Reveal from "../ui/Reveal.astro";
+import GoldenBorder from "../ui/GoldenBorder.astro";
+
+interface ShowItem {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+}
+
+interface Props {
+    t: {
+        sectionTitle: string;
+        items: ShowItem[];
+    };
+}
+
+const { t } = Astro.props;
+---
+
+<section
+    id="shows"
+    class="py-section-mobile md:py-section bg-obsidian-light px-6 overflow-hidden"
+>
+    <div class="max-w-7xl mx-auto">
+        <SectionHeading
+            title={t.sectionTitle}
+            subtitle="Propuestas exclusivas para eventos memorables"
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {
+                t.items.map((show) => (
+                    <Reveal class="h-full">
+                        <div class="vip-card group relative h-[500px] rounded-2xl cursor-pointer bg-obsidian transition-all duration-500 shadow-2xl">
+                            {/* Background Image */}
+                            <div class="absolute inset-0 z-0 rounded-2xl overflow-hidden">
+                                <img
+                                    src={show.image}
+                                    alt={show.title}
+                                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-[.active]:scale-110 opacity-60"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent" />
+                                <div class="absolute inset-0 bg-obsidian/20 group-hover:bg-transparent group-[.active]:bg-transparent transition-colors duration-500" />
+                            </div>
+
+                            {/* Reusable Golden Border */}
+                            <GoldenBorder
+                                selector=".vip-card"
+                                borderRadius={16}
+                            />
+
+                            {/* Content */}
+                            <div class="relative z-10 h-full grid grid-rows-[1fr_auto_auto] p-8 rounded-2xl">
+                                <div />
+                                <div class="title-area transform transition-transform duration-500 group-hover:-translate-y-4 group-[.active]:-translate-y-4">
+                                    <p class="text-gold font-body uppercase tracking-[0.3em] text-[10px] mb-2 opacity-80">
+                                        Premium Show
+                                    </p>
+                                    <h3 class="text-2xl md:text-3xl font-heading font-bold text-ivory tracking-tight leading-none mb-4 transition-colors group-hover:text-gold group-[.active]:text-gold">
+                                        {show.title}
+                                    </h3>
+                                </div>
+                                <div class="description-container h-[160px] relative">
+                                    <div class="show-description translate-y-8 opacity-0 transition-all duration-700 pointer-events-none group-hover:translate-y-0 group-hover:opacity-100 group-hover:pointer-events-auto group-[.active]:translate-y-0 group-[.active]:opacity-100 group-[.active]:pointer-events-auto">
+                                        <p class="text-ivory-muted leading-relaxed text-sm mb-6 max-w-[90%] line-clamp-4">
+                                            {show.description}
+                                        </p>
+                                        <div class="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1">
+                                            Más información
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="w-4 h-4"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            >
+                                                <>
+                                                    <path d="M5 12h14" />
+                                                    <path d="m12 5 7 7-7 7" />
+                                                </>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    function initShowsActiveState() {
+        const cards = document.querySelectorAll(".vip-card");
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+        if (isMobile) {
+            // MOBILE: ScrollTrigger auto-reveals cards as they scroll into view
+            cards.forEach((card) => {
+                // Kill any existing ScrollTrigger for this card (Astro transitions)
+                ScrollTrigger.getAll().forEach((st) => {
+                    if (st.vars.trigger === card) st.kill();
+                });
+
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 70%", // Activate when card top hits 70% of viewport
+                    end: "bottom 30%", // Deactivate when card bottom passes 30% of viewport
+                    onEnter: () => card.classList.add("active"),
+                    onLeave: () => card.classList.remove("active"),
+                    onEnterBack: () => card.classList.add("active"),
+                    onLeaveBack: () => card.classList.remove("active"),
+                });
+            });
+        } else {
+            // DESKTOP: Keep existing tap-to-toggle behavior
+            cards.forEach((card) => {
+                card.addEventListener("click", () => {
+                    const wasActive = card.classList.contains("active");
+                    cards.forEach((c) => c.classList.remove("active"));
+                    if (!wasActive) card.classList.add("active");
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                const target = e.target as HTMLElement;
+                if (!target.closest(".vip-card")) {
+                    cards.forEach((c) => c.classList.remove("active"));
+                }
+            });
+        }
+    }
+
+    document.addEventListener("astro:page-load", initShowsActiveState);
+</script>
+
+<style>
+    .vip-card {
+        isolation: isolate;
+        -webkit-tap-highlight-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .show-description {
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+        will-change: transform, opacity, filter;
+        filter: blur(15px);
+    }
+
+    @media (hover: hover) {
+        .vip-card:hover {
+            transform: translateY(-8px);
+        }
+        .vip-card:hover .show-description {
+            filter: blur(0px) !important;
+            transition-delay: 0.1s;
+        }
+    }
+
+    .vip-card.active .show-description {
+        filter: blur(0px) !important;
+        transition-delay: 0.05s;
+    }
+
+    .vip-card.active {
+        transform: translateY(-4px);
+    }
+
+    .vip-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at center,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: 1rem;
+    }
+
+    .vip-card:hover::after,
+    .vip-card.active::after {
+        opacity: 1;
+    }
+</style>

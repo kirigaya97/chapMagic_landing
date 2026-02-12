@@ -1,0 +1,70 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+}
+
+const { title, description, lang = "es" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Scripts that need to run on page load and after every transition -->
+    <script>
+      import { inView, animate } from "motion";
+
+      function initRevealAnimations() {
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (prefersReducedMotion) {
+          // Immediately show all reveals if user prefers reduced motion
+          document.querySelectorAll(".reveal").forEach((el) => {
+            (el as HTMLElement).style.opacity = "1";
+            (el as HTMLElement).style.transform = "none";
+          });
+          return;
+        }
+
+        inView(".reveal", (element) => {
+          animate(
+            element as any,
+            { opacity: 1, y: 0 },
+            { duration: 0.8, ease: [0.17, 0.55, 0.55, 1], delay: 0.1 },
+          );
+        });
+      }
+
+      document.addEventListener("astro:page-load", () => {
+        initRevealAnimations();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    t: {
+        title: string;
+        subtitle: string;
+        cta: string;
+    };
+    videoSrc: string;
+}
+
+const { t, videoSrc } = Astro.props;
+---
+
+<section
+    id="hero-section"
+    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-obsidian"
+>
+    <!-- Background Video -->
+    <video
+        id="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        class="absolute inset-0 w-full h-full object-cover"
+    >
+        <source src={videoSrc} type="video/mp4" />
+    </video>
+
+    <!-- Curtain: hides video until ready -->
+    <div
+        id="hero-curtain"
+        class="absolute inset-0 bg-obsidian z-[5] transition-opacity duration-[1500ms] ease-out"
+    >
+    </div>
+
+    <!-- Overlay for readability -->
+    <div
+        class="absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/40 to-obsidian"
+    >
+    </div>
+
+    <!-- Hero Content -->
+    <div
+        id="hero-content"
+        class="relative z-10 container mx-auto px-6 text-center"
+    >
+        <h1
+            class="hero-title opacity-0 translate-y-20 text-4xl md:text-6xl lg:text-8xl font-heading font-bold text-ivory leading-tight mb-6"
+        >
+            {t.title}
+        </h1>
+        <p
+            class="hero-subtitle opacity-0 translate-y-10 text-xl md:text-2xl lg:text-3xl font-heading italic text-gold mb-12"
+        >
+            {t.subtitle}
+        </p>
+        <div class="hero-cta opacity-0 translate-y-10 scale-90">
+            <Button variant="gold" href="#shows" id="hero-cta-btn">
+                {t.cta}
+            </Button>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce"
+    >
+        <svg
+            class="w-6 h-6 text-gold/50"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
+
+<script>
+    import gsap from "gsap";
+
+    function initHeroAnimation() {
+        const tl = gsap.timeline({ paused: true });
+
+        // Smoke-like animation: Blur + Scale + Fade
+        tl.fromTo(
+            ".hero-title",
+            { opacity: 0, filter: "blur(20px)", scale: 1.1, y: 20 },
+            {
+                opacity: 1,
+                filter: "blur(0px)",
+                scale: 1,
+                y: 0,
+                duration: 2,
+                ease: "power2.out",
+            },
+        )
+            .fromTo(
+                ".hero-subtitle",
+                { opacity: 0, filter: "blur(15px)", scale: 1.05, y: 10 },
+                {
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    scale: 1,
+                    y: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                },
+                "-=1.5",
+            )
+            .fromTo(
+                ".hero-cta",
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" },
+                "-=0.8",
+            );
+
+        const video = document.querySelector("video");
+        const curtain = document.getElementById("hero-curtain");
+        let triggered = false;
+
+        function liftCurtain() {
+            if (curtain) {
+                curtain.style.opacity = "0";
+                // Remove from DOM after transition completes
+                setTimeout(() => curtain.remove(), 1600);
+            }
+        }
+
+        if (video) {
+            // Lift curtain when video is ready to play
+            if (video.readyState >= 3) {
+                // Video already loaded (cached)
+                liftCurtain();
+            } else {
+                video.addEventListener("canplay", liftCurtain, { once: true });
+            }
+
+            // Fallback: lift curtain after 2s regardless
+            const curtainFallback = setTimeout(() => {
+                liftCurtain();
+            }, 2000);
+
+            // Fallback if video fails or takes too long for text animation
+            const fallback = setTimeout(() => {
+                if (!triggered) {
+                    triggered = true;
+                    tl.play();
+                }
+            }, 8000);
+
+            video.addEventListener("timeupdate", () => {
+                // Trigger at 5.5s for the Golden Button moment
+                if (!triggered && video.currentTime >= 5.5) {
+                    triggered = true;
+                    clearTimeout(fallback);
+                    tl.play();
+                }
+            });
+        } else {
+            // No video element found
+            if (curtain) curtain.remove();
+            tl.play();
+        }
+    }
+
+    document.addEventListener("astro:page-load", initHeroAnimation);
+
+    // --- Hero Parallax Effect ---
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    function initHeroParallax() {
+        const section = document.getElementById("hero-section");
+        const video = document.getElementById("hero-video");
+        const content = document.getElementById("hero-content");
+
+        if (!section || !video || !content) return;
+
+        // Kill previous ScrollTriggers for this section (Astro page transitions)
+        ScrollTrigger.getAll().forEach((st) => {
+            if (st.vars.trigger === section) st.kill();
+        });
+
+        // Video scrolls slower (parallax) — moves at 20% vertical offset
+        gsap.to(video, {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
+
+        // Content scrolls faster and fades out
+        gsap.to(content, {
+            yPercent: -30,
+            opacity: 0,
+            ease: "none",
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "60% top",
+                scrub: true,
+            },
+        });
+    }
+
+    document.addEventListener("astro:page-load", initHeroParallax);
+</script>

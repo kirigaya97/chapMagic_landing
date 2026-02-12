@@ -1,0 +1,223 @@
+---
+interface Props {
+    selector: string;
+    borderRadius?: number;
+}
+
+const { selector, borderRadius = 16 } = Astro.props;
+---
+
+<canvas
+    class={`golden-border-canvas absolute -inset-[1px] w-[calc(100%+2px)] h-[calc(100%+2px)] z-30 pointer-events-none opacity-0 transition-opacity duration-300 hidden md:block`}
+    data-selector={selector}
+    data-radius={borderRadius}></canvas>
+
+<script>
+    function initGoldenBorders() {
+        // Only run on desktop
+        if (window.innerWidth < 768) return;
+
+        const canvases = document.querySelectorAll(
+            ".golden-border-canvas",
+        ) as NodeListOf<HTMLCanvasElement>;
+
+        canvases.forEach((canvas) => {
+            const selector = canvas.dataset.selector;
+            const radius = parseInt(canvas.dataset.radius || "16");
+            const parent = canvas.closest(selector || "") as HTMLElement;
+
+            if (!parent) return;
+
+            const ctx = canvas.getContext("2d")!;
+            let progress = 0;
+            let targetProgress = 0;
+            let raf: number | null = null;
+
+            function resize() {
+                const rect = parent.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                canvas.style.width = rect.width + "px";
+                canvas.style.height = rect.height + "px";
+            }
+
+            resize();
+            window.addEventListener("resize", resize);
+
+            function getSegments(w: number, h: number, r: number) {
+                return [
+                    {
+                        len: (Math.PI * r) / 2,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.arc(
+                                r,
+                                r,
+                                r,
+                                Math.PI,
+                                Math.PI + (Math.PI / 2) * f,
+                                false,
+                            );
+                        },
+                    },
+                    {
+                        len: w - 2 * r,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.lineTo(r + (w - 2 * r) * f, 0);
+                        },
+                    },
+                    {
+                        len: (Math.PI * r) / 2,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.arc(
+                                w - r,
+                                r,
+                                r,
+                                -Math.PI / 2,
+                                -Math.PI / 2 + (Math.PI / 2) * f,
+                                false,
+                            );
+                        },
+                    },
+                    {
+                        len: h - 2 * r,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.lineTo(w, r + (h - 2 * r) * f);
+                        },
+                    },
+                    {
+                        len: (Math.PI * r) / 2,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.arc(
+                                w - r,
+                                h - r,
+                                r,
+                                0,
+                                (Math.PI / 2) * f,
+                                false,
+                            );
+                        },
+                    },
+                    {
+                        len: w - 2 * r,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.lineTo(w - r - (w - 2 * r) * f, h);
+                        },
+                    },
+                    {
+                        len: (Math.PI * r) / 2,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.arc(
+                                r,
+                                h - r,
+                                r,
+                                Math.PI / 2,
+                                Math.PI / 2 + (Math.PI / 2) * f,
+                                false,
+                            );
+                        },
+                    },
+                    {
+                        len: h - 2 * r,
+                        draw(ctx: CanvasRenderingContext2D, f: number) {
+                            ctx.lineTo(0, h - r - (h - 2 * r) * f);
+                        },
+                    },
+                ];
+            }
+
+            function drawBorder(p: number) {
+                const w = canvas.width / (window.devicePixelRatio || 1);
+                const h = canvas.height / (window.devicePixelRatio || 1);
+                const r = radius;
+                const offset = 0.5; // Inset slightly to sit on the 1px border center
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (p <= 0) return;
+
+                const segments = getSegments(w - 2 * offset, h - 2 * offset, r);
+                const totalPerim = segments.reduce((sum, s) => sum + s.len, 0);
+                const halfPerim = totalPerim / 2;
+                const drawLen = p * halfPerim;
+
+                ctx.strokeStyle = "#D4AF37";
+                ctx.lineWidth = 1.5;
+                ctx.lineCap = "round";
+                ctx.lineJoin = "round";
+                ctx.globalAlpha = 0.35 + p * 0.25;
+                ctx.shadowColor = "rgba(212, 175, 55, 0.5)";
+                ctx.shadowBlur = 6 * p;
+
+                ctx.save();
+                ctx.translate(offset, offset);
+
+                ctx.beginPath();
+                ctx.moveTo(0, r);
+                let rem1 = drawLen;
+                for (let i = 0; i < segments.length && rem1 > 0; i++) {
+                    const seg = segments[i];
+                    const f = Math.min(rem1 / seg.len, 1);
+                    seg.draw(ctx, f);
+                    rem1 -= seg.len;
+                }
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(w - 2 * offset, h - 2 * offset - r);
+                let rem2 = drawLen;
+                for (let i = 0; i < segments.length && rem2 > 0; i++) {
+                    const seg = segments[(4 + i) % segments.length];
+                    const f = Math.min(rem2 / seg.len, 1);
+                    seg.draw(ctx, f);
+                    rem2 -= seg.len;
+                }
+                ctx.stroke();
+
+                ctx.restore();
+            }
+
+            function animate() {
+                const diff = targetProgress - progress;
+                if (Math.abs(diff) < 0.005) {
+                    progress = targetProgress;
+                    drawBorder(progress);
+                    raf = null;
+                    return;
+                }
+                progress += diff * (targetProgress > progress ? 0.12 : 0.16);
+                drawBorder(progress);
+                raf = requestAnimationFrame(animate);
+            }
+
+            function show() {
+                canvas.style.opacity = "1";
+                targetProgress = 1;
+                if (!raf) raf = requestAnimationFrame(animate);
+            }
+
+            function hide() {
+                targetProgress = 0;
+                if (!raf) raf = requestAnimationFrame(animate);
+                setTimeout(() => {
+                    if (targetProgress === 0) canvas.style.opacity = "0";
+                }, 300);
+            }
+
+            parent.addEventListener("mouseenter", show);
+            parent.addEventListener("mouseleave", hide);
+
+            // Cleanup for Astro
+            document.addEventListener(
+                "astro:before-preparation",
+                () => {
+                    window.removeEventListener("resize", resize);
+                    parent.removeEventListener("mouseenter", show);
+                    parent.removeEventListener("mouseleave", hide);
+                },
+                { once: true },
+            );
+        });
+    }
+
+    document.addEventListener("astro:page-load", initGoldenBorders);
+</script>

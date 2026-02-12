@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — ChapMagic Premium/Mystery palette */
+  --color-obsidian: #0A0A0A;
+  --color-obsidian-light: #1A1A1A;
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8C860;
+  --color-gold-dark: #B8941F;
+  --color-ivory: #F5F0E8;
+  --color-ivory-muted: #D9D0C0;
+  --color-smoke: #2A2A2A;
+
+  /* Fonts */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Spacing scale (custom additions) */
+  --spacing-section: 120px;
+  --spacing-section-mobile: 80px;
+
+  /* Border radius */
+  --radius-card: 12px;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+@layer base {
+  body {
+    @apply bg-obsidian text-ivory font-body antialiased;
+  }
+}
