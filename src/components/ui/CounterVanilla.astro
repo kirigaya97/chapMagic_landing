@@ -1,0 +1,73 @@
+---
+interface Props {
+    target: number;
+    prefix?: string;
+    suffix?: string;
+    label: string;
+    duration?: number;
+}
+
+const { target, prefix = "", suffix = "", label, duration = 2 } = Astro.props;
+---
+
+<div
+    class="stat-counter text-center"
+    data-target={target}
+    data-prefix={prefix}
+    data-suffix={suffix}
+    data-duration={duration}
+>
+    <div
+        class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gold mb-2 tabular-nums"
+    >
+        <span class="counter-prefix">{prefix}</span><span class="counter-value"
+            >0</span
+        ><span class="counter-suffix">{suffix}</span>
+    </div>
+    <div class="text-ivory-muted uppercase tracking-widest text-sm font-body">
+        {label}
+    </div>
+</div>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    function initCounters() {
+        const counters = document.querySelectorAll(
+            ".stat-counter",
+        ) as NodeListOf<HTMLElement>;
+
+        counters.forEach((el) => {
+            const target = parseFloat(el.dataset.target || "0");
+            const duration = parseFloat(el.dataset.duration || "2");
+            const valueSpan = el.querySelector(".counter-value");
+            if (!valueSpan) return;
+
+            const section = el.closest("#stats");
+            if (!section) return;
+
+            const proxy = { val: 0 };
+
+            gsap.to(proxy, {
+                val: target,
+                duration: duration,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "center center",
+                    scrub: 0.5,
+                },
+                onUpdate: () => {
+                    valueSpan.textContent = Math.round(
+                        proxy.val,
+                    ).toLocaleString();
+                },
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", initCounters);
+</script>

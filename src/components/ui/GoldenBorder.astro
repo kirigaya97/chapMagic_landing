@@ -44,7 +44,12 @@ const { selector, borderRadius = 16 } = Astro.props;
             }
 
             resize();
-            window.addEventListener("resize", resize);
+
+            let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+            window.addEventListener("resize", () => {
+                if (resizeTimer) clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(resize, 150);
+            });
 
             function getSegments(w: number, h: number, r: number) {
                 return [

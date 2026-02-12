@@ -56,3 +56,34 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #D4AF37 transparent;
 }
+
+/* ═══ Hero 3D Symbol ═══ */
+@keyframes spin3d {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes orbitText {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-symbol-3d {
+  perspective: 800px;
+  animation: spin3d 4s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.hero-orbit-text {
+  animation: orbitText 10s linear infinite;
+}

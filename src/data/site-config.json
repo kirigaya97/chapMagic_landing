@@ -45,7 +45,9 @@
         "atrapalo": "https://www.atrapalo.com/entradas/chapmagic-mentalismo-y-magia_e4895627/",
         "instagram": "https://www.instagram.com/chapmagic",
         "youtube": "https://www.youtube.com/@chapmagic",
-        "heroVideoSrc": "/videos/golden-button.mp4"
+        "heroVideoSrc": "/videos/golden-button.mp4",
+        "heroVimeoDesktop": "1164214826",
+        "heroVimeoMobile": "1164214826"
     },
     "translations": {
         "es": {
@@ -65,7 +67,13 @@
             "hero": {
                 "title": "La Magia Que Desafía Lo Imposible",
                 "subtitle": "Mentalismo · Ilusionismo · Experiencias Únicas",
-                "cta": "Reservar Ahora"
+                "cta": "Reservar Ahora",
+                "hoverPrompt": "Hover para magia",
+                "tapPrompt": "Toca para magia",
+                "circleFontSize": {
+                    "desktop": 21,
+                    "mobile": 15.7
+                }
             },
             "shows": {
                 "sectionTitle": "Espectáculos",
@@ -110,7 +118,7 @@
                         "role": "Juez de AGT"
                     },
                     {
-                        "text": "Este tipo es una bestia sexual imparable, lo conozco de pibe",
+                        "text": "Este tipo es una bestia, lo conozco de pibe",
                         "author": "Aníbal Pachano   ",
                         "role": "Juez de AGT"
                     }
@@ -232,7 +240,13 @@
             "hero": {
                 "title": "Magic That Defies The Impossible",
                 "subtitle": "Mentalism · Illusion · Unique Experiences",
-                "cta": "Book Now"
+                "cta": "Book Now",
+                "hoverPrompt": "Hover for magic",
+                "tapPrompt": "Tap for magic",
+                "circleFontSize": {
+                    "desktop": 23,
+                    "mobile": 19
+                }
             },
             "shows": {
                 "sectionTitle": "Shows",

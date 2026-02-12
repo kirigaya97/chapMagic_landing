@@ -32,6 +32,9 @@ const { title, description, lang = "es" } = Astro.props;
     />
 
     <ClientRouter />
+
+    <!-- Vimeo Player API (for Hero immersive state) -->
+    <script src="https://player.vimeo.com/api/player.js" defer></script>
   </head>
   <body>
     <!-- Custom Cursor (desktop only) -->
@@ -51,7 +54,9 @@ const { title, description, lang = "es" } = Astro.props;
 
     <!-- Scripts that need to run on page load and after every transition -->
     <script>
-      import { inView, animate } from "motion";
+      import gsap from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      gsap.registerPlugin(ScrollTrigger);
 
       function initRevealAnimations() {
         const prefersReducedMotion = window.matchMedia(
@@ -66,12 +71,21 @@ const { title, description, lang = "es" } = Astro.props;
           return;
         }
 
-        inView(".reveal", (element) => {
-          animate(
-            element as any,
-            { opacity: 1, y: 0 },
-            { duration: 0.8, ease: [0.17, 0.55, 0.55, 1], delay: 0.1 },
-          );
+        document.querySelectorAll(".reveal").forEach((el) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: "top 90%",
+            once: true,
+            onEnter: () => {
+              gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                delay: 0.1,
+              });
+            },
+          });
         });
       }
 
@@ -109,10 +123,12 @@ const { title, description, lang = "es" } = Astro.props;
         // Track mouse position
         let mouseX = 0;
         let mouseY = 0;
+        let cursorSettleFrames = 0;
 
         document.addEventListener("mousemove", (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
+          cursorSettleFrames = 15;
 
           // Dot follows instantly
           gsap.set(dot, {
@@ -123,6 +139,9 @@ const { title, description, lang = "es" } = Astro.props;
 
         // Ring follows with smooth lerp via GSAP ticker
         gsap.ticker.add(() => {
+          if (cursorSettleFrames <= 0) return;
+          cursorSettleFrames--;
+
           const ringX = (gsap.getProperty(ring, "x") as number) || 0;
           const ringY = (gsap.getProperty(ring, "y") as number) || 0;
 
@@ -142,14 +161,22 @@ const { title, description, lang = "es" } = Astro.props;
 
         interactives.forEach((el) => {
           el.addEventListener("mouseenter", () => {
+            const isMagic = (el as HTMLElement).dataset.cursor === "magic";
             gsap.to(ring, {
-              scale: 1.5,
-              borderColor: "rgba(212, 175, 55, 0.3)",
-              backgroundColor: "rgba(212, 175, 55, 0.08)",
-              duration: 0.3,
+              scale: isMagic ? 3 : 1.5,
+              borderColor: isMagic
+                ? "rgba(212, 175, 55, 0.6)"
+                : "rgba(212, 175, 55, 0.3)",
+              backgroundColor: isMagic
+                ? "rgba(212, 175, 55, 0.3)"
+                : "rgba(212, 175, 55, 0.08)",
+              duration: isMagic ? 3 : 0.3,
               ease: "power2.out",
             });
-            gsap.to(dot, { scale: 0.5, duration: 0.3 });
+            gsap.to(dot, {
+              scale: isMagic ? 0 : 0.5,
+              duration: isMagic ? 3 : 0.3,
+            });
           });
 
           el.addEventListener("mouseleave", () => {

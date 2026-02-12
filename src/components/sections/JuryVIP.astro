@@ -119,7 +119,6 @@ const { t } = Astro.props;
                 gsap.set(titleEl, {
                     opacity: titleOpacity,
                     scale: titleScale,
-                    filter: `blur(${(1 - titleOpacity) * 8}px)`,
                 });
 
                 // Each quote occupies step range [i+1, i+2]
@@ -130,7 +129,6 @@ const { t } = Astro.props;
 
                     let opacity = 0;
                     let yOffset = 40;
-                    let blur = 10;
                     let scale = 0.95;
 
                     if (localProgress > 0 && localProgress <= 1) {
@@ -138,27 +136,31 @@ const { t } = Astro.props;
                         const fadeIn = Math.min(localProgress / 0.3, 1);
                         opacity = fadeIn;
                         yOffset = 40 * (1 - fadeIn);
-                        blur = 10 * (1 - fadeIn);
                         scale = 0.95 + 0.05 * fadeIn;
                     } else if (localProgress > 1 && step < quoteEnd) {
                         // Fully visible
                         opacity = 1;
                         yOffset = 0;
-                        blur = 0;
                         scale = 1;
                     } else if (step >= quoteEnd && step < quoteEnd + 0.5) {
                         // Fading out
                         const fadeOut = 1 - (step - quoteEnd) / 0.5;
                         opacity = Math.max(0, fadeOut);
                         yOffset = -30 * (1 - fadeOut);
-                        blur = 8 * (1 - fadeOut);
                         scale = 1 + 0.03 * (1 - fadeOut);
+                    }
+
+                    // Skip expensive gsap.set for fully invisible quotes
+                    if (opacity < 0.01) {
+                        if (quote.style.opacity !== "0") {
+                            gsap.set(quote, { opacity: 0 });
+                        }
+                        return;
                     }
 
                     gsap.set(quote, {
                         opacity: opacity,
                         y: yOffset,
-                        filter: `blur(${blur}px)`,
                         scale: scale,
                     });
                 });

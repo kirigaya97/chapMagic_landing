@@ -1,6 +1,6 @@
 ---
 import SectionHeading from "../ui/SectionHeading.astro";
-import Counter from "../ui/Counter";
+import Counter from "../ui/CounterVanilla.astro";
 import GoldenBorder from "../ui/GoldenBorder.astro";
 
 interface StatItem {
@@ -40,7 +40,6 @@ const { t } = Astro.props;
                 t.items.map((stat) => (
                     <div class="stat-card relative p-6 bg-obsidian-light/30 rounded-card border border-smoke/50 backdrop-blur-sm group transition-transform duration-500 hover:-translate-y-2">
                         <Counter
-                            client:visible
                             target={stat.value}
                             label={stat.label}
                             prefix={stat.prefix}

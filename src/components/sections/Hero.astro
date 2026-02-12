@@ -1,23 +1,31 @@
 ---
 import Button from "../ui/Button.astro";
+import siteConfig from "../../data/site-config.json";
 
 interface Props {
     t: {
         title: string;
         subtitle: string;
         cta: string;
+        hoverPrompt: string;
+        tapPrompt: string;
+        circleFontSize: {
+            desktop: number;
+            mobile: number;
+        };
     };
     videoSrc: string;
 }
 
 const { t, videoSrc } = Astro.props;
+const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
 ---
 
 <section
     id="hero-section"
     class="relative min-h-screen flex items-center justify-center overflow-hidden bg-obsidian"
 >
-    <!-- Background Video -->
+    <!-- LAYER 0: AMBIENT VIDEO -->
     <video
         id="hero-video"
         autoplay
@@ -26,27 +34,130 @@ const { t, videoSrc } = Astro.props;
         playsinline
         preload="metadata"
         class="absolute inset-0 w-full h-full object-cover"
+        style="z-index: 0;"
     >
         <source src={videoSrc} type="video/mp4" />
     </video>
 
-    <!-- Curtain: hides video until ready -->
+    <!-- LAYER 5: VIMEO — pointer-events ALWAYS none -->
+    <div
+        id="hero-vimeo-wrapper"
+        class="absolute inset-0 opacity-0 overflow-hidden"
+        style="z-index: 5; pointer-events: none;"
+    >
+        <iframe
+            id="hero-vimeo-iframe"
+            src=""
+            data-vimeo-desktop={heroVimeoDesktop}
+            data-vimeo-mobile={heroVimeoMobile}
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; border: none;"
+            title="ChapMagic Performance"></iframe>
+    </div>
+
+    <!-- LAYER 50: CURTAIN (ephemeral) -->
     <div
         id="hero-curtain"
-        class="absolute inset-0 bg-obsidian z-[5] transition-opacity duration-[1500ms] ease-out"
+        class="absolute inset-0 bg-obsidian transition-opacity duration-[1500ms] ease-out"
+        style="z-index: 50; pointer-events: none;"
     >
     </div>
 
-    <!-- Overlay for readability -->
+    <!-- LAYER 10: OVERLAY — pointer-events ALWAYS none -->
     <div
+        id="hero-overlay"
         class="absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/40 to-obsidian"
+        style="z-index: 10; pointer-events: none;"
     >
     </div>
 
-    <!-- Hero Content -->
+    <!--
+        LAYER 30: 3D SPINNING SYMBOL
+        Mobile:  bottom-8 left-6, 120×120
+        Desktop: bottom-16 left-10, 200×200
+    -->
+    <div
+        id="hero-magic-trigger"
+        class="absolute bottom-8 left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
+        style="z-index: 30;"
+        role="button"
+        tabindex="0"
+        aria-label={t.hoverPrompt}
+        data-cursor="magic"
+    >
+        <!-- 3D Spinning Star -->
+        <div
+            class="hero-symbol-3d absolute inset-0 flex items-center justify-center"
+        >
+            <svg
+                viewBox="0 0 80 80"
+                class="w-14 h-14 md:w-20 md:h-20 drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M40 4L47.6 28.4H73.2L52.8 43.6L60.4 68L40 52.8L19.6 68L27.2 43.6L6.8 28.4H32.4L40 4Z"
+                    fill="#D4AF37"
+                    stroke="#E8C860"
+                    stroke-width="1"></path>
+            </svg>
+        </div>
+
+        <!-- Desktop Orbiting Text -->
+        <svg
+            class="hero-orbit-text absolute inset-0 w-full h-full hidden md:block"
+            viewBox="0 0 200 200"
+        >
+            <defs>
+                <path
+                    id="orbitDesktop"
+                    d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"
+                ></path>
+            </defs>
+            <text
+                fill="#D4AF37"
+                font-size={t.circleFontSize.desktop}
+                font-weight="900"
+                font-family="Inter, sans-serif"
+                letter-spacing="2"
+            >
+                <textPath href="#orbitDesktop" startOffset="0%"
+                    >{t.hoverPrompt} · {t.hoverPrompt} ·</textPath
+                >
+            </text>
+        </svg>
+
+        <!-- Mobile Orbiting Text -->
+        <svg
+            class="hero-orbit-text absolute inset-0 w-full h-full md:hidden"
+            viewBox="0 0 140 140"
+        >
+            <defs>
+                <path
+                    id="orbitMobile"
+                    d="M70,70 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"
+                ></path>
+            </defs>
+            <text
+                fill="#D4AF37"
+                font-size={t.circleFontSize.mobile}
+                font-weight="900"
+                font-family="Inter, sans-serif"
+                letter-spacing="1"
+            >
+                <textPath href="#orbitMobile" startOffset="0%"
+                    >{t.tapPrompt} · {t.tapPrompt} ·</textPath
+                >
+            </text>
+        </svg>
+    </div>
+
+    <!-- LAYER 20: HERO CONTENT -->
     <div
         id="hero-content"
-        class="relative z-10 container mx-auto px-6 text-center"
+        class="relative container mx-auto px-6 text-center -mt-28 md:mt-0"
+        style="z-index: 20; pointer-events: none;"
     >
         <h1
             class="hero-title opacity-0 translate-y-20 text-4xl md:text-6xl lg:text-8xl font-heading font-bold text-ivory leading-tight mb-6"
@@ -58,16 +169,34 @@ const { t, videoSrc } = Astro.props;
         >
             {t.subtitle}
         </p>
-        <div class="hero-cta opacity-0 translate-y-10 scale-90">
+        <div
+            class="hero-cta opacity-0 translate-y-10 scale-90"
+            style="pointer-events: auto;"
+        >
             <Button variant="gold" href="#shows" id="hero-cta-btn">
                 {t.cta}
             </Button>
         </div>
     </div>
 
-    <!-- Scroll Indicator -->
+    <!-- LAYER 30: BRAND ANCHOR (immersive only) -->
     <div
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce"
+        id="hero-brand-anchor"
+        class="absolute bottom-10 left-10 opacity-0"
+        style="z-index: 30; pointer-events: none;"
+    >
+        <h2
+            class="text-5xl md:text-7xl lg:text-8xl font-heading font-black text-ivory/20 uppercase leading-none tracking-tight"
+        >
+            CHAP<span class="text-gold/30">MAGIC</span>
+        </h2>
+    </div>
+
+    <!-- LAYER 20: SCROLL INDICATOR -->
+    <div
+        id="hero-scroll-indicator"
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+        style="z-index: 20; pointer-events: none;"
     >
         <svg
             class="w-6 h-6 text-gold/50"
@@ -86,18 +215,43 @@ const { t, videoSrc } = Astro.props;
 
 <script>
     import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
 
-    function initHeroAnimation() {
+    function initHero() {
+        const section = document.getElementById("hero-section");
+        const trigger = document.getElementById("hero-magic-trigger");
+        const video = document.getElementById(
+            "hero-video",
+        ) as HTMLVideoElement | null;
+        const vWrapper = document.getElementById("hero-vimeo-wrapper");
+        const iframe = document.getElementById(
+            "hero-vimeo-iframe",
+        ) as HTMLIFrameElement | null;
+        const overlay = document.getElementById("hero-overlay");
+        const content = document.getElementById("hero-content");
+        const curtain = document.getElementById("hero-curtain");
+        const brand = document.getElementById("hero-brand-anchor");
+        const scrollInd = document.getElementById("hero-scroll-indicator");
+
+        if (
+            !section ||
+            !trigger ||
+            !iframe ||
+            !vWrapper ||
+            !overlay ||
+            !content
+        )
+            return;
+
+        // ───── 1. TEXT ANIMATION ─────
         const tl = gsap.timeline({ paused: true });
-
-        // Smoke-like animation: Blur + Scale + Fade
         tl.fromTo(
             ".hero-title",
-            { opacity: 0, filter: "blur(20px)", scale: 1.1, y: 20 },
+            { opacity: 0, filter: "blur(20px)", y: 20 },
             {
                 opacity: 1,
                 filter: "blur(0px)",
-                scale: 1,
                 y: 0,
                 duration: 2,
                 ease: "power2.out",
@@ -105,11 +259,10 @@ const { t, videoSrc } = Astro.props;
         )
             .fromTo(
                 ".hero-subtitle",
-                { opacity: 0, filter: "blur(15px)", scale: 1.05, y: 10 },
+                { opacity: 0, filter: "blur(15px)", y: 10 },
                 {
                     opacity: 1,
                     filter: "blur(0px)",
-                    scale: 1,
                     y: 0,
                     duration: 1.5,
                     ease: "power2.out",
@@ -123,74 +276,198 @@ const { t, videoSrc } = Astro.props;
                 "-=0.8",
             );
 
-        const video = document.querySelector("video");
-        const curtain = document.getElementById("hero-curtain");
-        let triggered = false;
-
+        // ───── 2. CURTAIN ─────
         function liftCurtain() {
             if (curtain) {
                 curtain.style.opacity = "0";
-                // Remove from DOM after transition completes
                 setTimeout(() => curtain.remove(), 1600);
             }
         }
 
+        let textTriggered = false;
         if (video) {
-            // Lift curtain when video is ready to play
-            if (video.readyState >= 3) {
-                // Video already loaded (cached)
-                liftCurtain();
-            } else {
-                video.addEventListener("canplay", liftCurtain, { once: true });
+            if (video.readyState >= 3) liftCurtain();
+            else video.addEventListener("canplay", liftCurtain, { once: true });
+            setTimeout(liftCurtain, 2500);
+
+            function onTimeUpdate() {
+                if (video && video.currentTime >= 5.5) {
+                    textTriggered = true;
+                    tl.play();
+                    video.removeEventListener("timeupdate", onTimeUpdate);
+                }
             }
-
-            // Fallback: lift curtain after 2s regardless
-            const curtainFallback = setTimeout(() => {
-                liftCurtain();
-            }, 2000);
-
-            // Fallback if video fails or takes too long for text animation
-            const fallback = setTimeout(() => {
-                if (!triggered) {
-                    triggered = true;
+            if (video) video.addEventListener("timeupdate", onTimeUpdate);
+            setTimeout(() => {
+                if (!textTriggered) {
+                    textTriggered = true;
                     tl.play();
                 }
             }, 8000);
-
-            video.addEventListener("timeupdate", () => {
-                // Trigger at 5.5s for the Golden Button moment
-                if (!triggered && video.currentTime >= 5.5) {
-                    triggered = true;
-                    clearTimeout(fallback);
-                    tl.play();
-                }
-            });
         } else {
-            // No video element found
-            if (curtain) curtain.remove();
+            liftCurtain();
             tl.play();
         }
+
+        // ───── 3. VIMEO PLAYER ─────
+        const desktopId = iframe?.dataset.vimeoDesktop;
+        const mobileId = iframe?.dataset.vimeoMobile;
+        const pickId = () => (window.innerWidth < 768 ? mobileId : desktopId);
+
+        if (iframe) {
+            iframe.src = `https://player.vimeo.com/video/${pickId()}?badge=0&autopause=0&player_id=hero-vimeo-iframe&app_id=58479&loop=1&background=1&muted=1`;
+        }
+
+        function sizeIframe() {
+            if (!iframe) return;
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const videoAspect = 16 / 9;
+            if (vw / vh > videoAspect) {
+                iframe.style.width = vw + "px";
+                iframe.style.height = vw / videoAspect + "px";
+            } else {
+                iframe.style.height = vh + "px";
+                iframe.style.width = vh * videoAspect + "px";
+            }
+        }
+        sizeIframe();
+        window.addEventListener("resize", sizeIframe);
+
+        // @ts-ignore
+        const player = new Vimeo.Player(iframe);
+
+        // ───── 4. STATE MACHINE ─────
+        let immersive = false;
+        let audioTimer: ReturnType<typeof setTimeout> | null = null;
+
+        let videoTimer: ReturnType<typeof setTimeout> | null = null;
+
+        function enter() {
+            if (immersive) return;
+            immersive = true;
+
+            // Fade out UI immediately
+            gsap.to(overlay, { opacity: 0, duration: 0.8 });
+            gsap.to(content, { opacity: 0, y: -30, duration: 0.5 });
+            if (scrollInd) gsap.to(scrollInd, { opacity: 0, duration: 0.3 });
+            if (brand)
+                gsap.to(brand, { opacity: 1, duration: 0.8, delay: 0.3 });
+
+            // 0.5s delay before video starts
+            videoTimer = setTimeout(() => {
+                player.setCurrentTime(0);
+                player.play();
+
+                gsap.to(vWrapper, {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                });
+
+                // 0.5s after video starts, activate audio
+                audioTimer = setTimeout(() => {
+                    player.setMuted(false);
+                    player.setVolume(0);
+                    const vol = { v: 0 };
+                    gsap.to(vol, {
+                        v: 0.6,
+                        duration: 0.5,
+                        ease: "power2.out",
+                        onUpdate: () => player.setVolume(vol.v),
+                    });
+                }, 500);
+            }, 500);
+        }
+
+        function exit() {
+            if (!immersive) return;
+            immersive = false;
+
+            if (videoTimer) {
+                clearTimeout(videoTimer);
+                videoTimer = null;
+            }
+            if (audioTimer) {
+                clearTimeout(audioTimer);
+                audioTimer = null;
+            }
+
+            player.setMuted(true);
+            player.setVolume(0);
+            player.pause();
+
+            gsap.set(vWrapper, { opacity: 0 });
+            gsap.set(overlay, { opacity: 1 });
+            gsap.set(content, { opacity: 1, y: 0 });
+            if (scrollInd) gsap.set(scrollInd, { opacity: 1 });
+            if (brand) gsap.set(brand, { opacity: 0 });
+        }
+
+        // ───── 5. DESKTOP: HOVER THE TRIGGER → ENTER, LEAVE THE TRIGGER → EXIT ─────
+        // The trigger (star circle) is ALWAYS visible, ALWAYS z-30, ALWAYS pointer-events:auto.
+        // Everything underneath (iframe, overlay) is pointer-events:none.
+        // So mouseleave on the trigger fires reliably.
+        let hoverTimer: ReturnType<typeof setTimeout> | null = null;
+
+        trigger.addEventListener("mouseenter", () => {
+            hoverTimer = setTimeout(() => {
+                enter();
+            }, 150);
+        });
+
+        trigger.addEventListener("mouseleave", () => {
+            // Cancel delayed enter if it hasn't fired yet
+            if (hoverTimer) {
+                clearTimeout(hoverTimer);
+                hoverTimer = null;
+            }
+            // EXIT immediately when mouse leaves the trigger
+            exit();
+        });
+
+        // ───── 6. MOBILE: TAP TOGGLE ─────
+        trigger.addEventListener(
+            "touchstart",
+            (e) => {
+                e.preventDefault();
+                if (immersive) {
+                    exit();
+                } else {
+                    enter();
+                }
+            },
+            { passive: false },
+        );
+
+        // Tap anywhere else on the section to exit
+        section.addEventListener(
+            "touchstart",
+            (e) => {
+                if (
+                    immersive &&
+                    e.target !== trigger &&
+                    !trigger.contains(e.target as Node)
+                ) {
+                    exit();
+                }
+            },
+            { passive: true },
+        );
     }
 
-    document.addEventListener("astro:page-load", initHeroAnimation);
+    document.addEventListener("astro:page-load", initHero);
 
-    // --- Hero Parallax Effect ---
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
-
-    function initHeroParallax() {
+    // ───── PARALLAX ─────
+    function initParallax() {
         const section = document.getElementById("hero-section");
         const video = document.getElementById("hero-video");
-        const content = document.getElementById("hero-content");
+        if (!section || !video) return;
 
-        if (!section || !video || !content) return;
-
-        // Kill previous ScrollTriggers for this section (Astro page transitions)
         ScrollTrigger.getAll().forEach((st) => {
             if (st.vars.trigger === section) st.kill();
         });
 
-        // Video scrolls slower (parallax) — moves at 20% vertical offset
         gsap.to(video, {
             yPercent: 20,
             ease: "none",
@@ -201,20 +478,7 @@ const { t, videoSrc } = Astro.props;
                 scrub: true,
             },
         });
-
-        // Content scrolls faster and fades out
-        gsap.to(content, {
-            yPercent: -30,
-            opacity: 0,
-            ease: "none",
-            scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: "60% top",
-                scrub: true,
-            },
-        });
     }
 
-    document.addEventListener("astro:page-load", initHeroParallax);
+    document.addEventListener("astro:page-load", initParallax);
 </script>
