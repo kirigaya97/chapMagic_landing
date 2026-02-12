@@ -21,9 +21,26 @@ const { t, videoSrc } = Astro.props;
 const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
 ---
 
+<!-- VIMEO OVERLAY — OUTSIDE section to avoid Android overflow:hidden clipping bug -->
+<div
+    id="hero-vimeo-wrapper"
+    class="fixed inset-0 w-full h-full opacity-0 overflow-hidden"
+    style="z-index: 9998; pointer-events: none; margin: 0; padding: 0;"
+>
+    <iframe
+        id="hero-vimeo-iframe"
+        src=""
+        data-vimeo-desktop={heroVimeoDesktop}
+        data-vimeo-mobile={heroVimeoMobile}
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.78vh; transform: translate(-50%, -50%); pointer-events: none; border: none;"
+        title="ChapMagic Performance"></iframe>
+</div>
+
 <section
     id="hero-section"
-    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-obsidian"
+    class="relative min-h-screen flex items-center justify-center overflow-clip bg-obsidian"
 >
     <!-- LAYER 0: AMBIENT VIDEO -->
     <video
@@ -38,23 +55,6 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     >
         <source src={videoSrc} type="video/mp4" />
     </video>
-
-    <!-- LAYER 5: VIMEO — pointer-events ALWAYS none -->
-    <div
-        id="hero-vimeo-wrapper"
-        class="fixed top-0 left-0 w-full h-full opacity-0 overflow-hidden"
-        style="z-index: 5; pointer-events: none; margin-top: 0; padding-top: 0;"
-    >
-        <iframe
-            id="hero-vimeo-iframe"
-            src=""
-            data-vimeo-desktop={heroVimeoDesktop}
-            data-vimeo-mobile={heroVimeoMobile}
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; border: none;"
-            title="ChapMagic Performance"></iframe>
-    </div>
 
     <!-- LAYER 50: CURTAIN (ephemeral) -->
     <div
@@ -79,7 +79,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     -->
     <div
         id="hero-magic-trigger"
-        class="absolute bottom-[calc(6rem+10vh)] left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
+        class="absolute bottom-[calc(6rem+15vh)] left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
         style="z-index: 30;"
         role="button"
         tabindex="0"
@@ -156,7 +156,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     <!-- LAYER 20: HERO CONTENT -->
     <div
         id="hero-content"
-        class="relative container mx-auto px-6 text-center -mt-20 md:mt-0"
+        class="relative container mx-auto px-6 text-center -mt-[10vh] md:mt-0"
         style="z-index: 20; pointer-events: none;"
     >
         <h1
@@ -318,21 +318,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
             iframe.src = `https://player.vimeo.com/video/${pickId()}?badge=0&autopause=0&player_id=hero-vimeo-iframe&app_id=58479&loop=1&background=1&muted=1`;
         }
 
-        function sizeIframe() {
-            if (!iframe) return;
-            const vw = window.innerWidth;
-            const vh = window.innerHeight;
-            const videoAspect = 16 / 9;
-            if (vw / vh > videoAspect) {
-                iframe.style.width = vw + "px";
-                iframe.style.height = vw / videoAspect + "px";
-            } else {
-                iframe.style.height = vh + "px";
-                iframe.style.width = vh * videoAspect + "px";
-            }
-        }
-        sizeIframe();
-        window.addEventListener("resize", sizeIframe);
+        // iframe cover sizing handled by pure CSS (min-height/min-width)
 
         // @ts-ignore
         const player = new Vimeo.Player(iframe);
