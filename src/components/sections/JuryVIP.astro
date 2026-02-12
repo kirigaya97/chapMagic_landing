@@ -17,9 +17,9 @@ const { t } = Astro.props;
 
 <section id="jury" class="bg-obsidian relative">
     <!-- Scroll-pinned container: height = 100vh per quote + 1 for the heading -->
-    <div class="jury-vip-wrapper relative" style={`height: ${(t.quotes.length + 1) * 100}dvh;`}>
+    <div class="jury-vip-wrapper relative" style={`height: ${(t.quotes.length + 1) * 100}vh;`}>
         <!-- Pinned viewport -->
-        <div class="jury-vip-pinned h-[100dvh] w-full sticky top-0 flex items-center justify-center overflow-hidden">
+        <div class="jury-vip-pinned h-screen w-full sticky top-0 flex items-center justify-center overflow-hidden">
 
             <!-- Background glow effects -->
             <div class="absolute inset-0 pointer-events-none">
