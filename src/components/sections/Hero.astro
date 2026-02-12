@@ -42,8 +42,8 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     <!-- LAYER 5: VIMEO — pointer-events ALWAYS none -->
     <div
         id="hero-vimeo-wrapper"
-        class="absolute top-0 left-0 w-full h-screen opacity-0 overflow-hidden m-0 p-0"
-        style="z-index: 5; pointer-events: none;"
+        class="fixed top-0 left-0 w-full h-full opacity-0 overflow-hidden"
+        style="z-index: 5; pointer-events: none; margin-top: 0; padding-top: 0;"
     >
         <iframe
             id="hero-vimeo-iframe"
@@ -79,7 +79,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     -->
     <div
         id="hero-magic-trigger"
-        class="absolute bottom-[calc(6rem+5vh)] left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
+        class="absolute bottom-[calc(6rem+10vh)] left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
         style="z-index: 30;"
         role="button"
         tabindex="0"
@@ -319,9 +319,9 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
         }
 
         function sizeIframe() {
-            if (!iframe || !section) return;
-            const vw = section.offsetWidth;
-            const vh = section.offsetHeight;
+            if (!iframe) return;
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
             const videoAspect = 16 / 9;
             if (vw / vh > videoAspect) {
                 iframe.style.width = vw + "px";
