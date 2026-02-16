@@ -3,7 +3,6 @@
   "type": "module",
   "version": "0.0.2",
   "scripts": {
-    "prebuild": "node debug-build.js",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
