@@ -80,7 +80,8 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     <div
         id="hero-magic-trigger"
         class="absolute bottom-[calc(6rem+15vh)] left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
-        style="z-index: 30;"
+        style="z-index: 9999;"
+
         role="button"
         tabindex="0"
         aria-label={t.hoverPrompt}
@@ -179,18 +180,19 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
         </div>
     </div>
 
-    <!-- LAYER 30: BRAND ANCHOR (immersive only) -->
+    <!-- LAYER 9999: BRAND ANCHOR (immersive only) -->
     <div
         id="hero-brand-anchor"
-        class="absolute bottom-10 left-10 opacity-0"
-        style="z-index: 30; pointer-events: none;"
+        class="absolute bottom-10 right-10 md:bottom-16 md:right-10 opacity-0"
+        style="z-index: 9999; pointer-events: none;"
     >
         <h2
-            class="text-5xl md:text-7xl lg:text-8xl font-heading font-black text-ivory/20 uppercase leading-none tracking-tight"
+            class="text-5xl md:text-7xl lg:text-8xl font-body font-black text-ivory/30 uppercase leading-none tracking-tighter"
         >
-            CHAP<span class="text-gold/30">MAGIC</span>
+            CHAP<span class="text-gold/40">MAGIC</span>
         </h2>
     </div>
+
 
     <!-- LAYER 20: SCROLL INDICATOR -->
     <div

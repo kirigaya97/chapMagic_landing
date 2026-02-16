@@ -37,7 +37,7 @@
         }
     ],
     "contact": {
-        "whatsapp": "+34600000000",
+        "whatsapp": "+34691665388",
         "email": "hola@chapmagic.com",
         "formDestinationEmail": "rodrigo.camino97@gmail.com"
     },
@@ -80,26 +80,26 @@
                 "items": [
                     {
                         "id": "corporate",
-                        "title": "Corporativo",
-                        "description": "Transforma tu evento de empresa en una experiencia inolvidable que reforzará tu marca.",
+                        "title": "Magia para empresas",
+                        "description": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
                         "image": "/images/shows/show1.jpg"
                     },
                     {
-                        "id": "private",
-                        "title": "Privado",
-                        "description": "Haz que tu celebración sea mágica con un show cercano y participativo para tus invitados.",
+                        "id": "reception",
+                        "title": "Magia de recepción",
+                        "description": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
                         "image": "/images/shows/show2.jpg"
                     },
                     {
-                        "id": "mentalism",
-                        "title": "Mentalismo",
-                        "description": "Un viaje a lo más profundo de la mente donde lo imposible se vuelve realidad.",
+                        "id": "main-show",
+                        "title": "Show central",
+                        "description": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
                         "image": "/images/shows/show3.jpg"
                     },
                     {
-                        "id": "virtual",
-                        "title": "Virtual",
-                        "description": "Magia interactiva de alta calidad diseñada específicamente para el entorno online.",
+                        "id": "magic-experience",
+                        "title": "Experiencia mágica",
+                        "description": "Un show íntimo para solo 12 personas en una exclusiva sala Speak Easy. Magia de alto nivel, muy cerca, en una de las mejores cocktailerías de Europa.",
                         "image": "/images/shows/show4.jpg"
                     }
                 ]
@@ -108,18 +108,23 @@
                 "sectionTitle": "Lo Que Dicen Los Jueces",
                 "quotes": [
                     {
-                        "text": "Tu control del escenario y el ritmo es simplemente perfecto. No he visto nada igual.",
+                        "text": "Es mago de verdad, tiene poderes.",
+                        "author": "Santi Millán",
+                        "role": "Juez de AGT"
+                    },
+                    {
+                        "text": "Es que flipo. Me ha encantado.",
+                        "author": "Lorena Castell",
+                        "role": "Juez de AGT"
+                    },
+                    {
+                        "text": "Me fascina, me estoy volviendo loca.",
+                        "author": "Paula Echevarría",
+                        "role": "Juez de AGT"
+                    },
+                    {
+                        "text": "Con un número de esos ya era pase de oro, ¡que hizo 4!",
                         "author": "Risto Meijide",
-                        "role": "Juez de AGT"
-                    },
-                    {
-                        "text": "Esa fue la magia más elegante y sorprendente que he presenciado en este plató.",
-                        "author": "J.D. Perón",
-                        "role": "Juez de AGT"
-                    },
-                    {
-                        "text": "Este tipo es una bestia, lo conozco de pibe",
-                        "author": "Aníbal Pachano   ",
                         "role": "Juez de AGT"
                     }
                 ]
@@ -253,26 +258,26 @@
                 "items": [
                     {
                         "id": "corporate",
-                        "title": "Corporate",
-                        "description": "Transforma your corporate event into an unforgettable experience that will strengthen your brand.",
+                        "title": "Corporate Magic",
+                        "description": "Chap creates magical experiences for corporate events worldwide. Custom-designed tech magic and mentalism to generate impact, connection, and brand recall.",
                         "image": "/images/shows/show1.jpg"
                     },
                     {
-                        "id": "private",
-                        "title": "Private",
-                        "description": "Make your celebration magical with a close-up and participative show for your guests.",
+                        "id": "reception",
+                        "title": "Reception Magic",
+                        "description": "Magic happens inches from your eyes. Chap surprises small groups with modern and technological illusions, creating an intimate and unforgettable experience.",
                         "image": "/images/shows/show2.jpg"
                     },
                     {
-                        "id": "mentalism",
-                        "title": "Mentalism",
-                        "description": "A journey into the depths of the mind where the impossible becomes reality.",
+                        "id": "main-show",
+                        "title": "Main Show",
+                        "description": "A show that combines comedy and impactful magic. Different formats adaptable to family, social, and corporate events.",
                         "image": "/images/shows/show3.jpg"
                     },
                     {
-                        "id": "virtual",
-                        "title": "Virtual",
-                        "description": "High-quality interactive magic designed specifically for the online environment.",
+                        "id": "magic-experience",
+                        "title": "Magic Experience",
+                        "description": "An intimate show for only 12 people in an exclusive Speak Easy room. High-level magic, up close, in one of the best cocktail bars in Europe.",
                         "image": "/images/shows/show4.jpg"
                     }
                 ]
@@ -281,13 +286,23 @@
                 "sectionTitle": "What The Judges Say",
                 "quotes": [
                     {
-                        "text": "Your stage control and pacing are simply perfect. I haven't seen anything like it.",
-                        "author": "Simon Cowell",
+                        "text": "He's a real magician, he has powers.",
+                        "author": "Santi Millán",
                         "role": "AGT Judge"
                     },
                     {
-                        "text": "That was the most elegant and surprising magic I've witnessed on this stage.",
-                        "author": "Heidi Klum",
+                        "text": "I'm blown away. I absolutely loved it.",
+                        "author": "Lorena Castell",
+                        "role": "AGT Judge"
+                    },
+                    {
+                        "text": "I'm fascinated, it's driving me crazy!",
+                        "author": "Paula Echevarría",
+                        "role": "AGT Judge"
+                    },
+                    {
+                        "text": "With one of those acts it was already a golden buzzer, and he did four!!!",
+                        "author": "Risto Meijide",
                         "role": "AGT Judge"
                     }
                 ]
