@@ -27,14 +27,21 @@ const { title, description, lang = "es" } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <ClientRouter />
 
-    <!-- Vimeo Player API (for Hero immersive state) -->
-    <script src="https://player.vimeo.com/api/player.js" defer></script>
+
   </head>
   <body>
     <!-- Custom Cursor (desktop only) -->
@@ -54,9 +61,7 @@ const { title, description, lang = "es" } = Astro.props;
 
     <!-- Scripts that need to run on page load and after every transition -->
     <script>
-      import gsap from "gsap";
-      import { ScrollTrigger } from "gsap/ScrollTrigger";
-      gsap.registerPlugin(ScrollTrigger);
+      import { gsap, ScrollTrigger } from "../lib/gsap-init";
 
       function initRevealAnimations() {
         const prefersReducedMotion = window.matchMedia(
@@ -97,7 +102,7 @@ const { title, description, lang = "es" } = Astro.props;
 
     <!-- Custom Cursor Script -->
     <script>
-      import gsap from "gsap";
+      import { gsap } from "../lib/gsap-init";
 
       function initCustomCursor() {
         const dot = document.getElementById("cursor-dot");

@@ -50,6 +50,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
         loop
         playsinline
         preload="metadata"
+        poster="/images/hero-poster.jpg"
         class="absolute inset-0 w-full h-full object-cover"
         style="z-index: 0;"
     >
@@ -216,9 +217,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
 </section>
 
 <script>
-    import gsap from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
+    import { gsap, ScrollTrigger } from "../../lib/gsap-init";
 
     function initHero() {
         const section = document.getElementById("hero-section");
@@ -320,10 +319,24 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
             iframe.src = `https://player.vimeo.com/video/${pickId()}?badge=0&autopause=0&player_id=hero-vimeo-iframe&app_id=58479&loop=1&background=1&muted=1`;
         }
 
-        // iframe cover sizing handled by pure CSS (min-height/min-width)
+        // Lazy-load Vimeo API — only when user triggers immersive mode
+        let player: any = null;
 
-        // @ts-ignore
-        const player = new Vimeo.Player(iframe);
+        async function ensureVimeoPlayer() {
+            if (player) return player;
+            // Dynamically load the Vimeo Player API script
+            if (!(window as any).Vimeo) {
+                await new Promise<void>((resolve) => {
+                    const s = document.createElement("script");
+                    s.src = "https://player.vimeo.com/api/player.js";
+                    s.onload = () => resolve();
+                    document.head.appendChild(s);
+                });
+            }
+            // @ts-ignore
+            player = new Vimeo.Player(iframe);
+            return player;
+        }
 
         // ───── 4. STATE MACHINE ─────
         let immersive = false;
@@ -331,9 +344,11 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
 
         let videoTimer: ReturnType<typeof setTimeout> | null = null;
 
-        function enter() {
+        async function enter() {
             if (immersive) return;
             immersive = true;
+
+            const player = await ensureVimeoPlayer();
 
             // Fade out UI immediately
             gsap.to(overlay, { opacity: 0, duration: 0.8 });
@@ -381,9 +396,11 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
                 audioTimer = null;
             }
 
-            player.setMuted(true);
-            player.setVolume(0);
-            player.pause();
+            if (player) {
+                player.setMuted(true);
+                player.setVolume(0);
+                player.pause();
+            }
 
             gsap.set(vWrapper, { opacity: 0 });
             gsap.set(overlay, { opacity: 1 });

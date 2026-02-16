@@ -82,25 +82,25 @@
                         "id": "corporate",
                         "title": "Magia para empresas",
                         "description": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
-                        "image": "/images/shows/show1.jpg"
+                        "image": "/images/shows/show1.webp"
                     },
                     {
                         "id": "reception",
                         "title": "Magia de recepción",
                         "description": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
-                        "image": "/images/shows/show2.jpg"
+                        "image": "/images/shows/show2.webp"
                     },
                     {
                         "id": "main-show",
                         "title": "Show central",
                         "description": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
-                        "image": "/images/shows/show3.jpg"
+                        "image": "/images/shows/show3.webp"
                     },
                     {
                         "id": "magic-experience",
                         "title": "Experiencia mágica",
                         "description": "Un show íntimo para solo 12 personas en una exclusiva sala Speak Easy. Magia de alto nivel, muy cerca, en una de las mejores cocktailerías de Europa.",
-                        "image": "/images/shows/show4.jpg"
+                        "image": "/images/shows/show4.webp"
                     }
                 ]
             },
@@ -260,13 +260,13 @@
                         "id": "corporate",
                         "title": "Corporate Magic",
                         "description": "Chap creates magical experiences for corporate events worldwide. Custom-designed tech magic and mentalism to generate impact, connection, and brand recall.",
-                        "image": "/images/shows/show1.jpg"
+                        "image": "/images/shows/show1.webp"
                     },
                     {
                         "id": "reception",
                         "title": "Reception Magic",
                         "description": "Magic happens inches from your eyes. Chap surprises small groups with modern and technological illusions, creating an intimate and unforgettable experience.",
-                        "image": "/images/shows/show2.jpg"
+                        "image": "/images/shows/show2.webp"
                     },
                     {
                         "id": "main-show",

@@ -30,9 +30,7 @@ const { target, prefix = "", suffix = "", label, duration = 2 } = Astro.props;
 </div>
 
 <script>
-    import gsap from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
+    import { gsap, ScrollTrigger } from "../../lib/gsap-init";
 
     function initCounters() {
         const counters = document.querySelectorAll(
