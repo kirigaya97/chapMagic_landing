@@ -82,7 +82,7 @@ html {
   }
 
   to {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 
@@ -98,11 +98,14 @@ html {
 
 /* ═══ Hero Trigger Pulsing Glow ═══ */
 @keyframes triggerPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow:
       0 0 30px rgba(212, 175, 55, 0.15),
       0 0 60px rgba(212, 175, 55, 0.08);
   }
+
   50% {
     box-shadow:
       0 0 50px rgba(212, 175, 55, 0.35),
