@@ -9,6 +9,8 @@ interface Props {
         cta: string;
         hoverPrompt: string;
         tapPrompt: string;
+        tooltipDesktop: string;
+        tooltipMobile: string;
         circleFontSize: {
             desktop: number;
             mobile: number;
@@ -80,7 +82,7 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
     -->
     <div
         id="hero-magic-trigger"
-        class="absolute bottom-10 left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
+        class="hero-trigger-glow absolute bottom-10 left-6 w-[140px] h-[140px] md:bottom-16 md:left-10 md:w-[200px] md:h-[200px] flex items-center justify-center cursor-pointer select-none"
         style="z-index: 9999;"
 
         role="button"
@@ -153,7 +155,30 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
                 >
             </text>
         </svg>
+
+        <!-- TOOLTIP LABEL: relative to this container -->
+        <div
+            id="hero-trigger-tooltip"
+            class="absolute opacity-0 pointer-events-none select-none transition-opacity duration-500"
+        >
+            <!-- Desktop: positioned to the right of trigger (6vw offset) -->
+            <div class="hidden md:flex items-center gap-3 absolute left-[calc(100%+6vw)] top-1/2 -translate-y-1/2">
+                <div class="w-8 h-px bg-gold/50"></div>
+                <span class="text-base font-body font-bold text-gold whitespace-nowrap tracking-wide">
+                    {t.tooltipDesktop}
+                </span>
+            </div>
+            <!-- Mobile: positioned above the trigger (9vh offset + vertical line) -->
+            <div class="flex md:hidden flex-col items-center gap-2 absolute bottom-[calc(100%+9vh)] left-1/2 -translate-x-1/2">
+                <span class="text-sm font-body font-bold text-gold whitespace-nowrap tracking-wide">
+                    {t.tooltipMobile}
+                </span>
+                <div class="w-px h-8 bg-gold/50"></div>
+            </div>
+        </div>
     </div>
+
+
 
     <!-- LAYER 20: HERO CONTENT -->
     <div
@@ -459,6 +484,45 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
             },
             { passive: true },
         );
+        // ───── 7. NUDGE + TOOLTIP ATTENTION SYSTEM ─────
+        const tooltip = document.getElementById("hero-trigger-tooltip");
+        let nudgeInterval: ReturnType<typeof setInterval> | null = null;
+        let hasInteracted = false;
+
+        function playNudge() {
+            if (hasInteracted || immersive) return;
+            gsap.timeline()
+                .to(trigger, { x: -8, duration: 0.08, ease: "power2.inOut" })
+                .to(trigger, { x: 8, duration: 0.08, ease: "power2.inOut" })
+                .to(trigger, { x: -5, duration: 0.06, ease: "power2.inOut" })
+                .to(trigger, { x: 5, duration: 0.06, ease: "power2.inOut" })
+                .to(trigger, { x: 0, duration: 0.1, ease: "power2.out" });
+        }
+
+        function stopAttentionSystem() {
+            hasInteracted = true;
+            if (nudgeInterval) {
+                clearInterval(nudgeInterval);
+                nudgeInterval = null;
+            }
+            // Fade out tooltip
+            if (tooltip) tooltip.style.opacity = "0";
+        }
+
+        // Show tooltip after 3 seconds
+        setTimeout(() => {
+            if (!hasInteracted && tooltip) tooltip.style.opacity = "1";
+        }, 3000);
+
+        // First nudge after 4 seconds, then every 10 seconds
+        setTimeout(() => {
+            playNudge();
+            nudgeInterval = setInterval(playNudge, 10000);
+        }, 4000);
+
+        // Stop everything permanently after first interaction
+        trigger.addEventListener("mouseenter", stopAttentionSystem, { once: true });
+        trigger.addEventListener("touchstart", stopAttentionSystem, { once: true });
     }
 
     document.addEventListener("astro:page-load", initHero);

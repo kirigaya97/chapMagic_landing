@@ -70,6 +70,8 @@
                 "cta": "Reservar Ahora",
                 "hoverPrompt": "Hover para magia",
                 "tapPrompt": "Toca para magia",
+                "tooltipDesktop": "Hover para magia ✨",
+                "tooltipMobile": "Toca aquí ✨",
                 "circleFontSize": {
                     "desktop": 21,
                     "mobile": 15.7
@@ -248,6 +250,8 @@
                 "cta": "Book Now",
                 "hoverPrompt": "Hover for magic",
                 "tapPrompt": "Tap for magic",
+                "tooltipDesktop": "Hover for magic ✨",
+                "tooltipMobile": "Tap here ✨",
                 "circleFontSize": {
                     "desktop": 23,
                     "mobile": 19
