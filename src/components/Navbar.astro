@@ -196,6 +196,7 @@ const navigation = siteConfig.navigation;
         // Mobile Logic
         btn.addEventListener("click", () => {
             isOpen = !isOpen;
+            document.body.classList.toggle("mobile-menu-active", isOpen);
 
             if (isOpen) {
                 document.body.style.overflow = "hidden";

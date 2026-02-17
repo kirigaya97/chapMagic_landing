@@ -551,3 +551,15 @@ const { heroVimeoDesktop, heroVimeoMobile } = siteConfig.links;
 
     document.addEventListener("astro:page-load", initParallax);
 </script>
+
+<style>
+    /* Hide trigger components when mobile menu is active */
+    :global(body.mobile-menu-active) #hero-magic-trigger {
+        opacity: 0 !important;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+    }
+</style>
