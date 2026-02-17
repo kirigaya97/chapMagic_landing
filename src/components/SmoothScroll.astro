@@ -6,6 +6,7 @@
     import Lenis from "lenis";
     import "lenis/dist/lenis.css";
     import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
 
     let lenis: Lenis | null = null;
 
@@ -29,6 +30,9 @@
             wheelMultiplier: 1,
             touchMultiplier: 2,
         });
+
+        // Bridge Lenis scroll events → ScrollTrigger recalculation
+        lenis.on("scroll", ScrollTrigger.update);
 
         // Piggyback on GSAP's existing ticker instead of a dedicated rAF loop
         gsap.ticker.add((time) => {
