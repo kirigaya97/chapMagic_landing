@@ -1,12 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Reveal from "../ui/Reveal.astro";
 import GoldenBorder from "../ui/GoldenBorder.astro";
 
 interface ShowItem {
     id: string;
-    label: string;
     title: string;
     description: string;
     image: string;
@@ -15,7 +13,6 @@ interface ShowItem {
 interface Props {
     t: {
         sectionTitle: string;
-        moreInfo: string;
         items: ShowItem[];
     };
 }
@@ -40,12 +37,12 @@ const { t } = Astro.props;
                         <div class="vip-card group relative h-[500px] rounded-2xl cursor-pointer bg-obsidian transition-all duration-500 shadow-2xl">
                             {/* Background Image */}
                             <div class="absolute inset-0 z-0 rounded-2xl overflow-hidden">
-                                <Image
+                                <img
                                     src={show.image}
                                     alt={show.title}
-                                    width={640}
-                                    height={880}
                                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-[.active]:scale-110 opacity-60"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent" />
                                 <div class="absolute inset-0 bg-obsidian/20 group-hover:bg-transparent group-[.active]:bg-transparent transition-colors duration-500" />
@@ -63,7 +60,7 @@ const { t } = Astro.props;
                                 <div />
                                 <div class="title-area transform transition-transform duration-500 group-hover:-translate-y-4 group-[.active]:-translate-y-4">
                                     <p class="text-gold font-body uppercase tracking-[0.3em] text-[10px] mb-2 opacity-80">
-                                        {show.label}
+                                        Premium Show
                                     </p>
                                     <h3 class="text-2xl md:text-3xl font-heading font-bold text-ivory tracking-tight leading-none mb-4 transition-colors group-hover:text-gold group-[.active]:text-gold">
                                         {show.title}
@@ -77,7 +74,7 @@ const { t } = Astro.props;
                                             </p>
                                         </div>
                                         <button type="button" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 bg-transparent cursor-pointer">
-                                            {t.moreInfo}
+                                            Más información
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 class="mas-info-arrow w-4 h-4 transition-transform duration-500"
