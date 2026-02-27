@@ -278,13 +278,13 @@
                         "id": "main-show",
                         "title": "Main Show",
                         "description": "A show that combines comedy and impactful magic. Different formats adaptable to family, social, and corporate events.",
-                        "image": "/images/shows/show3.jpg"
+                        "image": "/images/shows/show3.webp"
                     },
                     {
                         "id": "magic-experience",
                         "title": "Magic Experience",
                         "description": "An intimate show for only 12 people in an exclusive Speak Easy room. High-level magic, up close, in one of the best cocktail bars in Europe.",
-                        "image": "/images/shows/show4.jpg"
+                        "image": "/images/shows/show4.webp"
                     }
                 ]
             },
