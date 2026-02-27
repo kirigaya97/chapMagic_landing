@@ -1,0 +1,223 @@
+---
+import siteConfig from "../../data/site-config.json";
+
+const { sectionVimeoDesktop, sectionVimeoMobile } = siteConfig.links;
+const { siteName } = siteConfig.branding;
+const instagramHandle = siteConfig.links.instagram.replace("https://www.instagram.com/", "@");
+---
+
+<section id="video-showcase" class="bg-obsidian-light relative overflow-hidden">
+
+    <!-- ═══ MOBILE: TikTok-style Reel ═══ -->
+    <div class="md:hidden relative h-svh w-full overflow-hidden bg-obsidian">
+
+        <!-- Vimeo iframe — full-bleed background -->
+        <iframe
+            id="reel-vimeo-iframe"
+            src=""
+            data-vimeo-id={sectionVimeoMobile}
+            allow="autoplay; fullscreen; picture-in-picture"
+            class="absolute top-1/2 left-1/2 w-[177.78vh] h-[100vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            style="border: none;"
+            title="ChapMagic Reel"
+        ></iframe>
+
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-obsidian/30 pointer-events-none"></div>
+
+        <!-- Right sidebar: avatar + sound toggle -->
+        <div class="absolute right-3 bottom-[calc(7rem+7vh)] z-10 flex flex-col items-center gap-5">
+
+            <!-- Avatar -->
+            <div class="relative mb-2">
+                <div class="w-11 h-11 rounded-full border-2 border-gold overflow-hidden bg-obsidian">
+                    <img
+                        src="/images/chap-avatar.webp"
+                        alt={siteName}
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                        width="88"
+                        height="88"
+                    />
+                </div>
+                <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-5 bg-gold rounded-full flex items-center justify-center">
+                    <svg class="w-3 h-3 text-obsidian" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Sound toggle -->
+            <button
+                id="reel-sound-toggle"
+                class="flex flex-col items-center gap-1"
+                aria-label="Toggle sound"
+            >
+                <div class="w-10 h-10 flex items-center justify-center rounded-full bg-obsidian/40 backdrop-blur-sm border border-white/10">
+                    <svg id="reel-icon-muted" class="w-5 h-5 text-ivory" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 5 6 9H2v6h4l5 4V5z"/>
+                        <line x1="23" y1="9" x2="17" y2="15"/>
+                        <line x1="17" y1="9" x2="23" y2="15"/>
+                    </svg>
+                    <svg id="reel-icon-unmuted" class="w-5 h-5 text-ivory hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                </div>
+                <span class="text-ivory text-[11px] font-body font-semibold">Sonido</span>
+            </button>
+
+        </div>
+
+        <!-- Bottom info -->
+        <div class="absolute bottom-[calc(3.5rem+7vh)] left-4 right-20 z-10">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="text-ivory font-body font-bold text-sm">{siteName}</span>
+                <span class="text-ivory/50 text-xs">·</span>
+                <span class="text-ivory/60 text-xs">{instagramHandle}</span>
+            </div>
+            <p class="text-ivory/90 text-sm font-body leading-relaxed">
+                Mentalismo &amp; Magia — experiencias que desafían lo imposible ✨
+            </p>
+        </div>
+
+        <!-- Loading pulse -->
+        <div id="reel-loading" class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+            <svg class="w-12 h-12 animate-pulse text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══ DESKTOP: Boxed layout ═══ -->
+    <div class="hidden md:block md:py-section">
+        <div class="container mx-auto px-6 relative z-10">
+            <div
+                id="showcase-container"
+                class="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gold/20 aspect-video relative bg-obsidian"
+            >
+                <!-- Loading placeholder -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <svg class="w-12 h-12 animate-pulse text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                </div>
+                <iframe
+                    id="showcase-vimeo-iframe"
+                    src=""
+                    data-vimeo-id={sectionVimeoDesktop}
+                    class="absolute top-0 left-0 w-full h-full z-10 transition-opacity duration-1000 opacity-0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    style="border: none;"
+                    title="ChapMagic Showcase"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    function loadVimeoSDK(): Promise<void> {
+        if ((window as any).Vimeo) return Promise.resolve();
+        return new Promise((resolve) => {
+            const s = document.createElement("script");
+            s.src = "https://player.vimeo.com/api/player.js";
+            s.onload = () => resolve();
+            document.head.appendChild(s);
+        });
+    }
+
+    async function initVideoSection() {
+        const isMobile = window.innerWidth < 768;
+
+        // ═══ MOBILE: Reel ═══
+        if (isMobile) {
+            const iframe = document.getElementById("reel-vimeo-iframe") as HTMLIFrameElement | null;
+            const loading = document.getElementById("reel-loading");
+            const soundToggle = document.getElementById("reel-sound-toggle");
+            const iconMuted = document.getElementById("reel-icon-muted");
+            const iconUnmuted = document.getElementById("reel-icon-unmuted");
+            const section = document.getElementById("video-showcase");
+            if (!iframe || !section) return;
+
+            const videoId = iframe.dataset.vimeoId;
+            iframe.src = `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=reel-vimeo-iframe&app_id=58479&loop=1&background=1&muted=1`;
+
+            await loadVimeoSDK();
+            const player = new (window as any).Vimeo.Player(iframe);
+
+            player.ready().then(() => {
+                if (loading) loading.style.display = "none";
+            });
+
+            // Auto-play when visible, pause + reset mute when hidden
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            player.play().catch(() => {});
+                        } else {
+                            player.pause().catch(() => {});
+                            player.setMuted(true);
+                            muted = true;
+                            if (iconMuted) iconMuted.classList.remove("hidden");
+                            if (iconUnmuted) iconUnmuted.classList.add("hidden");
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+            observer.observe(section);
+
+            // Sound toggle with fade-in
+            let muted = true;
+            soundToggle?.addEventListener("click", async () => {
+                muted = !muted;
+                await player.setMuted(muted);
+                if (!muted) {
+                    player.setVolume(0);
+                    let v = 0;
+                    const step = () => {
+                        v = Math.min(v + 0.05, 0.7);
+                        player.setVolume(v);
+                        if (v < 0.7) requestAnimationFrame(step);
+                    };
+                    requestAnimationFrame(step);
+                }
+                iconMuted?.classList.toggle("hidden", !muted);
+                iconUnmuted?.classList.toggle("hidden", muted);
+            });
+
+            document.addEventListener("astro:before-preparation", () => observer.disconnect(), { once: true });
+            return;
+        }
+
+        // ═══ DESKTOP: Boxed lazy-load ═══
+        const iframe = document.getElementById("showcase-vimeo-iframe") as HTMLIFrameElement | null;
+        const container = document.getElementById("showcase-container");
+        if (!iframe || !container) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !iframe.src.includes("vimeo")) {
+                        const videoId = iframe.dataset.vimeoId;
+                        iframe.src = `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`;
+                        iframe.onload = () => { iframe.style.opacity = "1"; };
+                        observer.disconnect();
+                    }
+                });
+            },
+            { rootMargin: "200px 0px 200px 0px" }
+        );
+        observer.observe(container);
+    }
+
+    document.addEventListener("astro:page-load", initVideoSection);
+</script>

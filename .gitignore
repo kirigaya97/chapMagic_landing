@@ -23,3 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 # vercel output
 .vercel/
+
+# large local video assets
+pase-de-oro.mp4
+
+# Claude Code local settings
+.claude/

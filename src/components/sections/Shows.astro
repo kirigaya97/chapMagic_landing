@@ -46,6 +46,7 @@ const { t } = Astro.props;
                                 />
                                 <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent" />
                                 <div class="absolute inset-0 bg-obsidian/20 group-hover:bg-transparent group-[.active]:bg-transparent transition-colors duration-500" />
+                                <div class="expand-overlay absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none" />
                             </div>
 
                             {/* Reusable Golden Border */}
@@ -65,16 +66,18 @@ const { t } = Astro.props;
                                         {show.title}
                                     </h3>
                                 </div>
-                                <div class="description-container h-[160px] relative">
+                                <div class="description-container relative">
                                     <div class="show-description translate-y-8 opacity-0 transition-all duration-700 pointer-events-none group-hover:translate-y-0 group-hover:opacity-100 group-hover:pointer-events-auto group-[.active]:translate-y-0 group-[.active]:opacity-100 group-[.active]:pointer-events-auto">
-                                        <p class="text-ivory-muted leading-relaxed text-sm mb-6 max-w-[90%] line-clamp-4">
-                                            {show.description}
-                                        </p>
-                                        <div class="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1">
+                                        <div class="description-text overflow-hidden mb-6">
+                                            <p class="text-ivory-muted leading-relaxed text-sm max-w-[90%]">
+                                                {show.description}
+                                            </p>
+                                        </div>
+                                        <button type="button" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 bg-transparent cursor-pointer">
                                             Más información
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                class="w-4 h-4"
+                                                class="mas-info-arrow w-4 h-4 transition-transform duration-500"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
@@ -82,12 +85,10 @@ const { t } = Astro.props;
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
                                             >
-                                                <>
-                                                    <path d="M5 12h14" />
-                                                    <path d="m12 5 7 7-7 7" />
-                                                </>
+                                                <path d="M5 12h14" />
+                                                <path d="m12 5 7 7-7 7" />
                                             </svg>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -105,6 +106,17 @@ const { t } = Astro.props;
     function initShowsActiveState() {
         const cards = document.querySelectorAll(".vip-card");
         const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+        // "Más información" expand toggle — shared between mobile and desktop
+        cards.forEach((card) => {
+            const masInfoBtn = card.querySelector(".mas-info-btn");
+            if (masInfoBtn) {
+                masInfoBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    card.classList.toggle("expanded");
+                });
+            }
+        });
 
         if (isMobile) {
             // MOBILE: ScrollTrigger auto-reveals cards as they scroll into view
@@ -156,6 +168,27 @@ const { t } = Astro.props;
     .show-description {
         transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
         filter: blur(15px);
+    }
+
+    /* Description text: collapsed to ~4 lines, expands smoothly */
+    .description-text {
+        max-height: 5.8rem; /* ~4 lines at text-sm / leading-relaxed */
+        transition: max-height 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .vip-card.expanded .description-text {
+        max-height: 20rem;
+    }
+
+    /* Arrow rotates 90° when expanded */
+    .vip-card.expanded .mas-info-arrow {
+        transform: rotate(90deg);
+    }
+
+    /* Darker overlay when expanded */
+    .vip-card.expanded .expand-overlay {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.25);
     }
 
     @media (hover: hover) {

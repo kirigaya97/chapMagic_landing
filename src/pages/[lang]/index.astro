@@ -8,6 +8,7 @@ import Shows from "../../components/sections/Shows.astro";
 import JuryVIP from "../../components/sections/JuryVIP.astro";
 import Stats from "../../components/sections/Stats.astro";
 import Tickets from "../../components/sections/Tickets.astro";
+import VideoSection from "../../components/sections/VideoSection.astro";
 import Contact from "../../components/sections/Contact.astro";
 import Footer from "../../components/sections/Footer.astro";
 
@@ -40,6 +41,7 @@ const t = siteConfig.translations[lang as "es" | "en"];
 
     <main>
         <Hero t={t.hero} videoSrc={siteConfig.links.heroVideoSrc} />
+        <VideoSection />
         <Shows t={t.shows} />
         <JuryVIP t={t.jury} />
         <Stats t={t.stats} />
