@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts — eliminates Google Fonts network dependency */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/700-italic.css";
+@import "@fontsource/playfair-display/900.css";
+
 @theme {
   /* Colors — ChapMagic Premium/Mystery palette */
   --color-obsidian: #0A0A0A;
@@ -98,23 +109,24 @@ html {
 }
 
 /* ═══ Hero Trigger Pulsing Glow ═══ */
+/* Opacity-based animation — GPU composited, no paint on every frame */
 @keyframes triggerPulse {
-
-  0%,
-  100% {
-    box-shadow:
-      0 0 30px rgba(212, 175, 55, 0.15),
-      0 0 60px rgba(212, 175, 55, 0.08);
-  }
-
-  50% {
-    box-shadow:
-      0 0 50px rgba(212, 175, 55, 0.35),
-      0 0 100px rgba(212, 175, 55, 0.15);
-  }
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; }
 }
 
 .hero-trigger-glow {
   border-radius: 50%;
+}
+
+.hero-trigger-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow:
+    0 0 50px rgba(212, 175, 55, 0.35),
+    0 0 100px rgba(212, 175, 55, 0.15);
   animation: triggerPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
 }
