@@ -81,6 +81,8 @@
             },
             "shows": {
                 "sectionTitle": "Espectáculos",
+                "moreInfoButton": "Más información",
+                "whatsappTemplate": "¡Hola Chaps! Me gustaría saber más sobre",
                 "items": [
                     {
                         "id": "corporate",
@@ -261,6 +263,8 @@
             },
             "shows": {
                 "sectionTitle": "Shows",
+                "moreInfoButton": "More info",
+                "whatsappTemplate": "Hey Chaps! I'd like to know more about",
                 "items": [
                     {
                         "id": "corporate",
