@@ -52,7 +52,7 @@ export const POST: APIRoute = async ({ request }) => {
         const destinationEmail = siteConfig.contact.formDestinationEmail;
 
         const { error } = await resend.emails.send({
-            from: 'ChapMagic Web <onboarding@resend.dev>',
+            from: 'ChapMagic Web <noreply@chapmagic.com>',
             to: [destinationEmail],
             replyTo: email,
             subject: `💌 Nuevo contacto: ${name}`,
