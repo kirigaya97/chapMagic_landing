@@ -42,7 +42,7 @@
         "formDestinationEmail": "info@chapmagic.com"
     },
     "links": {
-        "atrapalo": "https://www.atrapalo.com/entradas/chapmagic-mentalismo-y-magia_e4895627/",
+        "atrapalo": "https://chapmagic.dinaticket.com/es/",
         "instagram": "https://www.instagram.com/chapmagic",
         "youtube": "https://www.youtube.com/@chapmagic",
         "heroVideoSrc": "/videos/golden-button.mp4",
@@ -144,7 +144,7 @@
                         "prefix": "+"
                     },
                     {
-                        "value": 700,
+                        "value": 2000,
                         "label": "Shows",
                         "prefix": "+"
                     },
@@ -177,6 +177,9 @@
                 "submitting": "Enviando...",
                 "successMessage": "¡Mensaje enviado! Me pondré en contacto contigo pronto.",
                 "errorMessage": "Hubo un error al enviar. Por favor, inténtalo de nuevo."
+            },
+            "clients": {
+                "sectionTitle": "Confiaron en mí"
             },
             "whatsapp": {
                 "prefillMessage": "Hola ChapMagic, me gustaría recibir información sobre tus espectáculos para un evento."
@@ -326,7 +329,7 @@
                         "prefix": "+"
                     },
                     {
-                        "value": 700,
+                        "value": 2000,
                         "label": "Shows",
                         "prefix": "+"
                     },
@@ -359,6 +362,9 @@
                 "submitting": "Sending...",
                 "successMessage": "Message sent! I'll get back to you soon.",
                 "errorMessage": "Something went wrong. Please try again."
+            },
+            "clients": {
+                "sectionTitle": "Those who trust my work"
             },
             "whatsapp": {
                 "prefillMessage": "Hi ChapMagic, I'd like to get information about your shows for an event."

@@ -1,0 +1,119 @@
+---
+interface Props {
+    t: {
+        sectionTitle: string;
+    };
+}
+
+const { t } = Astro.props;
+
+const logos = [
+    { src: "/images/clients/logo-1.webp",  alt: "Claro",              width: 212, height: 80 },
+    { src: "/images/clients/logo-2.webp",  alt: "Huawei",             width:  79, height: 80 },
+    { src: "/images/clients/logo-3.webp",  alt: "Buenos Aires",       width: 193, height: 80 },
+    { src: "/images/clients/logo-4.webp",  alt: "Ford",               width: 202, height: 80 },
+    { src: "/images/clients/logo-5.webp",  alt: "Hilton",             width: 116, height: 80 },
+    { src: "/images/clients/logo-6.webp",  alt: "Kids Choice Awards", width:  67, height: 80 },
+    { src: "/images/clients/logo-7.webp",  alt: "McDonald's",         width:  81, height: 80 },
+    { src: "/images/clients/logo-8.webp",  alt: "Melbourne",          width:  44, height: 80 },
+    { src: "/images/clients/logo-9.webp",  alt: "Microsoft",          width: 320, height: 68 },
+    { src: "/images/clients/logo-10.webp", alt: "Nickelodeon",        width: 102, height: 80 },
+    { src: "/images/clients/logo-11.webp", alt: "Roemmers",           width: 129, height: 80 },
+    { src: "/images/clients/logo-12.webp", alt: "Universal",          width: 150, height: 80 },
+];
+---
+
+<section class="py-14 md:py-20 bg-obsidian overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
+        <p class="text-gold font-body uppercase tracking-[0.3em] text-xs opacity-80">
+            {t.sectionTitle}
+        </p>
+    </div>
+
+    <div class="relative">
+        <!-- Fade edges -->
+        <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-obsidian to-transparent" />
+        <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-obsidian to-transparent" />
+
+        <div class="marquee-track flex items-center w-max" aria-hidden="true">
+            <!-- First set -->
+            {logos.map((logo) => (
+                <div class="marquee-item flex-shrink-0 h-10 flex items-center mx-8">
+                    <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={logo.width}
+                        height={logo.height}
+                        class="h-full w-auto object-contain opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                        loading="eager"
+                        decoding="sync"
+                    />
+                </div>
+            ))}
+            <!-- Duplicate set for seamless loop -->
+            {logos.map((logo) => (
+                <div class="marquee-item flex-shrink-0 h-10 flex items-center mx-8" aria-hidden="true">
+                    <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={logo.width}
+                        height={logo.height}
+                        class="h-full w-auto object-contain opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                        loading="eager"
+                        decoding="sync"
+                    />
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .marquee-track {
+        /* Start paused; JS measures scrollWidth then starts animation */
+        animation: marquee 30s linear infinite;
+        animation-play-state: paused;
+    }
+
+    .marquee-track.ready {
+        animation-play-state: running;
+    }
+
+    .marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(var(--marquee-offset, -50%));
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .marquee-track {
+            animation: none;
+        }
+    }
+</style>
+
+<script>
+    function initMarquee() {
+        const track = document.querySelector<HTMLElement>('.marquee-track');
+        if (!track) return;
+
+        // Both sets are identical; scrollWidth / 2 = exact pixel width of one set
+        const halfWidth = track.scrollWidth / 2;
+        track.style.setProperty('--marquee-offset', `-${halfWidth}px`);
+        track.classList.add('ready');
+    }
+
+    // Wait for all images to load so dimensions are accurate
+    if (document.readyState === 'complete') {
+        initMarquee();
+    } else {
+        window.addEventListener('load', initMarquee);
+    }
+</script>

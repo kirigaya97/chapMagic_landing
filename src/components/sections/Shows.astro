@@ -46,7 +46,7 @@ const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, '');
                                 <img
                                     src={show.image}
                                     alt={show.title}
-                                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-[.active]:scale-110 opacity-60"
+                                    class={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-[.active]:scale-110 opacity-60 ${show.id === 'corporate' ? 'object-top' : ''}`}
                                     loading="lazy"
                                     decoding="async"
                                 />
