@@ -9,6 +9,7 @@ interface ShowItem {
     title: string;
     description: string;
     image: string;
+    href?: string;
 }
 
 interface Props {
@@ -79,22 +80,41 @@ const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, '');
                                                 {show.description}
                                             </p>
                                         </div>
-                                        <button type="button" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 bg-transparent cursor-pointer" data-show-title={show.title}>
-                                            {t.moreInfoButton}
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="w-4 h-4"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            >
-                                                <path d="M5 12h14" />
-                                                <path d="m12 5 7 7-7 7" />
-                                            </svg>
-                                        </button>
+                                        {show.href ? (
+                                            <a href={show.href} target="_blank" rel="noopener noreferrer" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 cursor-pointer">
+                                                {t.moreInfoButton}
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="w-4 h-4"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                >
+                                                    <path d="M5 12h14" />
+                                                    <path d="m12 5 7 7-7 7" />
+                                                </svg>
+                                            </a>
+                                        ) : (
+                                            <button type="button" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 bg-transparent cursor-pointer" data-show-title={show.title}>
+                                                {t.moreInfoButton}
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="w-4 h-4"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                >
+                                                    <path d="M5 12h14" />
+                                                    <path d="m12 5 7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -117,13 +137,13 @@ const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, '');
         const waPhone = section?.dataset.waPhone ?? "";
         const waTemplate = section?.dataset.waTemplate ?? "";
 
-        // "Más información" → open WhatsApp with pre-filled message
+        // "Más información" → open WhatsApp (only for buttons, not <a> links)
         cards.forEach((card) => {
-            const masInfoBtn = card.querySelector(".mas-info-btn") as HTMLElement | null;
-            if (masInfoBtn) {
+            const masInfoBtn = card.querySelector(".mas-info-btn");
+            if (masInfoBtn && masInfoBtn.tagName === "BUTTON") {
                 masInfoBtn.addEventListener("click", (e) => {
                     e.stopPropagation();
-                    const showTitle = masInfoBtn.dataset.showTitle ?? "";
+                    const showTitle = (masInfoBtn as HTMLElement).dataset.showTitle ?? "";
                     const message = `${waTemplate} ${showTitle}`;
                     const url = `https://wa.me/${waPhone}?text=${encodeURIComponent(message)}`;
                     window.open(url, "_blank");
