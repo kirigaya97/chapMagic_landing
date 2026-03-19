@@ -16,7 +16,7 @@ const canonicalUrl = `${SITE_URL}${Astro.url.pathname}`;
 const alternateLang = lang === "es" ? "en" : "es";
 const alternateUrl = `${SITE_URL}${Astro.url.pathname.replace(`/${lang}/`, `/${alternateLang}/`)}`;
 const xDefaultUrl = `${SITE_URL}${Astro.url.pathname.replace(`/${lang}/`, "/es/")}`;
-const ogImageUrl = ogImage ?? `${SITE_URL}/images/hero-poster.jpg`;
+const ogImageUrl = ogImage ?? `${SITE_URL}/images/shows/show1.webp`;
 const ogLocale = lang === "es" ? "es_ES" : "en_US";
 
 const jsonLd = {
