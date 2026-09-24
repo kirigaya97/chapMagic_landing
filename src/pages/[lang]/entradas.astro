@@ -1,0 +1,181 @@
+---
+import { Image } from "astro:assets";
+import siteConfig from "../../data/site-config.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import SmoothScroll from "../../components/SmoothScroll.astro";
+import WhatsAppButton from "../../components/WhatsAppButton.astro";
+import Footer from "../../components/sections/Footer.astro";
+import Button from "../../components/ui/Button.astro";
+import Reveal from "../../components/ui/Reveal.astro";
+import ShowCards from "../../components/ticketing/ShowCards.astro";
+import Calendar from "../../components/ticketing/Calendar.astro";
+import TicketModal from "../../components/ticketing/TicketModal.astro";
+import EventSchema from "../../components/ticketing/EventSchema.astro";
+import { getCatalog, showById } from "../../lib/ticketing/catalog";
+import { showImage, widthsFor } from "../../lib/ticketing/images";
+import { localDate } from "../../lib/ticketing/core";
+import { localeOf } from "../../lib/ticketing/i18n";
+
+/**
+ * Full ticket listing: every show with dates, and the calendar with a buy
+ * button per performance. The home keeps a teaser (cards only) that links
+ * here; each show's own landing lives at /<lang>/shows/<id>.
+ *
+ * Same slug in both languages, like /clases, so BaseLayout's hreflang swap
+ * (/es/ <-> /en/) resolves to a real page.
+ */
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang as "es" | "en";
+const t = siteConfig.translations[lang];
+const tk = t.ticketing;
+const page = tk.page;
+
+const { shows, performances } = getCatalog(lang);
+const hasDates = performances.length > 0;
+
+const next = performances.find((p) => p.status !== "soldout");
+const nextShow = next ? showById(next.showId, shows) : undefined;
+const nextLabel = next
+    ? `${new Intl.DateTimeFormat(localeOf(lang), { weekday: "long", day: "numeric", month: "long" }).format(localDate(next.date))} · ${next.time}${tk.hourSuffix ? ` ${tk.hourSuffix}` : ""}`
+    : null;
+
+// Background: the next show's performance photo.
+const background = nextShow ? showImage(nextShow.hero) : undefined;
+
+const SITE_URL = "https://chapmagic.com";
+---
+
+<BaseLayout
+    lang={lang}
+    title={page.metaTitle}
+    description={page.metaDescription}
+    ogImage={background ? new URL(background.src, SITE_URL).href : undefined}
+>
+    <Fragment slot="head">
+        {
+            shows.map((show) => (
+                <EventSchema
+                    show={show}
+                    performances={performances.filter((p) => p.showId === show.id)}
+                    performer={{ name: siteConfig.branding.siteName, url: SITE_URL }}
+                    pageUrl={`${SITE_URL}/${lang}/shows/${show.id}/`}
+                />
+            ))
+        }
+    </Fragment>
+
+    <SmoothScroll />
+    <Navbar currentLang={lang} />
+    <WhatsAppButton whatsapp={siteConfig.contact.whatsapp} message={t.whatsapp.prefillMessage} />
+
+    <main>
+        <!-- HERO -->
+        <section class="relative isolate flex min-h-[80svh] items-center overflow-hidden">
+            <div class="absolute inset-0 -z-10">
+                {
+                    background && (
+                        <Image
+                            src={background}
+                            alt=""
+                            widths={widthsFor(background, [640, 1024, 1600])}
+                            sizes="100vw"
+                            loading="eager"
+                            fetchpriority="high"
+                            class="h-full w-full object-cover object-[50%_30%] opacity-35"
+                        />
+                    )
+                }
+                <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/60 to-obsidian"></div>
+            </div>
+
+            <div class="mx-auto w-full max-w-6xl px-6 py-32">
+                <Reveal>
+                    <p class="font-body text-xs uppercase tracking-[0.3em] text-gold">{page.kicker}</p>
+                </Reveal>
+
+                <Reveal>
+                    <h1 class="mt-5 max-w-4xl font-heading text-5xl leading-tight text-ivory md:text-7xl">
+                        {page.title}
+                        <span class="block italic text-gold">{page.titleAccent}</span>
+                    </h1>
+                </Reveal>
+
+                <Reveal>
+                    <p class="mt-6 max-w-xl font-body text-lg leading-relaxed text-ivory-muted md:text-xl">
+                        {hasDates ? page.subtitle : page.emptySubtitle}
+                    </p>
+                </Reveal>
+
+                {
+                    nextLabel && nextShow && (
+                        <Reveal class="mt-9 inline-flex flex-wrap items-baseline gap-x-4 gap-y-1 rounded-card border border-gold/30 bg-obsidian/50 px-5 py-4 backdrop-blur-sm">
+                            <span class="text-[0.65rem] uppercase tracking-[0.24em] text-gold">{tk.nextPerformance}</span>
+                            <span class="font-heading text-lg text-ivory first-letter:uppercase">{nextLabel}</span>
+                            <span class="text-sm text-ivory-muted">{nextShow.name} · {nextShow.venue}</span>
+                        </Reveal>
+                    )
+                }
+
+                <Reveal class="mt-10 flex flex-wrap gap-4">
+                    {
+                        hasDates ? (
+                            <>
+                                <Button variant="gold" href="#calendario" class="text-lg">
+                                    {page.calendarCta}
+                                </Button>
+                                <Button variant="outline" href="#cartelera" class="text-lg">
+                                    {page.showsCta}
+                                </Button>
+                            </>
+                        ) : (
+                            <Button variant="gold" href={`/${lang}/#contact`} class="text-lg">
+                                {tk.emptyCta}
+                            </Button>
+                        )
+                    }
+                </Reveal>
+            </div>
+        </section>
+
+        <!-- CALENDAR -->
+        <div class="bg-obsidian px-6 py-section-mobile md:py-section">
+            <div class="mx-auto max-w-6xl">
+                <Calendar
+                    lang={lang}
+                    shows={shows}
+                    performances={performances}
+                    strings={tk}
+                    emptyHref={`/${lang}/#contact`}
+                    id="calendario"
+                />
+            </div>
+        </div>
+
+        <!-- SHOWS -->
+        {
+            hasDates && (
+                <div class="bg-obsidian-light px-6 py-section-mobile md:py-section">
+                    <div class="mx-auto max-w-6xl">
+                        <ShowCards lang={lang} shows={shows} performances={performances} strings={tk} id="cartelera" />
+                    </div>
+                </div>
+            )
+        }
+
+        <!-- PRIVATE EVENTS -->
+        <section class="bg-obsidian px-6 py-section-mobile md:py-section">
+            <div class="mx-auto flex max-w-5xl flex-col items-center gap-5 rounded-card border border-gold/20 bg-obsidian-light px-6 py-14 text-center">
+                <p class="font-heading text-2xl text-ivory md:text-3xl">{page.privateTitle}</p>
+                <p class="max-w-md text-sm leading-relaxed text-ivory-muted">{page.privateBody}</p>
+                <Button variant="outline" href={`/${lang}/#contact`}>{page.privateCta}</Button>
+            </div>
+        </section>
+    </main>
+
+    <Footer t={t.footer} lang={lang} />
+    <TicketModal lang={lang} strings={tk} />
+</BaseLayout>

@@ -33,7 +33,7 @@
         },
         {
             "id": "tickets",
-            "href": "#tickets"
+            "href": "entradas"
         },
         {
             "id": "contact",
@@ -422,6 +422,21 @@
                     "closingAll": "Ver todas las fechas",
                     "whatsappNotify": "¡Hola Chap! ¿Cuándo son las próximas funciones de {show}?",
                     "whatsappAbout": "¡Hola Chap! Te escribo por {show}."
+                },
+                "page": {
+                    "metaTitle": "Entradas | ChapMagic, espectáculos de magia en Madrid",
+                    "metaDescription": "Próximas funciones de Chap, Pase de Oro en Got Talent, en Madrid. Consulta el calendario y compra tus entradas online.",
+                    "kicker": "Entradas",
+                    "title": "Magia en directo",
+                    "titleAccent": "en Madrid",
+                    "subtitle": "Elige tu espectáculo y tu fecha. Las entradas se compran aquí mismo, sin salir de la página.",
+                    "emptySubtitle": "Estoy cerrando las próximas funciones. Escríbeme y te aviso en cuanto se abran las entradas.",
+                    "calendarCta": "Ver fechas",
+                    "showsCta": "Ver espectáculos",
+                    "homeCta": "Ver calendario completo",
+                    "privateTitle": "¿Buscas magia para tu evento?",
+                    "privateBody": "Bodas, eventos de empresa y celebraciones privadas se contratan aparte, sin pasar por taquilla.",
+                    "privateCta": "Escríbeme"
                 }
             }
         },
@@ -790,6 +805,21 @@
                     "closingAll": "See all dates",
                     "whatsappNotify": "Hi Chap! When are the next dates for {show}?",
                     "whatsappAbout": "Hi Chap! I am writing about {show}."
+                },
+                "page": {
+                    "metaTitle": "Tickets | ChapMagic, live magic shows in Madrid",
+                    "metaDescription": "Upcoming shows by Chap, Golden Buzzer on Got Talent, in Madrid. Check the calendar and buy your tickets online.",
+                    "kicker": "Tickets",
+                    "title": "Live magic",
+                    "titleAccent": "in Madrid",
+                    "subtitle": "Pick your show and your date. Tickets are bought right here, without leaving the page.",
+                    "emptySubtitle": "I am closing the next dates. Write to me and I will let you know as soon as tickets go on sale.",
+                    "calendarCta": "See dates",
+                    "showsCta": "See shows",
+                    "homeCta": "See full calendar",
+                    "privateTitle": "Looking for magic at your event?",
+                    "privateBody": "Weddings, corporate events and private celebrations are booked separately, outside the box office.",
+                    "privateCta": "Write to me"
                 }
             }
         }

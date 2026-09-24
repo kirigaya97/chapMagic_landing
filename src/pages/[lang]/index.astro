@@ -17,7 +17,6 @@ import Footer from "../../components/sections/Footer.astro";
 import Navbar from "../../components/Navbar.astro";
 import WhatsAppButton from "../../components/WhatsAppButton.astro";
 import SmoothScroll from "../../components/SmoothScroll.astro";
-import TicketModal from "../../components/ticketing/TicketModal.astro";
 
 export function getStaticPaths() {
     return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -53,5 +52,4 @@ const t = siteConfig.translations[lang as "es" | "en"];
     </main>
 
     <Footer t={t.footer} lang={lang || "es"} />
-    <TicketModal lang={lang} strings={t.ticketing} />
 </BaseLayout>

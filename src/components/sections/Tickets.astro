@@ -2,17 +2,16 @@
 import SectionHeading from "../ui/SectionHeading.astro";
 import Reveal from "../ui/Reveal.astro";
 import ShowCards from "../ticketing/ShowCards.astro";
-import Calendar from "../ticketing/Calendar.astro";
+import Button from "../ui/Button.astro";
 import { getCatalog } from "../../lib/ticketing/catalog";
 import type { TicketingStrings } from "../../lib/ticketing/i18n";
 
 /**
- * Public shows: one card per show (each links to its landing at
- * /<lang>/shows/<id>) and the full calendar with a buy button per date.
+ * Home teaser for public shows: one card per show (each links to its landing
+ * at /<lang>/shows/<id>) and a button to the full calendar at /<lang>/entradas.
  *
  * Dates come from Dinaticket via scripts/ticketing/scrape.mjs, which the
- * `ticketing` GitHub workflow runs every 3 hours. Buy buttons open
- * <TicketModal />, which the page must include once.
+ * `ticketing` GitHub workflow runs every 3 hours.
  */
 interface Props {
     t: {
@@ -20,7 +19,7 @@ interface Props {
         subtitle: string;
     };
     lang: "es" | "en";
-    ticketing: Partial<TicketingStrings>;
+    ticketing: Partial<TicketingStrings> & { page: { homeCta: string } };
 }
 
 const { t, lang, ticketing } = Astro.props;
@@ -42,17 +41,10 @@ const { shows, performances } = getCatalog(lang);
             />
         </Reveal>
 
-        <div
-            class="mt-section-mobile md:mt-24 rounded-card border border-gold/20 bg-obsidian-light/60 p-6 md:p-12"
-        >
-            <Calendar
-                lang={lang}
-                shows={shows}
-                performances={performances}
-                strings={ticketing}
-                emptyHref={`/${lang}/#contact`}
-                id="tickets-calendar"
-            />
-        </div>
+        <Reveal class="mt-12 text-center">
+            <Button variant="gold" href={`/${lang}/entradas`} class="text-lg">
+                {ticketing.page.homeCta}
+            </Button>
+        </Reveal>
     </div>
 </section>
