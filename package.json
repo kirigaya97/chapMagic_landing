@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "ticketing:scrape": "node scripts/ticketing/scrape.mjs",
+    "ticketing:test": "node scripts/ticketing/test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.1",
@@ -17,5 +19,8 @@
     "lenis": "^1.3.17",
     "resend": "^6.9.2",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "cheerio": "^1.1.0"
   }
 }

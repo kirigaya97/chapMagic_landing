@@ -1,0 +1,52 @@
+{
+  "_help": [
+    "Where the scraper looks for shows, and how the site renders them.",
+    "This file is meant to be edited by hand. Nothing else needs touching to add a venue.",
+    "",
+    "ADDING A TARGET",
+    "1. Open any event of that account on Dinaticket. The URL looks like",
+    "   dinaticket.com/es/provider/20073/event/4951866",
+    "2. The first number (20073) is the provider. That is what you need.",
+    "3. Copy one of the lines below, change the number and the name.",
+    "",
+    "THE THREE TYPES",
+    "own    The provider is the artist's own account. Everything in it is theirs,",
+    "       so it is NOT filtered by name. Many events leave the Artist field empty,",
+    "       and filtering here could wipe the artist's own shows.",
+    "venue  The provider is a theatre that programmes many artists. Every event is",
+    "       read, and only the ones whose Artist field matches artist.aliases stay.",
+    "event  A single event, without listing the provider. Needs provider AND event.",
+    "",
+    "To disable a target without deleting it, set \"active\": false.",
+    "",
+    "IF A SHOW DOES NOT APPEAR (venue targets only)",
+    "The venue almost always spelled the artist differently. At the end of each run",
+    "the scraper lists rejected events whose artist contains artist.surname. Add",
+    "that spelling to artist.aliases. Aliases are compared without accents, case",
+    "or punctuation, so 'Fernández' and 'fernandez' are the same alias."
+  ],
+  "targets": [
+    {
+      "type": "own",
+      "provider": 20845,
+      "name": "Chap Magic (cuenta propia)",
+      "active": true
+    }
+  ],
+  "artist": {
+    "aliases": [
+      "chap",
+      "chap magic",
+      "chapmagic"
+    ],
+    "surname": "chap"
+  },
+  "site": {
+    "timeZone": "Europe/Madrid",
+    "currency": "EUR",
+    "country": "ES",
+    "defaultCity": "Madrid",
+    "defaultCategory": "Magia",
+    "landingPath": "/{lang}/shows/{id}"
+  }
+}

@@ -1,0 +1,144 @@
+---
+import "./ticketing.css";
+import { widgetUrl, fullUrl, localDate, type Performance } from "../../lib/ticketing/core";
+import { site, type Show } from "../../lib/ticketing/catalog";
+import { strings as defaults, localeOf, type TicketingStrings } from "../../lib/ticketing/i18n";
+
+/**
+ * Embedded purchase widget with its own date picker, for a show's landing.
+ *
+ * Dates are picked here and not inside the widget on purpose: Dinaticket's list
+ * makes you expand a session before buying. With the date chips outside, the
+ * visitor reaches the widget with the session already chosen and one step left.
+ *
+ * The "open separately" link is always visible: a blocked iframe stays blank
+ * without any error to catch, so there is no detection, only an exit that is
+ * already there.
+ */
+interface Props {
+  lang?: string;
+  show: Show;
+  /** This show's performances only. */
+  performances: readonly Performance[];
+  strings?: Partial<TicketingStrings>;
+  heading?: boolean;
+  id?: string;
+}
+
+const { lang = "es", show, performances, strings: custom, heading = true, id = "entradas" } = Astro.props;
+const t = defaults(lang, custom);
+const locale = localeOf(lang);
+
+// First performance that can still be bought.
+const first = performances.find((p) => p.status !== "soldout") ?? performances[0];
+const src = first ? first.buyUrl : widgetUrl(show.ticketing);
+const escape = first ? first.externalUrl : fullUrl(show.ticketing);
+
+const day = new Intl.DateTimeFormat(locale, { weekday: "short", day: "numeric", month: "short" });
+const flag = { available: "", few: t.few, soldout: t.soldout };
+---
+
+<section id={id} class="tk tk-widget">
+  {
+    heading && (
+      <div>
+        <p class="tk-kicker">{t.widgetKicker}</p>
+        <h2 class="tk-title">{t.widgetTitle}</h2>
+      </div>
+    )
+  }
+
+  {
+    performances.length === 0 ? (
+      <p class="tk-note">{t.noDates}</p>
+    ) : (
+      <div
+        data-tk-widget
+        data-show-id={show.id}
+        data-show-name={show.name}
+        data-show-price={show.priceFrom ?? 0}
+        data-currency={site.currency}
+      >
+        <div class="tk-chips" role="group" aria-label={t.datesLabel}>
+          {performances.map((p) => (
+            <button
+              type="button"
+              class="tk-chip"
+              data-date={p.date}
+              data-time={p.time}
+              data-url={p.buyUrl}
+              data-external={p.externalUrl}
+              disabled={p.status === "soldout"}
+              aria-pressed={p === first ? "true" : "false"}
+            >
+              <span class="tk-chip__date">{day.format(localDate(p.date)).replace(/\.|,/g, "")}</span>
+              <span class="tk-chip__time">
+                {p.time}
+                {t.hourSuffix && ` ${t.hourSuffix}`}
+              </span>
+              {flag[p.status] && <span class="tk-chip__flag">{flag[p.status]}</span>}
+            </button>
+          ))}
+        </div>
+
+        <div class="tk-frame">
+          <iframe
+            data-tk-widget-frame
+            title={`${t.widgetFrameTitle}: ${show.name}`}
+            src={src}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
+        <div class="tk-widget__foot">
+          <p>{t.widgetNote}</p>
+          <a data-tk-widget-escape href={escape} target="_blank" rel="noopener noreferrer" class="tk-link">
+            {t.widgetEscape}
+          </a>
+        </div>
+      </div>
+    )
+  }
+</section>
+
+<script>
+  import { trackShow } from "../../lib/ticketing/track";
+
+  function setup(root: HTMLElement) {
+    if (root.dataset.tkReady) return;
+    root.dataset.tkReady = "1";
+
+    const frame = root.querySelector<HTMLIFrameElement>("[data-tk-widget-frame]")!;
+    const escape = root.querySelector<HTMLAnchorElement>("[data-tk-widget-escape]")!;
+    const chips = [...root.querySelectorAll<HTMLButtonElement>("[data-date]")];
+
+    const show = {
+      id: root.dataset.showId!,
+      name: root.dataset.showName!,
+      price: Number(root.dataset.showPrice) || 0,
+      currency: root.dataset.currency ?? "EUR",
+    };
+
+    // First view is `view_item` without a date: none has been picked yet.
+    trackShow("view_item", show);
+
+    for (const chip of chips) {
+      chip.addEventListener("click", () => {
+        chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+        frame.src = chip.dataset.url!;
+        escape.href = chip.dataset.external!;
+
+        const withDate = { ...show, date: chip.dataset.date, time: chip.dataset.time };
+        trackShow("select_item", withDate);
+        // The widget is now loading the chosen session: checkout starts here.
+        // It is the last step this site can measure.
+        trackShow("begin_checkout", withDate);
+      });
+    }
+  }
+
+  const init = () => document.querySelectorAll<HTMLElement>("[data-tk-widget]").forEach(setup);
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

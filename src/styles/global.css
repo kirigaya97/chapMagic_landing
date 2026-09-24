@@ -229,3 +229,19 @@ html {
     transform: none;
   }
 }
+
+/* ═══ Ticketing kit theme (src/components/ticketing/ticketing.css) ═══ */
+:root {
+  --tk-bg: var(--color-obsidian);
+  --tk-surface: var(--color-obsidian-light);
+  --tk-text: var(--color-ivory);
+  --tk-muted: var(--color-ivory-muted);
+  --tk-accent: var(--color-gold);
+  --tk-accent-hover: var(--color-gold-light);
+  --tk-accent-text: var(--color-obsidian);
+  --tk-accent-soft: var(--color-gold-light);
+  --tk-border: rgba(212, 175, 55, 0.18);
+  --tk-radius: var(--radius-card);
+  --tk-font-display: var(--font-heading);
+  --tk-font-body: var(--font-body);
+}

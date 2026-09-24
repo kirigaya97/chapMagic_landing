@@ -1,0 +1,347 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import siteConfig from "../../../data/site-config.json";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import SmoothScroll from "../../../components/SmoothScroll.astro";
+import WhatsAppButton from "../../../components/WhatsAppButton.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import Button from "../../../components/ui/Button.astro";
+import Reveal from "../../../components/ui/Reveal.astro";
+import TicketWidget from "../../../components/ticketing/TicketWidget.astro";
+import EventSchema from "../../../components/ticketing/EventSchema.astro";
+import { getCatalog, rawMode, type Show } from "../../../lib/ticketing/catalog";
+import { showImage, widthsFor } from "../../../lib/ticketing/images";
+import { localDate, type Performance } from "../../../lib/ticketing/core";
+import { fill, localeOf } from "../../../lib/ticketing/i18n";
+
+/**
+ * Landing for one show, the page ads point at.
+ *
+ * It talks about this show only: poster, venue, price and purchase widget,
+ * with nothing to wander off to. The order follows how the decision is made:
+ * what it is, why it is worth it, buy. On mobile a fixed bar keeps the buy
+ * button one tap away at all times.
+ *
+ * Shows and dates come from Dinaticket (scripts/ticketing/scrape.mjs). Copy
+ * can be rewritten and translated in src/data/ticketing/overrides.ts.
+ */
+
+// getStaticPaths is hoisted and cannot see module constants: the list is inline.
+export const getStaticPaths = (async () =>
+    (["es", "en"] as const).flatMap((lang) => {
+        const { shows, performances } = getCatalog(lang);
+        return shows.map((show) => ({
+            params: { lang, slug: show.id },
+            props: {
+                show,
+                performances: performances.filter((p) => p.showId === show.id),
+            },
+        }));
+    })) satisfies GetStaticPaths;
+
+interface Props {
+    show: Show;
+    performances: Performance[];
+}
+
+const { show, performances } = Astro.props;
+const lang = Astro.params.lang as "es" | "en";
+const t = siteConfig.translations[lang];
+const tk = t.ticketing;
+const l = tk.landing;
+
+const poster = showImage(show.poster) ?? showImage(show.hero);
+const background = showImage(show.hero) ?? poster;
+const gallery = show.photos.map(showImage).filter((i) => i !== undefined).slice(0, 3);
+
+const next = performances.find((p) => p.status !== "soldout");
+const hasDates = performances.length > 0;
+
+const discount =
+    show.priceFrom && show.priceFull
+        ? Math.round((1 - show.priceFrom / show.priceFull) * 100)
+        : null;
+
+const nextLabel = next
+    ? `${new Intl.DateTimeFormat(localeOf(lang), { weekday: "long", day: "numeric", month: "long" }).format(localDate(next.date))} · ${next.time}${tk.hourSuffix ? ` ${tk.hourSuffix}` : ""}`
+    : null;
+
+const facts = [
+    show.duration && { label: tk.duration, value: `${show.duration} ${tk.minutes}` },
+    { label: tk.venue, value: show.venue },
+    show.venueAddress && { label: tk.where, value: show.venueAddress },
+    {
+        label: tk.age,
+        value: show.minAge ? fill(tk.fromAge, { n: show.minAge }) : tk.allAges,
+    },
+].filter(Boolean) as { label: string; value: string }[];
+
+const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, "");
+const wa = (template: string) =>
+    `https://wa.me/${waPhone}?text=${encodeURIComponent(fill(template, { show: show.name }))}`;
+
+const SITE_URL = "https://chapmagic.com";
+const pageUrl = `${SITE_URL}/${lang}/shows/${show.id}/`;
+---
+
+<BaseLayout
+    lang={lang}
+    title={`${show.name} | ${show.venue}, ${show.location}`}
+    description={show.seoDescription}
+    ogImage={background ? new URL(background.src, SITE_URL).href : undefined}
+>
+    <EventSchema
+        slot="head"
+        show={show}
+        performances={performances}
+        performer={{ name: siteConfig.branding.siteName, url: SITE_URL }}
+        pageUrl={pageUrl}
+    />
+
+    <SmoothScroll />
+    <Navbar currentLang={lang} />
+    <div class="hidden lg:block">
+        <WhatsAppButton
+            whatsapp={siteConfig.contact.whatsapp}
+            message={fill(l.whatsappAbout, { show: show.name })}
+        />
+    </div>
+
+    {
+        rawMode && import.meta.env.DEV && (
+            <p class="fixed inset-x-0 top-0 z-[200] bg-gold py-1.5 text-center text-xs font-semibold uppercase tracking-widest text-obsidian">
+                Raw view: no overrides applied
+            </p>
+        )
+    }
+
+    <main class="pb-24 lg:pb-0">
+        <!-- HERO -->
+        <section class="relative isolate flex min-h-[92svh] items-center overflow-hidden">
+            <div class="absolute inset-0 -z-10">
+                {
+                    background && (
+                        <Image
+                            src={background}
+                            alt=""
+                            widths={widthsFor(background, [640, 1024, 1600])}
+                            sizes="100vw"
+                            loading="eager"
+                            fetchpriority="high"
+                            class="h-full w-full object-cover object-[50%_30%] opacity-35"
+                        />
+                    )
+                }
+                <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/60 to-obsidian"></div>
+            </div>
+
+            <div class="mx-auto w-full max-w-6xl px-6 py-32">
+                <Reveal>
+                    <p class="font-body text-xs uppercase tracking-[0.3em] text-gold">
+                        {show.venue} · {show.location}
+                    </p>
+                </Reveal>
+
+                <Reveal>
+                    <h1 class="mt-5 max-w-4xl font-heading text-4xl leading-tight text-ivory md:text-7xl">
+                        {show.name}
+                    </h1>
+                </Reveal>
+
+                <Reveal>
+                    <p class="mt-6 max-w-xl font-body text-lg italic leading-relaxed text-ivory-muted md:text-xl">
+                        {show.hook}
+                    </p>
+                </Reveal>
+
+                <Reveal class="mt-9 flex flex-wrap items-center gap-3">
+                    {
+                        show.priceFrom != null && (
+                            <span class="inline-flex items-baseline gap-2 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light px-5 py-2.5 text-obsidian">
+                                <span class="text-[0.65rem] font-semibold uppercase tracking-[0.18em]">{tk.from}</span>
+                                <span class="font-heading text-xl font-bold">{show.priceFrom} €</span>
+                            </span>
+                        )
+                    }
+                    {
+                        discount && (
+                            <span class="rounded-full border border-gold/40 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-gold-light">
+                                {fill(tk.discount, { n: discount })}
+                            </span>
+                        )
+                    }
+                    {
+                        show.duration && (
+                            <span class="rounded-full border border-white/15 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-ivory-muted">
+                                {show.duration} min
+                            </span>
+                        )
+                    }
+                </Reveal>
+
+                {
+                    nextLabel && (
+                        <Reveal class="mt-7 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                            <span class="text-[0.65rem] uppercase tracking-[0.24em] text-gold">{tk.nextPerformance}</span>
+                            <span class="font-heading text-lg text-ivory first-letter:uppercase">{nextLabel}</span>
+                        </Reveal>
+                    )
+                }
+
+                <Reveal class="mt-10 flex flex-wrap gap-4">
+                    {
+                        hasDates ? (
+                            <>
+                                <Button variant="gold" href="#entradas" class="text-lg">
+                                    {l.buyCta}
+                                </Button>
+                                <Button variant="outline" href="#sobre" class="text-lg">
+                                    {l.aboutCta}
+                                </Button>
+                            </>
+                        ) : (
+                            <Button variant="gold" href={wa(l.whatsappNotify)} target="_blank" rel="noopener noreferrer" class="text-lg">
+                                {l.notifyCta}
+                            </Button>
+                        )
+                    }
+                </Reveal>
+            </div>
+        </section>
+
+        <!-- WHAT YOU WILL SEE -->
+        <section id="sobre" class="bg-obsidian-light px-6 py-section-mobile md:py-section">
+            <div class="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-20">
+                <div>
+                    <Reveal>
+                        <span class="mb-4 block font-heading text-lg italic text-gold">{l.aboutKicker}</span>
+                        <h2 class="font-heading text-3xl leading-tight text-ivory md:text-5xl">{show.tagline}</h2>
+                        <div class="mt-6 h-1 w-24 bg-gold"></div>
+                    </Reveal>
+
+                    {
+                        show.description.map((paragraph) => (
+                            <Reveal>
+                                <p class="mt-6 max-w-xl font-body leading-relaxed text-ivory-muted">{paragraph}</p>
+                            </Reveal>
+                        ))
+                    }
+
+                    {
+                        show.highlights.length > 0 && (
+                            <ul class="mt-12 grid gap-7 sm:grid-cols-2">
+                                {show.highlights.map((h, i) => (
+                                    <li>
+                                        <h3 class="flex items-baseline gap-3 font-heading text-lg text-ivory">
+                                            <span class="text-sm text-gold tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                                            {h.title}
+                                        </h3>
+                                        <p class="mt-2.5 text-sm leading-relaxed text-ivory-muted">{h.text}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )
+                    }
+                </div>
+
+                <Reveal class="lg:pt-10">
+                    {
+                        poster && (
+                            <Image
+                                src={poster}
+                                alt={`${show.name}, ${show.venue}`}
+                                widths={widthsFor(poster, [300, 420])}
+                                sizes="(min-width:1024px) 24rem, 100vw"
+                                loading="lazy"
+                                class="w-full rounded-card border border-gold/20 object-cover"
+                            />
+                        )
+                    }
+
+                    <dl class="mt-8 divide-y divide-white/10 border-y border-white/10">
+                        {
+                            facts.map((f) => (
+                                <div class="flex items-baseline justify-between gap-4 py-3.5">
+                                    <dt class="text-[0.65rem] uppercase tracking-[0.18em] text-ivory-muted">{f.label}</dt>
+                                    <dd class="text-right text-sm text-ivory">{f.value}</dd>
+                                </div>
+                            ))
+                        }
+                    </dl>
+                </Reveal>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        {
+            gallery.length > 0 && (
+                <section class="bg-obsidian px-6 pt-section-mobile md:pt-section">
+                    <div class="mx-auto max-w-6xl">
+                        <Reveal>
+                            <span class="mb-8 block font-heading text-lg italic text-gold">{l.galleryKicker}</span>
+                        </Reveal>
+                        <div class="grid gap-4 sm:grid-cols-3">
+                            {gallery.map((img) => (
+                                <Image
+                                    src={img}
+                                    alt={show.name}
+                                    widths={widthsFor(img, [420, 780])}
+                                    sizes="(min-width:640px) 33vw, 100vw"
+                                    loading="lazy"
+                                    class="aspect-video w-full rounded-card border border-white/10 object-cover"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )
+        }
+
+        <!-- TICKETS -->
+        <div class="bg-obsidian px-6 py-section-mobile md:py-section">
+            <div class="mx-auto max-w-6xl">
+                <TicketWidget lang={lang} show={show} performances={performances} strings={tk} id="entradas" />
+            </div>
+        </div>
+
+        <!-- CLOSING -->
+        <section class="bg-obsidian px-6 pb-section-mobile md:pb-section">
+            <div class="mx-auto flex max-w-5xl flex-col items-center gap-5 rounded-card border border-gold/20 bg-obsidian-light px-6 py-14 text-center">
+                <p class="font-heading text-2xl text-ivory md:text-3xl">{l.closingTitle}</p>
+                <p class="max-w-md text-sm leading-relaxed text-ivory-muted">{l.closingBody}</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <Button variant="outline" href={wa(l.whatsappAbout)} target="_blank" rel="noopener noreferrer">
+                        {l.closingWhatsapp}
+                    </Button>
+                    <Button variant="secondary" href={`/${lang}/#tickets`}>{l.closingAll}</Button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {
+        hasDates && (
+            <div
+                class="fixed inset-x-0 bottom-0 z-[60] border-t border-gold/20 bg-obsidian/95 px-4 pt-3 backdrop-blur-xl lg:hidden"
+                style="padding-bottom:calc(0.75rem + env(safe-area-inset-bottom, 0px))"
+            >
+                <div class="flex items-center justify-between gap-4">
+                    <div class="min-w-0">
+                        <p class="truncate font-heading text-sm text-ivory">{show.name}</p>
+                        {show.priceFrom != null && <p class="text-xs text-ivory-muted">{tk.from} {show.priceFrom} €</p>}
+                    </div>
+                    <a
+                        href="#entradas"
+                        class="shrink-0 rounded-full bg-gradient-to-r from-gold-dark via-gold to-gold-light px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-obsidian"
+                    >
+                        {l.mobileBuy}
+                    </a>
+                </div>
+            </div>
+        )
+    }
+
+    <Footer t={t.footer} lang={lang} />
+</BaseLayout>

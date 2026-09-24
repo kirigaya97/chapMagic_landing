@@ -1,0 +1,61 @@
+---
+import { utcOffset, type Performance } from "../../lib/ticketing/core";
+import { site, type Show } from "../../lib/ticketing/catalog";
+
+/**
+ * JSON-LD: one `Event` per performance, which is what Google needs to show the
+ * event rich result with dates. Put it in the page `<head>`.
+ *
+ * The offset is computed per date in `site.timeZone`: a hardcoded `+02:00` is
+ * right in summer and an hour off on every winter date in Spain.
+ */
+interface Props {
+  show: Show;
+  performances: readonly Performance[];
+  performer: { name: string; url?: string };
+  /** Absolute URL of the show's landing. */
+  pageUrl?: string;
+  /** Cap, to keep the head reasonable for long runs. */
+  limit?: number;
+}
+
+const { show, performances, performer, pageUrl, limit = 25 } = Astro.props;
+
+const schema = performances.slice(0, limit).map((p) => ({
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: show.name,
+  description: show.description[0] ?? show.hook,
+  startDate: `${p.date}T${p.time}:00${utcOffset(p.date, p.time, site.timeZone)}`,
+  ...(show.duration ? { duration: `PT${show.duration}M` } : {}),
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  ...(pageUrl ? { url: pageUrl } : {}),
+  location: {
+    "@type": "Place",
+    name: p.venue ?? show.venue,
+    address: {
+      "@type": "PostalAddress",
+      ...(show.venueAddress ? { streetAddress: show.venueAddress } : {}),
+      addressLocality: show.location,
+      addressCountry: site.country,
+    },
+    ...(show.geo ? { geo: { "@type": "GeoCoordinates", latitude: show.geo.lat, longitude: show.geo.lon } } : {}),
+  },
+  performer: { "@type": "Person", name: performer.name },
+  organizer: { "@type": "Person", name: performer.name, ...(performer.url ? { url: performer.url } : {}) },
+  ...(show.priceFrom != null
+    ? {
+        offers: {
+          "@type": "Offer",
+          url: p.externalUrl,
+          price: show.priceFrom,
+          priceCurrency: site.currency,
+          availability: p.status === "soldout" ? "https://schema.org/SoldOut" : "https://schema.org/InStock",
+        },
+      }
+    : {}),
+}));
+---
+
+{schema.map((s) => <script type="application/ld+json" is:inline set:html={JSON.stringify(s)} />)}

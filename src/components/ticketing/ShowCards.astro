@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+import "./ticketing.css";
+import { landingHref, localDate, type Performance } from "../../lib/ticketing/core";
+import { site, type Show } from "../../lib/ticketing/catalog";
+import { showImage, widthsFor } from "../../lib/ticketing/images";
+import { strings as defaults, localeOf, type TicketingStrings } from "../../lib/ticketing/i18n";
+
+/**
+ * One card per show with upcoming dates, linking to its landing.
+ *
+ * One per show and not per performance: a card per date fills the board with
+ * identical cards and hides the rest of the repertoire.
+ */
+interface Props {
+  lang?: string;
+  shows: readonly Show[];
+  performances: readonly Performance[];
+  strings?: Partial<TicketingStrings>;
+  heading?: boolean;
+  id?: string;
+}
+
+const { lang = "es", shows, performances, strings: custom, heading = true, id = "cartelera" } = Astro.props;
+const t = defaults(lang, custom);
+const locale = localeOf(lang);
+
+const board = shows
+  .map((show) => ({ show, dates: performances.filter((p) => p.showId === show.id) }))
+  .filter((e) => e.dates.length > 0);
+
+const month = new Intl.DateTimeFormat(locale, { month: "short" });
+const layout = board.length === 1 ? "tk-cards--1" : board.length === 2 ? "tk-cards--2" : "tk-cards--many";
+---
+
+{
+  board.length > 0 && (
+    <section id={id} class="tk tk-board">
+      {heading && (
+        <div>
+          <p class="tk-kicker">{t.cardsKicker}</p>
+          <h2 class="tk-title">{t.cardsTitle}</h2>
+        </div>
+      )}
+
+      <ul class:list={["tk-cards", layout]}>
+        {board.map(({ show, dates }) => {
+          // Cards crop to 16:9, so they want the landscape art.
+          const img = showImage(show.banner) ?? showImage(show.hero) ?? showImage(show.poster);
+          const next = localDate(dates[0].date);
+          const href = landingHref(site.landingPath, show.id, lang);
+
+          return (
+            <li>
+              <article class="tk-card">
+                <a href={href} class="tk-card__media" tabindex="-1" aria-hidden="true">
+                  {img && (
+                    <Image
+                      src={img}
+                      alt=""
+                      widths={widthsFor(img, [420, 780])}
+                      sizes="(min-width:1280px) 33vw, (min-width:640px) 50vw, 100vw"
+                      loading="lazy"
+                    />
+                  )}
+                  <span class="tk-card__date">
+                    <span class="tk-card__day">{String(next.getDate()).padStart(2, "0")}</span>
+                    <span class="tk-card__mon">{month.format(next).replace(".", "")}</span>
+                  </span>
+                  <span class="tk-card__count">
+                    {`${dates.length} ${dates.length === 1 ? t.performance : t.performances}`}
+                  </span>
+                </a>
+
+                <div class="tk-card__body">
+                  <h3 class="tk-card__name">
+                    <a href={href}>{show.name}</a>
+                  </h3>
+                  <p class="tk-card__tagline">{show.tagline}</p>
+
+                  <p class="tk-card__venue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                      <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                    <span>
+                      {show.venue}
+                      <span class="tk-card__city">{show.location}</span>
+                    </span>
+                  </p>
+
+                  {show.priceFrom != null && (
+                    <p class="tk-price">
+                      <span class="tk-price__label">{t.from}</span>
+                      <span class="tk-price__value">{show.priceFrom} €</span>
+                      {show.priceFull && <span class="tk-price__full">{show.priceFull} €</span>}
+                    </p>
+                  )}
+
+                  <div class="tk-card__cta">
+                    <a href={href} class="tk-btn tk-btn--lg tk-btn--block">
+                      {t.seeAndBuy}
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )
+}

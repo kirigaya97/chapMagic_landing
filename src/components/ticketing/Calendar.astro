@@ -1,0 +1,323 @@
+---
+import "./ticketing.css";
+import { landingHref, localDate, monthsBetween, type Performance } from "../../lib/ticketing/core";
+import { showById, site, type Show } from "../../lib/ticketing/catalog";
+import { strings as defaults, localeOf, type TicketingStrings } from "../../lib/ticketing/i18n";
+
+/**
+ * Show calendar: month grid plus the list of upcoming performances.
+ *
+ * Rendered on the server and serialised into a `data-` attribute. The script
+ * only repaints and changes month, so the dates are in the HTML even if the
+ * JavaScript never runs, which is what Google needs and what saves the page on
+ * a bad connection.
+ *
+ * The page is static and outlives its build, so the script drops performances
+ * that have already happened, using the visitor's date. Fresh data arrives by
+ * rebuilding (the scheduled scrape commits, the commit deploys).
+ *
+ * Buy buttons carry `data-tk-buy`; `TicketModal` handles them. Include it once
+ * on any page that renders this.
+ */
+interface Props {
+  lang?: string;
+  shows: readonly Show[];
+  performances: readonly Performance[];
+  strings?: Partial<TicketingStrings>;
+  /** Render the kicker and title. Off when the site wraps it in its own heading. */
+  heading?: boolean;
+  /** Where the empty state's button goes. */
+  emptyHref?: string;
+  id?: string;
+}
+
+const { lang = "es", shows, performances, strings: custom, heading = true, emptyHref = "#contact", id = "calendario" } =
+  Astro.props;
+const t = defaults(lang, custom);
+const locale = localeOf(lang);
+
+type Item = {
+  show: string;
+  slug: string;
+  href: string;
+  time: string;
+  status: Performance["status"];
+  buyUrl: string;
+  price: number | null;
+};
+
+const days: Record<string, Item[]> = {};
+for (const p of performances) {
+  const show = showById(p.showId, shows);
+  if (!show) continue;
+  (days[p.date] ??= []).push({
+    show: show.name,
+    slug: show.id,
+    href: landingHref(site.landingPath, show.id, lang),
+    time: p.time,
+    status: p.status,
+    buyUrl: p.buyUrl,
+    price: show.priceFrom,
+  });
+}
+for (const d of Object.values(days)) d.sort((a, b) => a.time.localeCompare(b.time));
+
+const dates = Object.keys(days).sort();
+const hasDates = dates.length > 0;
+
+const longDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" });
+const when = (date: string, time: string) =>
+  `${longDate.format(localDate(date))} · ${time}${t.hourSuffix ? ` ${t.hourSuffix}` : ""}`;
+
+const label = (status: Performance["status"]) => (status === "few" ? t.few : t.buy);
+
+const payload = JSON.stringify({ days, months: monthsBetween(dates) });
+const texts = JSON.stringify({
+  buy: t.buy,
+  few: t.few,
+  soldout: t.soldout,
+  noMore: t.noMore,
+  seeDay: t.seeDay,
+  hourSuffix: t.hourSuffix,
+});
+---
+
+<section id={id} class="tk tk-cal">
+  {
+    heading && (
+      <div>
+        <p class="tk-kicker">{t.calendarKicker}</p>
+        <h2 class="tk-title">{t.calendarTitle}</h2>
+      </div>
+    )
+  }
+
+  <div class="tk-cal__body" data-tk-calendar={payload} data-tk-texts={texts} data-tk-locale={locale} hidden={!hasDates}>
+    <div>
+      <div class="tk-cal__nav">
+        <button type="button" class="tk-round" data-tk-prev aria-label={t.prevMonth}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <p class="tk-cal__month" data-tk-month aria-live="polite"></p>
+        <button type="button" class="tk-round" data-tk-next aria-label={t.nextMonth}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="tk-cal__week" aria-hidden="true">
+        {t.weekdays.map((d) => <span>{d}</span>)}
+      </div>
+      <div class="tk-cal__grid" data-tk-grid></div>
+
+      <p class="tk-cal__legend">{t.daysWithShows}</p>
+    </div>
+
+    <div>
+      <h3 class="tk-cal__subtitle">{t.upcoming}</h3>
+
+      <!-- Server-rendered so it exists without JavaScript. The script replaces it. -->
+      <ul class="tk-list" data-tk-list>
+        {
+          dates.flatMap((date) =>
+            days[date].map((item) => (
+              <li class="tk-list__item" data-tk-day={date}>
+                <div>
+                  <p class="tk-list__when">{when(date, item.time)}</p>
+                  <a href={item.href} class="tk-list__show">
+                    {item.show}
+                  </a>
+                </div>
+                {item.status === "soldout" ? (
+                  <span class="tk-pill-muted">{t.soldout}</span>
+                ) : (
+                  <button
+                    type="button"
+                    class="tk-btn"
+                    data-tk-buy={item.buyUrl}
+                    data-tk-title={item.show}
+                    data-tk-show={item.slug}
+                    data-tk-price={item.price ?? ""}
+                    data-tk-date={date}
+                    data-tk-time={item.time}
+                  >
+                    {label(item.status)}
+                  </button>
+                )}
+              </li>
+            )),
+          )
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="tk-empty" data-tk-empty hidden={hasDates}>
+    <p class="tk-empty__title">{t.emptyTitle}</p>
+    <p class="tk-empty__body">{t.emptyBody}</p>
+    <a href={emptyHref} class="tk-btn tk-btn--lg">{t.emptyCta}</a>
+  </div>
+</section>
+
+<script>
+  import { localDate, monthsBetween } from "../../lib/ticketing/core";
+
+  type Status = "available" | "few" | "soldout";
+  type Item = {
+    show: string;
+    slug: string;
+    href: string;
+    time: string;
+    status: Status;
+    buyUrl: string;
+    price: number | null;
+  };
+  type Texts = Record<"buy" | "few" | "soldout" | "noMore" | "seeDay" | "hourSuffix", string>;
+
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const today = () => {
+    const n = new Date();
+    return `${n.getFullYear()}-${pad(n.getMonth() + 1)}-${pad(n.getDate())}`;
+  };
+
+  function el<K extends keyof HTMLElementTagNameMap>(tag: K, className: string, text?: string) {
+    const node = document.createElement(tag);
+    node.className = className;
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
+  /** Scrolls with Lenis when the site runs it: native smooth scroll fights it. */
+  function scrollToEl(target: HTMLElement) {
+    const lenis = (window as Window & { __lenis?: { scrollTo: (t: HTMLElement, o?: object) => void } }).__lenis;
+    if (lenis) lenis.scrollTo(target, { offset: -window.innerHeight / 3 });
+    else target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function setup(root: HTMLElement) {
+    if (root.dataset.tkReady) return;
+    root.dataset.tkReady = "1";
+
+    const section = root.closest("section")!;
+    const all = JSON.parse(root.dataset.tkCalendar!) as { days: Record<string, Item[]> };
+    const texts = JSON.parse(root.dataset.tkTexts!) as Texts;
+    const locale = root.dataset.tkLocale!;
+
+    // A static page outlives its build: drop what already happened.
+    const t0 = today();
+    const days = Object.fromEntries(Object.entries(all.days).filter(([d]) => d >= t0));
+    const dates = Object.keys(days).sort();
+    const months = monthsBetween(dates);
+
+    const grid = root.querySelector<HTMLElement>("[data-tk-grid]")!;
+    const title = root.querySelector<HTMLElement>("[data-tk-month]")!;
+    const prev = root.querySelector<HTMLButtonElement>("[data-tk-prev]")!;
+    const next = root.querySelector<HTMLButtonElement>("[data-tk-next]")!;
+    const list = root.querySelector<HTMLElement>("[data-tk-list]")!;
+    const empty = section.querySelector<HTMLElement>("[data-tk-empty]");
+
+    root.hidden = dates.length === 0;
+    if (empty) empty.hidden = dates.length > 0;
+    if (!dates.length) return;
+
+    const monthName = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" });
+    const longDate = new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" });
+    let cursor = 0;
+
+    function paintMonth() {
+      const [year, month] = months[cursor].split("-").map(Number);
+      title.textContent = monthName.format(new Date(year, month - 1, 1));
+      prev.disabled = cursor === 0;
+      next.disabled = cursor === months.length - 1;
+
+      // Weeks start on Monday; getDay() starts on Sunday.
+      const offset = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+      const total = new Date(year, month, 0).getDate();
+
+      grid.replaceChildren();
+      for (let i = 0; i < offset; i++) grid.appendChild(document.createElement("span"));
+
+      for (let day = 1; day <= total; day++) {
+        const iso = `${year}-${pad(month)}-${pad(day)}`;
+        const has = Boolean(days[iso]);
+        const cell = el(has ? "button" : "span", "tk-day", String(day));
+
+        if (has) {
+          (cell as HTMLButtonElement).type = "button";
+          cell.setAttribute("aria-label", `${texts.seeDay} ${day}`);
+          cell.addEventListener("click", () => {
+            const row = list.querySelector<HTMLElement>(`[data-tk-day="${iso}"]`);
+            if (!row) return;
+            scrollToEl(row);
+            row.classList.remove("tk-list__item--flash");
+            void row.offsetWidth;
+            row.classList.add("tk-list__item--flash");
+          });
+        } else if (all.days[iso]) {
+          cell.classList.add("tk-day--past");
+        }
+
+        grid.appendChild(cell);
+      }
+    }
+
+    function paintList() {
+      list.replaceChildren();
+
+      for (const date of dates) {
+        for (const item of days[date]) {
+          const li = el("li", "tk-list__item");
+          li.dataset.tkDay = date;
+
+          const info = document.createElement("div");
+          const suffix = texts.hourSuffix ? ` ${texts.hourSuffix}` : "";
+          info.appendChild(el("p", "tk-list__when", `${longDate.format(localDate(date))} · ${item.time}${suffix}`));
+          const link = el("a", "tk-list__show", item.show);
+          link.href = item.href;
+          info.appendChild(link);
+          li.appendChild(info);
+
+          if (item.status === "soldout") {
+            li.appendChild(el("span", "tk-pill-muted", texts.soldout));
+          } else {
+            const btn = el("button", "tk-btn", item.status === "few" ? texts.few : texts.buy);
+            btn.type = "button";
+            Object.assign(btn.dataset, {
+              tkBuy: item.buyUrl,
+              tkTitle: item.show,
+              tkShow: item.slug,
+              tkPrice: item.price == null ? "" : String(item.price),
+              tkDate: date,
+              tkTime: item.time,
+            });
+            li.appendChild(btn);
+          }
+
+          list.appendChild(li);
+        }
+      }
+    }
+
+    prev.addEventListener("click", () => {
+      cursor = Math.max(0, cursor - 1);
+      paintMonth();
+    });
+    next.addEventListener("click", () => {
+      cursor = Math.min(months.length - 1, cursor + 1);
+      paintMonth();
+    });
+
+    paintMonth();
+    paintList();
+  }
+
+  const init = () => document.querySelectorAll<HTMLElement>("[data-tk-calendar]").forEach(setup);
+
+  // Plain Astro runs this once; with <ClientRouter /> page-load also fires after
+  // each navigation. `setup` is idempotent, so both are safe together.
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

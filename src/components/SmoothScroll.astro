@@ -31,6 +31,10 @@
             touchMultiplier: 2,
         });
 
+        // Exposed so the ticketing modal can pause page scroll while the
+        // checkout iframe is open, and the calendar can scroll to a date.
+        (window as Window & { __lenis?: Lenis }).__lenis = lenis;
+
         // Bridge Lenis scroll events → ScrollTrigger recalculation
         lenis.on("scroll", ScrollTrigger.update);
 

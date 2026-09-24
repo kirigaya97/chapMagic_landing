@@ -1,0 +1,97 @@
+name: ticketing
+
+# Keeps the schedule current by reading Dinaticket.
+#
+# The scraper writes src/data/ticketing/dinaticket.json and the photos in
+# src/assets/ticketing/. When something changed it is committed, and that commit
+# triggers the host's deploy (Vercel, Netlify, Cloudflare Pages...) on its own.
+# No deploy hook, no host cron.
+#
+# Every 3 hours rather than every 30 minutes: GitHub drops many scheduled runs
+# when the queue is busy. Asking for 8 a day and getting 8 beats asking for 48
+# and getting 7.
+#
+# HEADS UP: GitHub disables scheduled workflows after 60 days without repository
+# activity, and this bot's commits do NOT count. When the warning email arrives,
+# a human commit or "Enable workflow" in the Actions tab is enough.
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch: {}
+
+concurrency:
+  group: ticketing
+  # Not cancelled on purpose: cutting between commit and push leaves the repo half done.
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # >= 22.18 is required: the scraper imports a .ts module via type stripping.
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+
+      # Cheap and offline first. If the artist filter is broken, better to know
+      # before asking Dinaticket for anything.
+      - name: Check the scraper
+        run: npm run ticketing:test
+
+      # If no show is recognised the scraper exits with an error and writes
+      # nothing: an empty schedule is worse than a stale one. The job fails and
+      # GitHub emails, which is exactly what we want.
+      - name: Read Dinaticket
+        run: npm run ticketing:scrape
+
+      - name: Anything new?
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain src/data/ticketing src/assets/ticketing)" ]; then
+            echo "any=yes" >> "$GITHUB_OUTPUT"
+            git --no-pager diff --stat src/data/ticketing src/assets/ticketing
+          else
+            echo "any=no" >> "$GITHUB_OUTPUT"
+            echo "Schedule unchanged since the last run."
+          fi
+
+      # Building before committing separates "data that breaks the site" from
+      # "data that breaks the site IN PRODUCTION".
+      - name: Build
+        if: steps.changes.outputs.any == 'yes'
+        run: npm run build
+
+      - name: Commit and push
+        if: steps.changes.outputs.any == 'yes'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/ticketing src/assets/ticketing
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore(ticketing): update schedule ($(TZ=Europe/Madrid date '+%Y-%m-%d %H:%M'))"
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Ticketing"
+            echo ""
+            echo '```'
+            node -e "const j=require('./src/data/ticketing/dinaticket.json'); for (const s of j.shows) { console.log(s.name + ': ' + s.performances.length + ' performances'); for (const p of s.performances) console.log('  ' + p.date + ' ' + p.time + '  ' + p.status); }"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

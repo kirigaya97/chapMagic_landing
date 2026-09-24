@@ -1,0 +1,140 @@
+---
+import "./ticketing.css";
+import { site } from "../../lib/ticketing/catalog";
+import { strings as defaults, type TicketingStrings } from "../../lib/ticketing/i18n";
+
+/**
+ * Purchase modal. Include once per page that has `data-tk-buy` buttons.
+ *
+ * Any element with `data-tk-buy="<url>"` opens it (also `data-tk-title`,
+ * `data-tk-show`, `data-tk-price`, `data-tk-date`, `data-tk-time` for
+ * analytics). Or dispatch `ticketing:buy` on `document` with the same fields
+ * in `detail`.
+ *
+ * Dinaticket's `?widget` has no `X-Frame-Options` nor `frame-ancestors`, so it
+ * can be embedded (checked, not assumed). Any other host opens in a new tab: a
+ * blocked iframe stays blank without throwing anything catchable. For the same
+ * reason the "open in new tab" escape is always visible, not behind detection.
+ */
+interface Props {
+  lang?: string;
+  strings?: Partial<TicketingStrings>;
+}
+
+const { lang = "es", strings: custom } = Astro.props;
+const t = defaults(lang, custom);
+---
+
+<dialog class="tk tk-modal" data-tk-modal data-tk-currency={site.currency} aria-label={t.modalTitle}>
+  <div class="tk-modal__inner">
+    <div class="tk-modal__bar">
+      <p class="tk-modal__title" data-tk-modal-title>{t.modalTitle}</p>
+      <button type="button" class="tk-round" data-tk-modal-close aria-label={t.modalClose}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="tk-modal__frame">
+      <iframe data-tk-modal-frame title={t.modalFrameTitle} referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="tk-modal__bar tk-modal__bar--foot">
+      <p>{t.modalHelp}</p>
+      <a data-tk-modal-newtab href="#" target="_blank" rel="noopener noreferrer" class="tk-btn">{t.modalOpen}</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import { trackShow, track } from "../../lib/ticketing/track";
+
+  type Lenis = { stop: () => void; start: () => void };
+  const lenis = () => (window as Window & { __lenis?: Lenis }).__lenis;
+
+  /** Hosts verified to allow framing. Add one only after checking its headers. */
+  const EMBEDDABLE = ["dinaticket.com"];
+
+  const embeddable = (url: string) => {
+    try {
+      const host = new URL(url, location.href).hostname;
+      return EMBEDDABLE.some((h) => host === h || host.endsWith(`.${h}`));
+    } catch {
+      return false;
+    }
+  };
+
+  type Detail = {
+    url?: string;
+    title?: string;
+    showId?: string;
+    price?: string | number;
+    date?: string;
+    time?: string;
+  };
+
+  function open(detail: Detail) {
+    if (!detail.url) return;
+
+    // Looked up per click, not cached: with <ClientRouter /> the dialog is a new
+    // element after every navigation.
+    const modal = document.querySelector<HTMLDialogElement>("[data-tk-modal]");
+    const currency = modal?.dataset.tkCurrency ?? "EUR";
+
+    if (detail.showId) {
+      trackShow("begin_checkout", {
+        id: detail.showId,
+        name: detail.title ?? "",
+        price: Number(detail.price) || 0,
+        currency,
+        date: detail.date,
+        time: detail.time,
+      });
+    } else {
+      track("begin_checkout", { item_name: detail.title, link_url: detail.url });
+    }
+
+    if (!modal || !embeddable(detail.url)) {
+      window.open(detail.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    const title = modal.querySelector<HTMLElement>("[data-tk-modal-title]")!;
+    const frame = modal.querySelector<HTMLIFrameElement>("[data-tk-modal-frame]")!;
+    const newTab = modal.querySelector<HTMLAnchorElement>("[data-tk-modal-newtab]")!;
+
+    if (!modal.dataset.tkReady) {
+      modal.dataset.tkReady = "1";
+      modal.querySelector("[data-tk-modal-close]")?.addEventListener("click", () => modal.close());
+      modal.addEventListener("close", () => {
+        frame.removeAttribute("src");
+        document.documentElement.style.overflow = "";
+        lenis()?.start();
+      });
+    }
+
+    if (detail.title) title.textContent = detail.title;
+    // The escape link points at the page outside widget mode.
+    newTab.href = detail.url.replace(/\?widget$/, "");
+    frame.src = detail.url;
+    modal.showModal();
+    document.documentElement.style.overflow = "hidden";
+    lenis()?.stop();
+  }
+
+  /**
+   * Delegation on `document`, not one listener per button: the calendar
+   * rebuilds its list in the browser, and buttons bound one by one would go
+   * dead. Registered once per page load of this module.
+   */
+  document.addEventListener("click", (event) => {
+    const btn = (event.target as HTMLElement | null)?.closest<HTMLElement>("[data-tk-buy]");
+    if (!btn) return;
+    event.preventDefault();
+    const d = btn.dataset;
+    open({ url: d.tkBuy, title: d.tkTitle, showId: d.tkShow, price: d.tkPrice, date: d.tkDate, time: d.tkTime });
+  });
+
+  document.addEventListener("ticketing:buy", (event) => open((event as CustomEvent<Detail>).detail ?? {}));
+</script>

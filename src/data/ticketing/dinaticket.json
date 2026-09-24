@@ -1,0 +1,279 @@
+{
+  "scrapedAt": "2026-09-24T18:46:01.139Z",
+  "known": {
+    "ours": [
+      4948919,
+      4952501
+    ],
+    "others": []
+  },
+  "shows": [
+    {
+      "id": "la-magia-del-pase-de-oro-de-got-talent",
+      "name": "La magia del pase de oro de Got Talent",
+      "sourceName": "Chap - La magia del pase de oro de Got Talent",
+      "artist": "Chap Magic",
+      "ticketing": {
+        "provider": 20845,
+        "event": 4948919
+      },
+      "category": "Magia",
+      "description": [
+        "Tras recibir el Pase de Oro de Risto Mejide en Got Talent y después de presentar sus espectáculos en Latinoamérica, Estados Unidos, Europa y Oriente Medio, Chap llega a Madrid con dos espectáculos exclusivos y completamente diferentes.",
+        "Por un lado, MIRAGE, una experiencia mágica teatral que combina mentalismo, magia, tecnología y emoción en un espectáculo inmersivo diseñado para sorprender, emocionar y hacer vivir lo imposible.",
+        "Por otro, MISTERIOS DESCLASIFICADOS, un espectáculo en formato stand up mágico con una gran interacción con el público y efectos imposibles que convierten cada función en una experiencia única.",
+        "Dos formas distintas de vivir el universo de Chap.",
+        "Elige la que más te atraiga... o descubre ambas en el corazón de Madrid."
+      ],
+      "highlights": [],
+      "venue": "Teatro Escondido Gran Vía",
+      "venueAddress": "C de las Tres Cruces, 12",
+      "location": "Madrid",
+      "geo": {
+        "lat": 40.41965,
+        "lon": -3.7026
+      },
+      "duration": 60,
+      "minAge": null,
+      "priceFrom": 14,
+      "priceFull": 18,
+      "performances": [
+        {
+          "date": "2026-09-25",
+          "time": "20:00",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-09-25/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-09-25/"
+        },
+        {
+          "date": "2026-09-27",
+          "time": "18:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-09-27/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-09-27/"
+        },
+        {
+          "date": "2026-10-02",
+          "time": "20:00",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-02/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-02/"
+        },
+        {
+          "date": "2026-10-04",
+          "time": "18:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-04/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-04/"
+        },
+        {
+          "date": "2026-10-09",
+          "time": "20:00",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-09/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-09/"
+        },
+        {
+          "date": "2026-10-11",
+          "time": "18:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-11/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-11/"
+        },
+        {
+          "date": "2026-10-16",
+          "time": "20:00",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-16/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-16/"
+        },
+        {
+          "date": "2026-10-18",
+          "time": "18:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-18/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-18/"
+        },
+        {
+          "date": "2026-10-23",
+          "time": "20:00",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-23/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-23/"
+        },
+        {
+          "date": "2026-10-25",
+          "time": "18:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-25/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-25/"
+        },
+        {
+          "date": "2026-10-30",
+          "time": "20:00",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-30/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-30/"
+        },
+        {
+          "date": "2026-11-01",
+          "time": "18:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-11-01/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-11-01/"
+        }
+      ],
+      "sources": [
+        {
+          "provider": 20845,
+          "event": 4948919,
+          "sourceUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919",
+          "venue": "Teatro Escondido Gran Vía"
+        }
+      ],
+      "venues": [
+        "Teatro Escondido Gran Vía"
+      ],
+      "images": [
+        {
+          "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-01.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1819810/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-02.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1802863/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-03.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1802864/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-04.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1819811/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-05.jpg",
+          "h": 400,
+          "w": 300,
+          "orient": "portrait",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1807181/si_880_267.jpg"
+        }
+      ],
+      "poster": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-05.jpg",
+      "banner": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-01.jpg",
+      "hero": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-04.jpg"
+    },
+    {
+      "id": "magia-a-la-carta-cena-show",
+      "name": "Magia a la carta - Cena Show",
+      "sourceName": "Magia a la carta - Cena Show",
+      "artist": "",
+      "ticketing": {
+        "provider": 20845,
+        "event": 4952501
+      },
+      "category": "Magia",
+      "description": [
+        "Magia, cena y una noche para disfrutar e ilusionarte.",
+        "Vive una experiencia que combina el show de Chap Magic, Pase de Oro de Risto Mejide en Got Talent, con la gastronomía de Casa Úrsula en el centro comercial ABC Serrano.",
+        "La entrada incluye Comida + Bebida + Show"
+      ],
+      "highlights": [],
+      "venue": "Centro Comercial ABC Serrano",
+      "venueAddress": "Calle de Serrano, 61",
+      "location": "Madrid",
+      "geo": {
+        "lat": 40.43224,
+        "lon": -3.68616
+      },
+      "duration": 100,
+      "minAge": null,
+      "priceFrom": 30,
+      "priceFull": 38,
+      "performances": [
+        {
+          "date": "2026-09-26",
+          "time": "21:00",
+          "status": "available",
+          "venue": "Centro Comercial ABC Serrano",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-09-26/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-09-26/"
+        }
+      ],
+      "sources": [
+        {
+          "provider": 20845,
+          "event": 4952501,
+          "sourceUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501",
+          "venue": "Centro Comercial ABC Serrano"
+        }
+      ],
+      "venues": [
+        "Centro Comercial ABC Serrano"
+      ],
+      "images": [
+        {
+          "file": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-01.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/2501/1822956/vertic_880_0.jpg"
+        },
+        {
+          "file": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-02.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/2501/1822960/vertic_880_0.jpg"
+        },
+        {
+          "file": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-03.jpg",
+          "h": 400,
+          "w": 300,
+          "orient": "portrait",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/2501/1822958/si_880_267.jpg"
+        }
+      ],
+      "poster": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-03.jpg",
+      "banner": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-01.jpg",
+      "hero": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-02.jpg"
+    }
+  ]
+}
