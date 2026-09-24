@@ -6,6 +6,8 @@ interface Props {
 }
 
 const { href, class: className, ...rest } = Astro.props;
+const star =
+    "M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7L12 17.5 5.8 21.2l1.6-7L2 9.5l7.1-.6z";
 ---
 
 <a
@@ -13,16 +15,36 @@ const { href, class: className, ...rest } = Astro.props;
     class={`ticket-btn inline-block cursor-pointer ${className || ""}`}
     {...rest}
 >
-    <span
-        class="ticket-btn-body flex items-center gap-5 bg-gradient-to-b from-gold-light via-gold to-gold-dark text-obsidian pl-10 pr-12 py-5 md:py-6"
-    >
-        <span
-            class="h-8 border-l-2 border-dashed border-obsidian/40"
-            aria-hidden="true"></span>
-        <span
-            class="font-body font-bold uppercase tracking-wide text-lg md:text-xl whitespace-nowrap"
-        >
-            <slot />
+    <span class="ticket-btn-body relative flex items-stretch">
+        <!-- Engraved double frame -->
+        <span class="ticket-frame" aria-hidden="true"></span>
+
+        <!-- Tear-off stub -->
+        <span class="relative flex items-center pl-5 pr-3 md:pl-7 md:pr-5" aria-hidden="true">
+            <svg class="w-5 h-5 md:w-6 md:h-6 ticket-ink" viewBox="0 0 24 24" fill="currentColor">
+                <path d={star}></path>
+            </svg>
         </span>
+        <span class="ticket-perf" aria-hidden="true"></span>
+
+        <!-- Main -->
+        <span
+            class="relative flex items-center gap-3 pl-4 pr-6 py-4 md:pl-6 md:pr-10 md:py-6"
+        >
+            <svg class="hidden sm:block w-2.5 h-2.5 ticket-ink opacity-70" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d={star}></path>
+            </svg>
+            <span
+                class="ticket-ink ticket-engrave font-heading font-bold uppercase tracking-[0.08em] md:tracking-[0.12em] text-base sm:text-lg md:text-xl whitespace-nowrap"
+            >
+                <slot />
+            </span>
+            <svg class="hidden sm:block w-2.5 h-2.5 ticket-ink opacity-70" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d={star}></path>
+            </svg>
+        </span>
+
+        <!-- Light sweep -->
+        <span class="ticket-sheen" aria-hidden="true"></span>
     </span>
 </a>

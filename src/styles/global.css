@@ -10,7 +10,6 @@
   --color-ivory: #F5F0E8;
   --color-ivory-muted: #D9D0C0;
   --color-smoke: #2A2A2A;
-  --color-wine: #3A1219;
 
   /* Fonts */
   --font-heading: 'Playfair Display', Georgia, serif;
@@ -120,15 +119,19 @@ html {
   animation: triggerPulse 2.5s ease-in-out infinite;
 }
 
-/* ═══ Ticket Button (Classes page) ═══ */
+/* ═══ Golden Ticket Button (Classes page) ═══ */
 .ticket-btn {
-  filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.25));
+  filter:
+    drop-shadow(0 2px 1px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 12px 28px rgba(212, 175, 55, 0.28));
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .ticket-btn:hover {
-  filter: drop-shadow(0 12px 40px rgba(212, 175, 55, 0.45));
-  transform: scale(1.04);
+  filter:
+    drop-shadow(0 2px 1px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 16px 40px rgba(232, 200, 96, 0.5));
+  transform: translateY(-2px) rotate(-1deg) scale(1.03);
 }
 
 .ticket-btn:active {
@@ -136,11 +139,93 @@ html {
 }
 
 .ticket-btn-body {
-  --notch: 14px;
+  --notch: 12px;
+  overflow: hidden;
+  border-radius: 4px;
+  /* Metallic foil + fine engraved guilloché lines */
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 250, 225, 0.07) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(45deg, rgba(90, 64, 10, 0.06) 0 1px, transparent 1px 5px),
+    linear-gradient(115deg,
+      #8f6c1c 0%,
+      #e9c865 16%,
+      #c49a33 30%,
+      #fbeaa6 47%,
+      #d4ad45 60%,
+      #f2d67e 78%,
+      #9a7520 100%);
   -webkit-mask:
     radial-gradient(circle at 0 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
     radial-gradient(circle at 100% 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
   mask:
     radial-gradient(circle at 0 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
     radial-gradient(circle at 100% 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
+}
+
+/* Engraved double-line frame */
+.ticket-frame {
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(92, 66, 12, 0.45);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 244, 200, 0.35),
+    inset 0 0 0 3px rgba(92, 66, 12, 0.3),
+    0 0 0 1px rgba(255, 244, 200, 0.3);
+  pointer-events: none;
+}
+
+/* Perforation between stub and main */
+.ticket-perf {
+  position: relative;
+  width: 3px;
+  margin: 8px 0;
+  background: radial-gradient(circle, rgba(58, 40, 5, 0.55) 1.2px, transparent 1.6px) center / 3px 7px repeat-y;
+}
+
+/* Ink stamped into the foil */
+.ticket-ink {
+  color: #3a2905;
+}
+
+.ticket-engrave {
+  text-shadow:
+    0 1px 0 rgba(255, 246, 210, 0.65),
+    0 -1px 0 rgba(70, 48, 5, 0.25);
+}
+
+/* Light sweep across the foil */
+.ticket-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 48%, rgba(255, 255, 255, 0.1) 54%, transparent 62%);
+  transform: translateX(-120%);
+  animation: ticketSheen 5s ease-in-out infinite;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.ticket-btn:hover .ticket-sheen {
+  animation-duration: 1.4s;
+}
+
+@keyframes ticketSheen {
+  0%, 60% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-sheen {
+    animation: none;
+    opacity: 0;
+  }
+
+  .ticket-btn:hover {
+    transform: none;
+  }
 }

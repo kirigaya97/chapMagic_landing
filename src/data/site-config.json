@@ -59,7 +59,7 @@
     "translations": {
         "es": {
             "meta": {
-                "title": "ChapMagic — Mago y Mentalista | Experiencias Imposibles",
+                "title": "ChapMagic · Mago y Mentalista | Experiencias Imposibles",
                 "description": "Descubre el mentalismo y la magia de ChapMagic. Espectáculos corporativos, eventos privados y shows teatrales que desafían la lógica."
             },
             "nav": {
@@ -264,19 +264,23 @@
                 "facts": [
                     {
                         "label": "Curso",
-                        "value": "3 meses"
+                        "value": "3 meses",
+                        "icon": "calendar"
                     },
                     {
                         "label": "Formato",
-                        "value": "Grupal"
+                        "value": "Grupal",
+                        "icon": "users"
                     },
                     {
                         "label": "Sede",
-                        "value": "Madrid"
+                        "value": "Madrid",
+                        "icon": "pin"
                     },
                     {
                         "label": "Alcance",
-                        "value": "Online global"
+                        "value": "Online global",
+                        "icon": "globe"
                     }
                 ],
                 "course": {
@@ -307,7 +311,7 @@
                             "name": "Plan mensual",
                             "price": "140€",
                             "unit": "/ mes",
-                            "highlight": "3 pagos de 140€ — 420€ en total",
+                            "highlight": "3 pagos de 140€, 420€ en total",
                             "features": [
                                 "4 clases por mes",
                                 "Pagas mes a mes",
@@ -355,7 +359,7 @@
         },
         "en": {
             "meta": {
-                "title": "ChapMagic — Magician & Mentalist | Impossible Experiences",
+                "title": "ChapMagic · Magician & Mentalist | Impossible Experiences",
                 "description": "Discover the mentalism and magic of ChapMagic. Corporate shows, private events, and theater performances that defy logic."
             },
             "nav": {
@@ -560,19 +564,23 @@
                 "facts": [
                     {
                         "label": "Course",
-                        "value": "3 months"
+                        "value": "3 months",
+                        "icon": "calendar"
                     },
                     {
                         "label": "Format",
-                        "value": "Group"
+                        "value": "Group",
+                        "icon": "users"
                     },
                     {
                         "label": "Venue",
-                        "value": "Madrid"
+                        "value": "Madrid",
+                        "icon": "pin"
                     },
                     {
                         "label": "Reach",
-                        "value": "Online worldwide"
+                        "value": "Online worldwide",
+                        "icon": "globe"
                     }
                 ],
                 "course": {
@@ -603,7 +611,7 @@
                             "name": "Monthly plan",
                             "price": "€140",
                             "unit": "/ month",
-                            "highlight": "3 payments of €140 — €420 in total",
+                            "highlight": "3 payments of €140, €420 in total",
                             "features": [
                                 "4 classes per month",
                                 "Pay month by month",
