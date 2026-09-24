@@ -290,12 +290,12 @@
                         "12 clases en total, una vez por semana",
                         "Grupos reducidos, todas las edades",
                         "Sin experiencia previa necesaria",
-                        "Clases privadas disponibles a consulta"
+                        "Clases privadas disponibles bajo consulta"
                     ]
                 },
                 "video": {
                     "eyebrow": "Mira el impacto",
-                    "title": "Así se vive la magia en vivo"
+                    "title": "Así se vive la magia en directo"
                 },
                 "pricing": {
                     "eyebrow": "De 12 a 99 años",
@@ -323,7 +323,7 @@
                             "features": [
                                 "12 clases, pago único por adelantado",
                                 "100€ cada 4 clases",
-                                "El precio más conveniente del curso"
+                                "El mejor precio del curso"
                             ],
                             "recommended": true
                         }
@@ -349,7 +349,7 @@
                 },
                 "finalCta": {
                     "title": "El escenario te espera",
-                    "text": "Las plazas son limitadas por grupo. Reserva tu lugar y empieza a aprender magia de verdad."
+                    "text": "Las plazas son limitadas por grupo. Reserva tu plaza y empieza a aprender magia de verdad."
                 }
             }
         },
