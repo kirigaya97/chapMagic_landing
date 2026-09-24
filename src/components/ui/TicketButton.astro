@@ -1,0 +1,28 @@
+---
+interface Props {
+    href: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const { href, class: className, ...rest } = Astro.props;
+---
+
+<a
+    href={href}
+    class={`ticket-btn inline-block cursor-pointer ${className || ""}`}
+    {...rest}
+>
+    <span
+        class="ticket-btn-body flex items-center gap-5 bg-gradient-to-b from-gold-light via-gold to-gold-dark text-obsidian pl-10 pr-12 py-5 md:py-6"
+    >
+        <span
+            class="h-8 border-l-2 border-dashed border-obsidian/40"
+            aria-hidden="true"></span>
+        <span
+            class="font-body font-bold uppercase tracking-wide text-lg md:text-xl whitespace-nowrap"
+        >
+            <slot />
+        </span>
+    </span>
+</a>

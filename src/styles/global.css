@@ -10,6 +10,7 @@
   --color-ivory: #F5F0E8;
   --color-ivory-muted: #D9D0C0;
   --color-smoke: #2A2A2A;
+  --color-wine: #3A1219;
 
   /* Fonts */
   --font-heading: 'Playfair Display', Georgia, serif;
@@ -117,4 +118,29 @@ html {
 .hero-trigger-glow {
   border-radius: 50%;
   animation: triggerPulse 2.5s ease-in-out infinite;
+}
+
+/* ═══ Ticket Button (Classes page) ═══ */
+.ticket-btn {
+  filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.25));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.ticket-btn:hover {
+  filter: drop-shadow(0 12px 40px rgba(212, 175, 55, 0.45));
+  transform: scale(1.04);
+}
+
+.ticket-btn:active {
+  transform: scale(0.97);
+}
+
+.ticket-btn-body {
+  --notch: 14px;
+  -webkit-mask:
+    radial-gradient(circle at 0 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle at 0 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
 }

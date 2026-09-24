@@ -1,0 +1,105 @@
+---
+import siteConfig from "../../../data/site-config.json";
+import TicketButton from "../../ui/TicketButton.astro";
+import ContactLinks from "../../ui/ContactLinks.astro";
+
+type Classes = typeof siteConfig.translations.es.classes;
+
+interface Props {
+    t: Classes["hero"];
+    cta: string;
+    ctaHref: string;
+}
+
+const { t, cta, ctaHref } = Astro.props;
+---
+
+<section
+    id="classes-hero"
+    class="relative min-h-svh flex items-end md:items-center overflow-clip bg-obsidian"
+>
+    <!-- Ambient video: the Golden Buzzer moment -->
+    <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="/images/hero-poster.jpg"
+        class="absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
+    >
+        <source src={siteConfig.links.heroVideoSrc} type="video/mp4" />
+    </video>
+
+    <div
+        class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-obsidian/40 md:bg-gradient-to-r md:from-obsidian md:via-obsidian/75 md:to-obsidian/20"
+        aria-hidden="true"
+    >
+    </div>
+
+    <!-- Golden star glow -->
+    <div
+        class="absolute top-[12%] right-[8%] md:right-[14%] w-40 h-40 md:w-72 md:h-72 pointer-events-none"
+        aria-hidden="true"
+    >
+        <div class="absolute inset-0 bg-gold/25 rounded-full blur-[80px]"></div>
+        <svg
+            viewBox="0 0 80 80"
+            class="relative w-full h-full opacity-30 blur-[2px] drop-shadow-[0_0_40px_rgba(212,175,55,0.8)]"
+            fill="none"
+        >
+            <path
+                d="M40 4L47.6 28.4H73.2L52.8 43.6L60.4 68L40 52.8L19.6 68L27.2 43.6L6.8 28.4H32.4L40 4Z"
+                fill="#D4AF37"
+                stroke="#E8C860"
+                stroke-width="1"></path>
+        </svg>
+    </div>
+
+    <div
+        class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-16 md:py-32"
+    >
+        <div class="max-w-2xl">
+            <p
+                class="reveal opacity-0 translate-y-6 flex items-center gap-4 text-gold font-body font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-6"
+            >
+                <span class="w-10 h-px bg-gold/60" aria-hidden="true"></span>
+                {t.eyebrow}
+            </p>
+
+            <h1
+                class="reveal opacity-0 translate-y-6 font-heading font-bold leading-[0.9] text-7xl md:text-8xl lg:text-9xl mb-8"
+            >
+                <span class="block text-ivory">{t.titleLine1}</span>
+                <span
+                    class="block bg-gradient-to-b from-gold-light via-gold to-gold-dark bg-clip-text text-transparent pb-2"
+                    >{t.titleLine2}</span
+                >
+            </h1>
+
+            <p
+                class="reveal opacity-0 translate-y-6 text-lg md:text-xl text-ivory-muted font-body leading-relaxed mb-8 [&_strong]:text-gold-light [&_strong]:font-semibold"
+                set:html={t.description}
+            />
+
+            <ul class="reveal opacity-0 translate-y-6 flex flex-wrap gap-3 mb-10">
+                {
+                    t.tags.map((tag) => (
+                        <li class="inline-flex items-center gap-3 rounded-full border border-gold/30 bg-obsidian/40 backdrop-blur-sm px-5 py-2.5 text-ivory font-body font-semibold uppercase tracking-wider text-sm">
+                            <span class="w-2 h-2 rounded-full bg-gold" aria-hidden="true" />
+                            {tag}
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <div class="reveal opacity-0 translate-y-6">
+                <TicketButton href={ctaHref} target="_blank" rel="noopener noreferrer">
+                    {cta}
+                </TicketButton>
+                <ContactLinks class="mt-8 text-sm md:text-base" />
+            </div>
+        </div>
+    </div>
+</section>

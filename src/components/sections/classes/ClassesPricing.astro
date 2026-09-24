@@ -1,0 +1,65 @@
+---
+import siteConfig from "../../../data/site-config.json";
+import SectionHeading from "../../ui/SectionHeading.astro";
+import Reveal from "../../ui/Reveal.astro";
+import PriceCard from "../../ui/PriceCard.astro";
+
+type Classes = typeof siteConfig.translations.es.classes;
+
+interface Props {
+    t: Classes["pricing"];
+    kids: Classes["kids"];
+}
+
+const { t, kids } = Astro.props;
+---
+
+<section
+    id="pricing"
+    class="py-section-mobile md:py-section bg-gradient-to-b from-obsidian-light via-obsidian to-wine/40 px-6"
+>
+    <div class="max-w-5xl mx-auto">
+        <Reveal>
+            <SectionHeading title={t.title} subtitle={t.eyebrow} />
+        </Reveal>
+        <Reveal>
+            <p
+                class="text-lg md:text-xl text-ivory-muted font-body leading-relaxed text-center max-w-2xl mx-auto -mt-4 mb-16"
+            >
+                {t.intro}
+            </p>
+        </Reveal>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8">
+            {
+                t.plans.map((plan) => (
+                    <Reveal class="h-full">
+                        <PriceCard {...plan} recommendedLabel={t.recommendedLabel} />
+                    </Reveal>
+                ))
+            }
+        </div>
+
+        <Reveal>
+            <p class="text-ivory-muted font-body text-center mt-12">
+                {t.privateNote}
+            </p>
+        </Reveal>
+
+        <!-- Kids course -->
+        <div id="kids" class="mt-32">
+            <Reveal>
+                <SectionHeading title={kids.title} subtitle={kids.eyebrow} />
+            </Reveal>
+            <div class="max-w-xl mx-auto">
+                {
+                    kids.plans.map((plan) => (
+                        <Reveal>
+                            <PriceCard {...plan} recommendedLabel={t.recommendedLabel} />
+                        </Reveal>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

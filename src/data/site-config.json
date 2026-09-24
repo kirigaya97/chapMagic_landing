@@ -20,6 +20,10 @@
             "href": "#shows"
         },
         {
+            "id": "classes",
+            "href": "clases"
+        },
+        {
             "id": "jury",
             "href": "#jury"
         },
@@ -49,7 +53,8 @@
         "heroVimeoDesktop": "1164377259",
         "heroVimeoMobile": "1167528458",
         "sectionVimeoDesktop": "1164377259",
-        "sectionVimeoMobile": "1167529998"
+        "sectionVimeoMobile": "1167529998",
+        "classesVimeo": "1164377259"
     },
     "translations": {
         "es": {
@@ -59,6 +64,7 @@
             },
             "nav": {
                 "shows": "Espectáculos",
+                "classes": "Clases",
                 "jury": "Jueces",
                 "stats": "Cifras",
                 "tickets": "Entradas",
@@ -236,6 +242,115 @@
                         "p": "ChapMagic no se hace responsable de las interrupciones técnicas del servicio o de errores tipográficos en el contenido."
                     }
                 ]
+            },
+            "classes": {
+                "meta": {
+                    "title": "Clases de Magia en Madrid | Curso con ChapMagic",
+                    "description": "Aprende magia con el Pase de Oro de Got Talent España. Curso de 3 meses, grupal, presencial en Madrid u online. Para todas las edades, sin experiencia previa."
+                },
+                "cta": "¡Comienza ahora!",
+                "whatsappMessage": "¡Hola Chap! Me interesa el curso de magia. ¿Me das más información?",
+                "hero": {
+                    "eyebrow": "Octubre · Nuevo curso",
+                    "titleLine1": "Aprende",
+                    "titleLine2": "Magia",
+                    "description": "Con el <strong>Pase de Oro de Got Talent España</strong>. Un curso de 3 meses para descubrir el arte de la magia, en el corazón de Madrid.",
+                    "tags": [
+                        "Presencial",
+                        "Online",
+                        "Todas las edades"
+                    ]
+                },
+                "facts": [
+                    {
+                        "label": "Curso",
+                        "value": "3 meses"
+                    },
+                    {
+                        "label": "Formato",
+                        "value": "Grupal"
+                    },
+                    {
+                        "label": "Sede",
+                        "value": "Madrid"
+                    },
+                    {
+                        "label": "Alcance",
+                        "value": "Online global"
+                    }
+                ],
+                "course": {
+                    "eyebrow": "El curso",
+                    "title": "Magia pro",
+                    "paragraphs": [
+                        "12 clases repartidas en 3 meses, pensadas para que desde el día 1 puedas sorprender e ilusionar a todo el mundo. Magia de alto nivel.",
+                        "Las clases son <strong>grupales</strong>, pero si prefieres un formato a medida, también puedes <strong>consultar por clases privadas</strong>."
+                    ],
+                    "features": [
+                        "12 clases en total, una vez por semana",
+                        "Grupos reducidos, todas las edades",
+                        "Sin experiencia previa necesaria",
+                        "Clases privadas disponibles a consulta"
+                    ]
+                },
+                "video": {
+                    "eyebrow": "Mira el impacto",
+                    "title": "Así se vive la magia en vivo"
+                },
+                "pricing": {
+                    "eyebrow": "De 12 a 99 años",
+                    "title": "Elige cómo pagarlo",
+                    "intro": "Mismo curso, dos formas de organizarlo. La segunda te conviene si ya sabes que vas a hacer las 12 clases.",
+                    "recommendedLabel": "Recomendado",
+                    "plans": [
+                        {
+                            "name": "Plan mensual",
+                            "price": "140€",
+                            "unit": "/ mes",
+                            "highlight": "3 pagos de 140€ — 420€ en total",
+                            "features": [
+                                "4 clases por mes",
+                                "Pagas mes a mes",
+                                "Ideal si quieres probar primero"
+                            ],
+                            "recommended": false
+                        },
+                        {
+                            "name": "Pack completo (adelantado)",
+                            "price": "300€",
+                            "unit": "/ curso",
+                            "highlight": "Ahorras 120€ frente al plan mensual",
+                            "features": [
+                                "12 clases, pago único por adelantado",
+                                "100€ cada 4 clases",
+                                "El precio más conveniente del curso"
+                            ],
+                            "recommended": true
+                        }
+                    ],
+                    "privateNote": "Consulta precios y disponibilidad de clases privadas escribiendo por WhatsApp o email."
+                },
+                "kids": {
+                    "eyebrow": "Curso para niños de 8 a 11 años",
+                    "title": "Magia para los más pequeños",
+                    "plans": [
+                        {
+                            "name": "Pack completo (adelantado)",
+                            "price": "280€",
+                            "unit": "/ 3 meses",
+                            "highlight": "100€ cada 4 clases",
+                            "features": [
+                                "12 clases, pago único por adelantado",
+                                "Mismo formato grupal, adaptado a niños"
+                            ],
+                            "recommended": true
+                        }
+                    ]
+                },
+                "finalCta": {
+                    "title": "El escenario te espera",
+                    "text": "Las plazas son limitadas por grupo. Reserva tu lugar y empieza a aprender magia de verdad."
+                }
             }
         },
         "en": {
@@ -245,6 +360,7 @@
             },
             "nav": {
                 "shows": "Shows",
+                "classes": "Classes",
                 "jury": "Judges",
                 "stats": "Numbers",
                 "tickets": "Tickets",
@@ -422,6 +538,115 @@
                         "p": "ChapMagic is not responsible for technical service interruptions or typographical errors in the content."
                     }
                 ]
+            },
+            "classes": {
+                "meta": {
+                    "title": "Magic Classes in Madrid | Course with ChapMagic",
+                    "description": "Learn magic with a Got Talent Spain Golden Buzzer winner. 3-month group course, in person in Madrid or online. All ages, no previous experience needed."
+                },
+                "cta": "Start now!",
+                "whatsappMessage": "Hi Chap! I'm interested in the magic course. Could you send me more info?",
+                "hero": {
+                    "eyebrow": "October · New course",
+                    "titleLine1": "Learn",
+                    "titleLine2": "Magic",
+                    "description": "With a <strong>Got Talent Spain Golden Buzzer</strong> winner. A 3-month course to discover the art of magic, in the heart of Madrid.",
+                    "tags": [
+                        "In person",
+                        "Online",
+                        "All ages"
+                    ]
+                },
+                "facts": [
+                    {
+                        "label": "Course",
+                        "value": "3 months"
+                    },
+                    {
+                        "label": "Format",
+                        "value": "Group"
+                    },
+                    {
+                        "label": "Venue",
+                        "value": "Madrid"
+                    },
+                    {
+                        "label": "Reach",
+                        "value": "Online worldwide"
+                    }
+                ],
+                "course": {
+                    "eyebrow": "The course",
+                    "title": "Pro magic",
+                    "paragraphs": [
+                        "12 classes over 3 months, designed so that from day one you can amaze and delight everyone around you. High-level magic.",
+                        "Classes are held in <strong>groups</strong>, but if you prefer a tailored format, you can also <strong>ask about private lessons</strong>."
+                    ],
+                    "features": [
+                        "12 classes in total, once a week",
+                        "Small groups, all ages",
+                        "No previous experience needed",
+                        "Private lessons available on request"
+                    ]
+                },
+                "video": {
+                    "eyebrow": "See the impact",
+                    "title": "This is what live magic feels like"
+                },
+                "pricing": {
+                    "eyebrow": "Ages 12 to 99",
+                    "title": "Choose how to pay",
+                    "intro": "Same course, two ways to organise it. The second one is for you if you already know you'll take all 12 classes.",
+                    "recommendedLabel": "Recommended",
+                    "plans": [
+                        {
+                            "name": "Monthly plan",
+                            "price": "€140",
+                            "unit": "/ month",
+                            "highlight": "3 payments of €140 — €420 in total",
+                            "features": [
+                                "4 classes per month",
+                                "Pay month by month",
+                                "Ideal if you want to try it first"
+                            ],
+                            "recommended": false
+                        },
+                        {
+                            "name": "Full pack (upfront)",
+                            "price": "€300",
+                            "unit": "/ course",
+                            "highlight": "Save €120 compared to the monthly plan",
+                            "features": [
+                                "12 classes, single upfront payment",
+                                "€100 every 4 classes",
+                                "The best price for the course"
+                            ],
+                            "recommended": true
+                        }
+                    ],
+                    "privateNote": "Ask about prices and availability for private lessons via WhatsApp or email."
+                },
+                "kids": {
+                    "eyebrow": "Course for kids aged 8 to 11",
+                    "title": "Magic for the little ones",
+                    "plans": [
+                        {
+                            "name": "Full pack (upfront)",
+                            "price": "€280",
+                            "unit": "/ 3 months",
+                            "highlight": "€100 every 4 classes",
+                            "features": [
+                                "12 classes, single upfront payment",
+                                "Same group format, adapted for kids"
+                            ],
+                            "recommended": true
+                        }
+                    ]
+                },
+                "finalCta": {
+                    "title": "The stage awaits you",
+                    "text": "Places are limited per group. Book your spot and start learning real magic."
+                }
             }
         }
     }

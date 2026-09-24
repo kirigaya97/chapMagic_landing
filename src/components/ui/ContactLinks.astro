@@ -1,0 +1,54 @@
+---
+import siteConfig from "../../data/site-config.json";
+
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+const { whatsapp, email } = siteConfig.contact;
+const phoneDisplay = whatsapp.replace(/^\+(\d{2})(\d{3})(\d{3})(\d{3})$/, "+$1 $2 $3 $4");
+---
+
+<div
+    class={`flex flex-wrap items-center gap-x-8 gap-y-3 font-body font-semibold text-ivory ${className || ""}`}
+>
+    <a
+        href={`tel:${whatsapp}`}
+        class="inline-flex items-center gap-2 hover:text-gold transition-colors"
+    >
+        <svg
+            class="w-5 h-5 text-gold"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <rect x="6" y="2" width="12" height="20" rx="2"></rect>
+            <path d="M11 18h2"></path>
+        </svg>
+        {phoneDisplay}
+    </a>
+    <a
+        href={`mailto:${email}`}
+        class="inline-flex items-center gap-2 hover:text-gold transition-colors"
+    >
+        <svg
+            class="w-5 h-5 text-gold"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 6-10 7L2 6"></path>
+        </svg>
+        {email}
+    </a>
+</div>

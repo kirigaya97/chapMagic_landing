@@ -1,0 +1,53 @@
+---
+import siteConfig from "../../data/site-config.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Section imports
+import ClassesHero from "../../components/sections/classes/ClassesHero.astro";
+import ClassesFacts from "../../components/sections/classes/ClassesFacts.astro";
+import ClassesCourse from "../../components/sections/classes/ClassesCourse.astro";
+import ClassesVideo from "../../components/sections/classes/ClassesVideo.astro";
+import ClassesPricing from "../../components/sections/classes/ClassesPricing.astro";
+import ClassesCta from "../../components/sections/classes/ClassesCta.astro";
+import Footer from "../../components/sections/Footer.astro";
+
+// UI components
+import Navbar from "../../components/Navbar.astro";
+import WhatsAppButton from "../../components/WhatsAppButton.astro";
+import SmoothScroll from "../../components/SmoothScroll.astro";
+
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+
+if (lang !== "es" && lang !== "en") {
+    return Astro.redirect("/es/");
+}
+
+const t = siteConfig.translations[lang as "es" | "en"];
+const c = t.classes;
+const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, "");
+const ctaHref = `https://wa.me/${waPhone}?text=${encodeURIComponent(c.whatsappMessage)}`;
+---
+
+<BaseLayout lang={lang} title={c.meta.title} description={c.meta.description}>
+    <SmoothScroll />
+    <Navbar currentLang={lang as "es" | "en"} />
+    <WhatsAppButton
+        whatsapp={siteConfig.contact.whatsapp}
+        message={c.whatsappMessage}
+    />
+
+    <main>
+        <ClassesHero t={c.hero} cta={c.cta} ctaHref={ctaHref} />
+        <ClassesFacts t={c.facts} />
+        <ClassesCourse t={c.course} />
+        <ClassesVideo t={c.video} />
+        <ClassesPricing t={c.pricing} kids={c.kids} />
+        <ClassesCta t={c.finalCta} cta={c.cta} ctaHref={ctaHref} />
+    </main>
+
+    <Footer t={t.footer} lang={lang || "es"} />
+</BaseLayout>

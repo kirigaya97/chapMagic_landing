@@ -1,0 +1,52 @@
+---
+import siteConfig from "../../../data/site-config.json";
+import Reveal from "../../ui/Reveal.astro";
+import TicketButton from "../../ui/TicketButton.astro";
+import ContactLinks from "../../ui/ContactLinks.astro";
+
+type Classes = typeof siteConfig.translations.es.classes;
+
+interface Props {
+    t: Classes["finalCta"];
+    cta: string;
+    ctaHref: string;
+}
+
+const { t, cta, ctaHref } = Astro.props;
+---
+
+<section
+    id="classes-cta"
+    class="relative py-section-mobile md:py-section bg-obsidian px-6 overflow-hidden"
+>
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[150px] pointer-events-none"
+        aria-hidden="true"
+    >
+    </div>
+
+    <div class="relative max-w-3xl mx-auto text-center">
+        <Reveal>
+            <h2
+                class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-ivory leading-tight mb-6"
+            >
+                {t.title}
+            </h2>
+        </Reveal>
+        <Reveal>
+            <p
+                class="text-lg md:text-xl text-ivory-muted font-body leading-relaxed max-w-xl mx-auto mb-12"
+            >
+                {t.text}
+            </p>
+        </Reveal>
+        <Reveal>
+            <TicketButton href={ctaHref} target="_blank" rel="noopener noreferrer">
+                {cta}
+            </TicketButton>
+        </Reveal>
+        <Reveal>
+            <ContactLinks class="justify-center mt-10" />
+        </Reveal>
+    </div>
+</section>
