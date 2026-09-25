@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-09-25T17:15:12.431Z",
+  "scrapedAt": "2026-09-25T21:37:32.292Z",
   "known": {
     "ours": [
       4948919,
@@ -226,24 +226,6 @@
           "city": "Madrid",
           "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-09-26/?widget",
           "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-09-26/"
-        },
-        {
-          "date": "2026-10-17",
-          "time": "21:00",
-          "status": "available",
-          "venue": "Centro Comercial ABC Serrano",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-17/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-17/"
-        },
-        {
-          "date": "2026-10-31",
-          "time": "21:00",
-          "status": "available",
-          "venue": "Centro Comercial ABC Serrano",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-31/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-31/"
         }
       ],
       "sources": [
