@@ -1,13 +1,89 @@
 {
-  "scrapedAt": "2026-09-27T17:00:30.393Z",
+  "scrapedAt": "2026-09-28T14:00:35.669Z",
   "known": {
     "ours": [
       4948919,
-      4952501
+      4952501,
+      4955437
     ],
     "others": []
   },
   "shows": [
+    {
+      "id": "asombrate-y-rie-santi-fernandez-en-parderrubias",
+      "name": "Asómbrate y Ríe - Santi Fernández en Parderrubias",
+      "sourceName": "Asómbrate y Ríe - Santi Fernández en Parderrubias",
+      "artist": "",
+      "ticketing": {
+        "provider": 20845,
+        "event": 4955437
+      },
+      "category": "Magia",
+      "description": [
+        "¡O asombro e a diversión fúndense en Parderrubias, Salceda de Caselas! O recoñecido ilusionista e mentalista Santi Fernández (@magosantiago.ok) chega ao Centro Cultural de Parderrubias Xunco con \"Asómbrate y Ríe\", un espectáculo deseñado para romper os límites da imaxinación e provocar gargalladas a partes iguais.",
+        "Este espectáculo non é só para mirar, é para vivir. \"Asómbrate y Ríe\" é unha experiencia 100 % interactiva na que o público se converte no verdadeiro protagonista. A través da combinación perfecta entre o mentalismo máis impactante, a maxia de alto nivel e un humor fresco e espontáneo, Santi Fernández consegue que cada función sexa completamente única e irrepetible.",
+        "? Que vas vivir no espectáculo?",
+        "Mentalismo que desafía a lóxica: Lectura do pensamento, predicións imposibles e xogos psicolóxicos que che farán voar a cabeza.",
+        "Humor de principio a fin: Un ambiente relaxado e divertido no que a risa é tan importante como o misterio.",
+        "Interactividade real: Esquéceche de ser un simple espectador; aquí as decisións do público cambian o rumbo do espectáculo.",
+        "Unha experiencia inesquecible: Quen sobe ao escenario ou participa desde o seu asento non só presencia maxia, senón que leva consigo un recordo imborrable e unha experiencia única que lembrará para sempre.",
+        "¡Prepárate para dubidar dos teus propios sentidos, rir a gargalladas e deixarte levar polo misterio! ?",
+        "? Centro Cultural de Parderrubias Xunco - Salceda de Caselas"
+      ],
+      "highlights": [],
+      "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas",
+      "venueAddress": "Calle Vendanova 0, S/N",
+      "location": "Salceda de Caselas",
+      "geo": {
+        "lat": 42.11165,
+        "lon": -8.56665
+      },
+      "duration": 60,
+      "minAge": null,
+      "priceFrom": 10,
+      "priceFull": 14,
+      "performances": [
+        {
+          "date": "2026-10-24",
+          "time": "19:30",
+          "status": "available",
+          "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas",
+          "city": "Salceda de Caselas",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955437/fecha-2026-10-24/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955437/fecha-2026-10-24/"
+        }
+      ],
+      "sources": [
+        {
+          "provider": 20845,
+          "event": 4955437,
+          "sourceUrl": "https://www.dinaticket.com/es/provider/20845/event/4955437",
+          "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas"
+        }
+      ],
+      "venues": [
+        "Centro Cultural de Parderrubias Xunco  Salceda de Caselas"
+      ],
+      "images": [
+        {
+          "file": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-01.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5437/1836552/vertic_880_0.jpg"
+        },
+        {
+          "file": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-02.jpg",
+          "h": 400,
+          "w": 300,
+          "orient": "portrait",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5437/1836553/si_880_267.jpg"
+        }
+      ],
+      "poster": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-02.jpg",
+      "banner": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-01.jpg",
+      "hero": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-01.jpg"
+    },
     {
       "id": "la-magia-del-pase-de-oro-de-got-talent",
       "name": "La magia del pase de oro de Got Talent",
