@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-09-28T14:00:35.669Z",
+  "scrapedAt": "2026-09-29T09:53:37.031Z",
   "known": {
     "ours": [
       4948919,
@@ -20,17 +20,29 @@
       },
       "category": "Magia",
       "description": [
-        "¡O asombro e a diversión fúndense en Parderrubias, Salceda de Caselas! O recoñecido ilusionista e mentalista Santi Fernández (@magosantiago.ok) chega ao Centro Cultural de Parderrubias Xunco con \"Asómbrate y Ríe\", un espectáculo deseñado para romper os límites da imaxinación e provocar gargalladas a partes iguais.",
-        "Este espectáculo non é só para mirar, é para vivir. \"Asómbrate y Ríe\" é unha experiencia 100 % interactiva na que o público se converte no verdadeiro protagonista. A través da combinación perfecta entre o mentalismo máis impactante, a maxia de alto nivel e un humor fresco e espontáneo, Santi Fernández consegue que cada función sexa completamente única e irrepetible.",
-        "? Que vas vivir no espectáculo?",
-        "Mentalismo que desafía a lóxica: Lectura do pensamento, predicións imposibles e xogos psicolóxicos que che farán voar a cabeza.",
-        "Humor de principio a fin: Un ambiente relaxado e divertido no que a risa é tan importante como o misterio.",
-        "Interactividade real: Esquéceche de ser un simple espectador; aquí as decisións do público cambian o rumbo do espectáculo.",
-        "Unha experiencia inesquecible: Quen sobe ao escenario ou participa desde o seu asento non só presencia maxia, senón que leva consigo un recordo imborrable e unha experiencia única que lembrará para sempre.",
-        "¡Prepárate para dubidar dos teus propios sentidos, rir a gargalladas e deixarte levar polo misterio! ?",
-        "? Centro Cultural de Parderrubias Xunco - Salceda de Caselas"
+        "¿Listo para una noche en la que la magia y la diversión se dan la mano? En Parderrubias, Salceda de Caselas, te espera un plan inigualable: el reconocido ilusionista y mentalista Santi Fernández aterriza en el Centro Cultural de Parderrubias Xunco con su espectáculo estrella, Asómbrate y Ríe. Un show pensado para que la imaginación vuele alto y las carcajadas sean la banda sonora de la velada.",
+        "Lo mejor de este espectáculo es que aquí no hay butacas para el aburrimiento. Asómbrate y Ríe es pura adrenalina participativa: el público no solo mira, ¡también decide, interviene y se convierte en verdadero protagonista! Mentalismo asombroso, magia de primer nivel y un humor fresco se mezclan en cada función, haciendo que no haya dos noches iguales.",
+        "¿Qué te espera en este show?",
+        "Déjate sorprender, ríe sin medida y prepárate para poner a prueba tus sentidos con uno de los espectáculos más fascinantes en Salceda de Caselas. No pierdas la oportunidad de disfrutar de Asómbrate y Ríe en el Centro Cultural de Parderrubias Xunco: la magia y el humor te esperan para que vivas una noche inolvidable."
       ],
-      "highlights": [],
+      "highlights": [
+        {
+          "title": "Mentalismo fuera de serie",
+          "text": "Lectura de pensamiento, predicciones imposibles y juegos psicológicos que desafiarán tu lógica. Saldrás preguntándote si Santi tiene poderes sobrenaturales (o si deberías llevar gorra de papel de aluminio)."
+        },
+        {
+          "title": "Risas aseguradas",
+          "text": "El ambiente es relajado, desenfadado y, sobre todo, muy divertido. Porque aquí el humor es tan protagonista como la magia."
+        },
+        {
+          "title": "Interactividad real",
+          "text": "Olvídate de pasar desapercibido. Tus decisiones y participación pueden cambiar el rumbo del espectáculo en cualquier momento."
+        },
+        {
+          "title": "Recuerdos imborrables",
+          "text": "Tanto si te atreves a subir al escenario como si participas desde tu asiento, vivirás una experiencia única y llena de sorpresas para recordar siempre."
+        }
+      ],
       "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas",
       "venueAddress": "Calle Vendanova 0, S/N",
       "location": "Salceda de Caselas",
