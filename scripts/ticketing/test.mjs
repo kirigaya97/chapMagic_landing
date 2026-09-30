@@ -10,6 +10,7 @@
  */
 import * as cheerio from 'cheerio';
 import {
+  fixC1,
   loadConfig,
   normalize,
   isArtists,
@@ -77,6 +78,7 @@ check('alias differs from the signature', cleanTitle('Chap - La magia', 'Chap Ma
 check('only the city', cleanTitle('Ilusiones Cercanas en Madrid', 'X', 'Madrid'), 'Ilusiones Cercanas');
 check('keeps a dash that is not the artist', cleanTitle('Magia a la carta - Cena Show', '', 'Madrid'), 'Magia a la carta - Cena Show');
 check('slug', slug('Asómbrate y Ríe!'), 'asombrate-y-rie');
+check('windows-1252 dash escaped as a code point', fixC1('Xunco \u0096 Salceda'), 'Xunco \u2013 Salceda');
 
 console.log('\nParses durations:');
 for (const [text, expected] of [['100 minutos', 100], ['1 hora', 60], ['1 hora y 30 minutos', 90], ['1h30', 90], ['1,5 horas', 90], ['75 min', 75], ['', null]]) {

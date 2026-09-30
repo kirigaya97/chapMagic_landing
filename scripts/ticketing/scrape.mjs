@@ -7,7 +7,12 @@
  *
  * On Dinaticket the "provider" is usually the VENUE, not the artist: one
  * theatre account can publish 22 events of which one is ours. That is why
- * `venue` targets filter by the Artist field and `own` targets do not.
+ * `venue` targets filter by the Artist field. `own` and `event` targets do
+ * not: one is the artist's account, the other an event picked by hand.
+ *
+ * Any target can carry `exclude: [eventId, ...]`. Those events are never read.
+ * It is for an account that publishes a show on behalf of another artist: that
+ * show belongs on the other artist's site, not on this one.
  *
  * From each event page comes everything a landing needs: synopsis, selling
  * points, venue, address, coordinates, duration, minimum age, price with
@@ -64,13 +69,17 @@ export function loadConfig(file = CONFIG_FILE) {
       console.error(`An "event" target also needs "event": ${JSON.stringify(t)}`);
       process.exit(1);
     }
+    if (t.exclude !== undefined && !(Array.isArray(t.exclude) && t.exclude.every(Number.isInteger))) {
+      console.error(`"exclude" must be a list of event numbers: ${JSON.stringify(t)}`);
+      process.exit(1);
+    }
   }
 
   const aliases = (raw.artist?.aliases ?? []).map(normalize).filter(Boolean);
   const surname = normalize(raw.artist?.surname ?? '');
 
-  if (targets.some((t) => t.type !== 'own') && !aliases.length) {
-    console.error('There are venue/event targets but artist.aliases is empty: nothing would match.');
+  if (targets.some((t) => t.type === 'venue') && !aliases.length) {
+    console.error('There are venue targets but artist.aliases is empty: nothing would match.');
     process.exit(1);
   }
 
@@ -220,6 +229,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
  * curl ships with GitHub Actions runners and Vercel build images.
  */
 const MARK = '<<<HTTP:';
+const CP1252 = new TextDecoder('windows-1252');
 
 function download(url) {
   return new Promise((ok, fail) => {
@@ -233,10 +243,13 @@ function download(url) {
         '--write-out', `\n${MARK}%{http_code}>>>`,
         url,
       ],
-      // Dinaticket serves ISO-8859-1. Decoding as UTF-8 does not crash, it
-      // just fills the site with mojibake, which is worse.
-      { encoding: 'latin1', maxBuffer: 20 * 1024 * 1024 },
-      (error, stdout) => {
+      // Dinaticket declares ISO-8859-1. Decoding as UTF-8 does not crash, it
+      // just fills the site with mojibake, which is worse. Browsers read that
+      // label as windows-1252, and so must we: venues type dashes and curly
+      // quotes (0x80-0x9F), which plain latin1 turns into control characters.
+      { encoding: 'buffer', maxBuffer: 20 * 1024 * 1024 },
+      (error, raw) => {
+        const stdout = raw ? CP1252.decode(raw) : '';
         if (error && !stdout) {
           fail(new Error(/ENOENT/.test(String(error)) ? 'curl is not installed and this scraper needs it' : String(error.message)));
           return;
@@ -437,6 +450,16 @@ function description($) {
   return { paragraphs, points };
 }
 
+/**
+ * Dinaticket's JSON escapes windows-1252 bytes as if they were code points:
+ * an en dash arrives as `\u0096`, a C1 control character. Map them back.
+ */
+export const fixC1 = (text) =>
+  typeof text === 'string' ? text.replace(/[\u0080-\u009f]/g, (c) => CP1252.decode(Uint8Array.of(c.charCodeAt(0)))) : text;
+
+/** A venue or address is a label: its dashes become plain hyphens (both sites ban long dashes). */
+const placeLabel = (text) => (typeof text === 'string' ? fixC1(text).replace(/\s*[\u2013\u2014]\s*/g, ' - ') : null);
+
 /** Venue, address and coordinates, from the map config JSON in a `<script>`. */
 function location(html) {
   const m = html.match(/GMapEventOptions\s*=\s*(\{.*?\});/s);
@@ -444,8 +467,8 @@ function location(html) {
   try {
     const cfg = JSON.parse(m[1]);
     return {
-      venue: cfg.textoLocalizacion ?? null,
-      address: cfg.textoDireccion ?? null,
+      venue: placeLabel(cfg.textoLocalizacion),
+      address: placeLabel(cfg.textoDireccion),
       geo: Number.isFinite(cfg.latitud) && Number.isFinite(cfg.longitud) ? { lat: cfg.latitud, lon: cfg.longitud } : null,
     };
   } catch {
@@ -528,7 +551,7 @@ function performances($, ticketing) {
       date,
       time,
       status: availability(stock, capacity),
-      venue: $s.attr('data-location-name') ?? null,
+      venue: placeLabel($s.attr('data-location-name')),
       city: $s.attr('data-location-city') ?? null,
       buyUrl: `${url}?widget`,
       externalUrl: url,
@@ -686,6 +709,18 @@ if (isMain) {
   const ours = new Set(memory.ours);
   const others = new Set(memory.others);
 
+  // Excluded events are not ours and not "others'" either: they are out of
+  // scope. Dropped from memory so that removing an exclusion brings them back.
+  const excluded = new Set(targets.flatMap((t) => t.exclude ?? []));
+  for (const e of excluded) {
+    ours.delete(e);
+    others.delete(e);
+  }
+
+  // A hand-picked event is ours by definition, even if an older run with the
+  // name filter filed it under others'.
+  for (const t of targets) if (t.type === 'event') others.delete(t.event);
+
   for (const target of targets) {
     const label = `${target.name ?? target.provider} [${target.type}]`;
     let events;
@@ -698,11 +733,18 @@ if (isMain) {
       continue;
     }
 
-    const filter = target.type !== 'own';
-    const pending = events.filter((e) => !others.has(e));
-    const skipped = events.length - pending.length;
+    // An `event` target is picked by hand, by number: no name filter. Some
+    // accounts leave the Artist field empty, and the filter would reject it.
+    const filter = target.type === 'venue';
+    const pending = events.filter((e) => !others.has(e) && !excluded.has(e));
+    const skipped = events.filter((e) => others.has(e)).length;
+    const dropped = events.filter((e) => excluded.has(e)).length;
 
-    console.error(`${label}: ${events.length} events, ${pending.length} to read${skipped ? ` (${skipped} known to be others')` : ''}`);
+    console.error(
+      `${label}: ${events.length} events, ${pending.length} to read` +
+        (skipped ? ` (${skipped} known to be others')` : '') +
+        (dropped ? ` (${dropped} excluded)` : ''),
+    );
 
     for (const event of pending) {
       await sleep(PAUSE_MS);

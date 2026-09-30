@@ -1,101 +1,13 @@
 {
-  "scrapedAt": "2026-09-29T09:53:37.031Z",
+  "scrapedAt": "2026-09-30T13:31:35.569Z",
   "known": {
     "ours": [
       4948919,
-      4952501,
-      4955437
+      4952501
     ],
     "others": []
   },
   "shows": [
-    {
-      "id": "asombrate-y-rie-santi-fernandez-en-parderrubias",
-      "name": "Asómbrate y Ríe - Santi Fernández en Parderrubias",
-      "sourceName": "Asómbrate y Ríe - Santi Fernández en Parderrubias",
-      "artist": "",
-      "ticketing": {
-        "provider": 20845,
-        "event": 4955437
-      },
-      "category": "Magia",
-      "description": [
-        "¿Listo para una noche en la que la magia y la diversión se dan la mano? En Parderrubias, Salceda de Caselas, te espera un plan inigualable: el reconocido ilusionista y mentalista Santi Fernández aterriza en el Centro Cultural de Parderrubias Xunco con su espectáculo estrella, Asómbrate y Ríe. Un show pensado para que la imaginación vuele alto y las carcajadas sean la banda sonora de la velada.",
-        "Lo mejor de este espectáculo es que aquí no hay butacas para el aburrimiento. Asómbrate y Ríe es pura adrenalina participativa: el público no solo mira, ¡también decide, interviene y se convierte en verdadero protagonista! Mentalismo asombroso, magia de primer nivel y un humor fresco se mezclan en cada función, haciendo que no haya dos noches iguales.",
-        "¿Qué te espera en este show?",
-        "Déjate sorprender, ríe sin medida y prepárate para poner a prueba tus sentidos con uno de los espectáculos más fascinantes en Salceda de Caselas. No pierdas la oportunidad de disfrutar de Asómbrate y Ríe en el Centro Cultural de Parderrubias Xunco: la magia y el humor te esperan para que vivas una noche inolvidable."
-      ],
-      "highlights": [
-        {
-          "title": "Mentalismo fuera de serie",
-          "text": "Lectura de pensamiento, predicciones imposibles y juegos psicológicos que desafiarán tu lógica. Saldrás preguntándote si Santi tiene poderes sobrenaturales (o si deberías llevar gorra de papel de aluminio)."
-        },
-        {
-          "title": "Risas aseguradas",
-          "text": "El ambiente es relajado, desenfadado y, sobre todo, muy divertido. Porque aquí el humor es tan protagonista como la magia."
-        },
-        {
-          "title": "Interactividad real",
-          "text": "Olvídate de pasar desapercibido. Tus decisiones y participación pueden cambiar el rumbo del espectáculo en cualquier momento."
-        },
-        {
-          "title": "Recuerdos imborrables",
-          "text": "Tanto si te atreves a subir al escenario como si participas desde tu asiento, vivirás una experiencia única y llena de sorpresas para recordar siempre."
-        }
-      ],
-      "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas",
-      "venueAddress": "Calle Vendanova 0, S/N",
-      "location": "Salceda de Caselas",
-      "geo": {
-        "lat": 42.11165,
-        "lon": -8.56665
-      },
-      "duration": 60,
-      "minAge": null,
-      "priceFrom": 10,
-      "priceFull": 14,
-      "performances": [
-        {
-          "date": "2026-10-24",
-          "time": "19:30",
-          "status": "available",
-          "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas",
-          "city": "Salceda de Caselas",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955437/fecha-2026-10-24/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955437/fecha-2026-10-24/"
-        }
-      ],
-      "sources": [
-        {
-          "provider": 20845,
-          "event": 4955437,
-          "sourceUrl": "https://www.dinaticket.com/es/provider/20845/event/4955437",
-          "venue": "Centro Cultural de Parderrubias Xunco  Salceda de Caselas"
-        }
-      ],
-      "venues": [
-        "Centro Cultural de Parderrubias Xunco  Salceda de Caselas"
-      ],
-      "images": [
-        {
-          "file": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-01.jpg",
-          "h": 462,
-          "w": 880,
-          "orient": "landscape",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5437/1836552/vertic_880_0.jpg"
-        },
-        {
-          "file": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-02.jpg",
-          "h": 400,
-          "w": 300,
-          "orient": "portrait",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5437/1836553/si_880_267.jpg"
-        }
-      ],
-      "poster": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-02.jpg",
-      "banner": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-01.jpg",
-      "hero": "asombrate-y-rie-santi-fernandez-en-parderrubias/asombrate-y-rie-santi-fernandez-en-parderrubias-01.jpg"
-    },
     {
       "id": "la-magia-del-pase-de-oro-de-got-talent",
       "name": "La magia del pase de oro de Got Talent",
