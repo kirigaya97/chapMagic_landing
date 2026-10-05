@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-10-04T18:39:33.391Z",
+  "scrapedAt": "2026-10-05T14:45:52.712Z",
   "known": {
     "ours": [
       4948919,
@@ -20,8 +20,8 @@
       "category": "Magia",
       "description": [
         "Tras recibir el Pase de Oro de Risto Mejide en Got Talent y después de presentar sus espectáculos en Latinoamérica, Estados Unidos, Europa y Oriente Medio, Chap llega a Madrid con dos espectáculos exclusivos y completamente diferentes.",
-        "Por un lado, MIRAGE, una experiencia mágica teatral que combina mentalismo, magia, tecnología y emoción en un espectáculo inmersivo diseñado para sorprender, emocionar y hacer vivir lo imposible.",
-        "Por otro, MISTERIOS DESCLASIFICADOS, un espectáculo en formato stand up mágico con una gran interacción con el público y efectos imposibles que convierten cada función en una experiencia única.",
+        "Por un lado, Mirage, una experiencia mágica teatral que combina mentalismo, magia, tecnología y emoción en un espectáculo inmersivo diseñado para sorprender, emocionar y hacer vivir lo imposible.",
+        "Por otro, Misterios desclasificados un espectáculo en formato stand up mágico con una gran interacción con el público y efectos imposibles que convierten cada función en una experiencia única.",
         "Dos formas distintas de vivir el universo de Chap.",
         "Elige la que más te atraiga... o descubre ambas en el corazón de Madrid."
       ],
@@ -135,31 +135,24 @@
           "h": 462,
           "w": 880,
           "orient": "landscape",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1802863/vertic_880_0.jpg"
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1802864/vertic_880_0.jpg"
         },
         {
           "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-03.jpg",
           "h": 462,
           "w": 880,
           "orient": "landscape",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1802864/vertic_880_0.jpg"
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1838419/vertic_880_0.jpg"
         },
         {
           "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-04.jpg",
           "h": 462,
           "w": 880,
           "orient": "landscape",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1819811/vertic_880_0.jpg"
-        },
-        {
-          "file": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-05.jpg",
-          "h": 400,
-          "w": 300,
-          "orient": "portrait",
           "source": "https://cdn.atrapalo.com/common/photo/event/4/9/4/8919/1807181/si_880_267.jpg"
         }
       ],
-      "poster": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-05.jpg",
+      "poster": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-01.jpg",
       "banner": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-01.jpg",
       "hero": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-04.jpg"
     },
