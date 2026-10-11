@@ -1,13 +1,270 @@
 {
-  "scrapedAt": "2026-10-09T18:22:57.165Z",
+  "scrapedAt": "2026-10-11T12:55:06.030Z",
   "known": {
     "ours": [
       4948919,
-      4952501
+      4952501,
+      4955854
     ],
     "others": []
   },
   "shows": [
+    {
+      "id": "la-magia-de-la-navidad",
+      "name": "La magia de la navidad",
+      "sourceName": "Chap Magic - La magia de la navidad",
+      "artist": "",
+      "ticketing": {
+        "provider": 20845,
+        "event": 4955854
+      },
+      "category": "Magia",
+      "description": [
+        "Vive una Navidad llena de magia, humor y sorpresas con la magia del pase de oro de Got Talent, Chap Magic.",
+        "Un espectáculo familiar donde los niños no serán simples espectadores: tendrán una misión muy importante, ayudar a salvar la Navidad. Participarán, harán magia y serán parte fundamental de esta gran aventura.",
+        "Viajaremos juntos al taller de Santa para vivir la Navidad desde dentro, rodeados de regalos, auroras boreales, magia y muchas sorpresas.",
+        "Un show dinámico y divertido para disfrutar en familia, reír, sorprenderse y vivir una experiencia navideña diferente.",
+        "Prepárate para viajar al Polo Norte y descubrir la magia de la Navidad."
+      ],
+      "highlights": [],
+      "venue": "Teatro Escondido Gran Vía",
+      "venueAddress": "C de las Tres Cruces, 12",
+      "location": "Madrid",
+      "geo": {
+        "lat": 40.41965,
+        "lon": -3.7026
+      },
+      "duration": 60,
+      "minAge": null,
+      "priceFrom": 15,
+      "priceFull": 18,
+      "performances": [
+        {
+          "date": "2026-11-21",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-21/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-21/"
+        },
+        {
+          "date": "2026-11-22",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-22/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-22/"
+        },
+        {
+          "date": "2026-11-28",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-28/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-28/"
+        },
+        {
+          "date": "2026-11-29",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-29/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-29/"
+        },
+        {
+          "date": "2026-12-05",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-05/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-05/"
+        },
+        {
+          "date": "2026-12-06",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-06/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-06/"
+        },
+        {
+          "date": "2026-12-12",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-12/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-12/"
+        },
+        {
+          "date": "2026-12-13",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-13/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-13/"
+        },
+        {
+          "date": "2026-12-19",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-19/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-19/"
+        },
+        {
+          "date": "2026-12-20",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-20/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-20/"
+        },
+        {
+          "date": "2026-12-22",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-22/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-22/"
+        },
+        {
+          "date": "2026-12-23",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-23/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-23/"
+        },
+        {
+          "date": "2026-12-24",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-24/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-24/"
+        },
+        {
+          "date": "2026-12-25",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-25/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-25/"
+        },
+        {
+          "date": "2026-12-26",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-26/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-26/"
+        },
+        {
+          "date": "2026-12-27",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-27/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-27/"
+        },
+        {
+          "date": "2026-12-29",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-29/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-29/"
+        },
+        {
+          "date": "2026-12-30",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-30/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-30/"
+        },
+        {
+          "date": "2026-12-31",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-31/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-31/"
+        },
+        {
+          "date": "2027-01-01",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-01/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-01/"
+        }
+      ],
+      "sources": [
+        {
+          "provider": 20845,
+          "event": 4955854,
+          "sourceUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854",
+          "venue": "Teatro Escondido Gran Vía"
+        }
+      ],
+      "venues": [
+        "Teatro Escondido Gran Vía"
+      ],
+      "images": [
+        {
+          "file": "la-magia-de-la-navidad/la-magia-de-la-navidad-01.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5854/1839293/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-de-la-navidad/la-magia-de-la-navidad-02.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5854/1839295/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-de-la-navidad/la-magia-de-la-navidad-03.jpg",
+          "h": 462,
+          "w": 880,
+          "orient": "landscape",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5854/1839354/vertic_880_0.jpg"
+        },
+        {
+          "file": "la-magia-de-la-navidad/la-magia-de-la-navidad-04.jpg",
+          "h": 400,
+          "w": 300,
+          "orient": "portrait",
+          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/5854/1839294/si_880_267.jpg"
+        }
+      ],
+      "poster": "la-magia-de-la-navidad/la-magia-de-la-navidad-04.jpg",
+      "banner": "la-magia-de-la-navidad/la-magia-de-la-navidad-01.jpg",
+      "hero": "la-magia-de-la-navidad/la-magia-de-la-navidad-03.jpg"
+    },
     {
       "id": "la-magia-del-pase-de-oro-de-got-talent",
       "name": "La magia del pase de oro de Got Talent",
