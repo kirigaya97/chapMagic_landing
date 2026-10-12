@@ -1,0 +1,58 @@
+---
+import Button from "../ui/Button.astro";
+import Reveal from "../ui/Reveal.astro";
+
+interface Props {
+    kicker: string;
+    title: string;
+    titleAccent: string;
+    subtitle: string;
+    image: string;
+    imagePosition?: string;
+    quoteCta: string;
+    whatsappCta: string;
+    whatsappHref: string;
+}
+
+const { kicker, title, titleAccent, subtitle, image, imagePosition = "object-center", quoteCta, whatsappCta, whatsappHref } =
+    Astro.props;
+---
+
+<section class="relative isolate flex min-h-[85svh] items-center overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+        <img src={image} alt="" fetchpriority="high" class={`h-full w-full object-cover opacity-40 ${imagePosition}`} />
+        <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/60 to-obsidian"></div>
+    </div>
+
+    <div class="mx-auto w-full max-w-6xl px-6 py-32">
+        <Reveal>
+            <p class="font-body text-xs uppercase tracking-[0.3em] text-gold">{kicker}</p>
+        </Reveal>
+        <Reveal>
+            <h1 class="mt-5 max-w-4xl font-heading text-5xl leading-tight text-ivory md:text-7xl">
+                {title}
+                <span class="block italic text-gold">{titleAccent}</span>
+            </h1>
+        </Reveal>
+        <Reveal>
+            <p class="mt-6 max-w-xl font-body text-lg leading-relaxed text-ivory-muted md:text-xl">{subtitle}</p>
+        </Reveal>
+        <Reveal class="mt-10 flex flex-wrap gap-4">
+            <Button variant="gold" href="#presupuesto" class="text-lg" data-track="quote_click" data-track-cta-location="hero">
+                {quoteCta}
+            </Button>
+            <Button
+                variant="outline"
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-lg"
+                data-track="contact_click"
+                data-track-method="whatsapp"
+                data-track-cta-location="hero"
+            >
+                {whatsappCta}
+            </Button>
+        </Reveal>
+    </div>
+</section>

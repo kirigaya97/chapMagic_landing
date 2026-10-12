@@ -1,0 +1,53 @@
+---
+import Reveal from "../ui/Reveal.astro";
+import { eventsHref, type EventTypeView, type Lang } from "../../lib/events";
+
+interface Props {
+    lang: Lang;
+    types: EventTypeView[];
+    cta: string;
+    /** GA4 `cta_location` of the clicks, e.g. "hub_grid" or "other_types". */
+    location: string;
+}
+
+const { lang, types, cta, location } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {
+        types.map((type) => (
+            <Reveal class="h-full">
+                <a
+                    href={eventsHref(lang, type.slug)}
+                    class="group relative flex h-full min-h-[380px] flex-col justify-end overflow-hidden rounded-2xl border border-white/5 bg-obsidian p-7 transition-colors duration-500 hover:border-gold/40"
+                    data-track="select_event_type"
+                    data-track-event-type={type.analyticsId}
+                    data-track-cta-location={location}
+                >
+                    <img
+                        src={type.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        class={`absolute inset-0 -z-0 h-full w-full object-cover opacity-50 transition-transform duration-1000 group-hover:scale-110 ${type.imagePosition}`}
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-transparent" />
+                    <div class="relative">
+                        <p class="mb-2 text-[10px] uppercase tracking-[0.3em] text-gold opacity-80">{type.kicker}</p>
+                        <h3 class="mb-3 font-heading text-2xl font-bold text-ivory transition-colors group-hover:text-gold md:text-3xl">
+                            {type.name}
+                        </h3>
+                        <p class="mb-5 text-sm leading-relaxed text-ivory-muted">{type.summary}</p>
+                        <span class="inline-flex items-center gap-2 border-b border-gold/30 pb-1 text-xs font-bold uppercase tracking-widest text-gold">
+                            {cta}
+                            <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </Reveal>
+        ))
+    }
+</div>

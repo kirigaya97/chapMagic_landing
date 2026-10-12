@@ -20,6 +20,10 @@
             "href": "#shows"
         },
         {
+            "id": "events",
+            "href": "eventos"
+        },
+        {
             "id": "classes",
             "href": "clases"
         },
@@ -30,10 +34,6 @@
         {
             "id": "stats",
             "href": "#stats"
-        },
-        {
-            "id": "tickets",
-            "href": "entradas"
         },
         {
             "id": "contact",
@@ -64,6 +64,7 @@
             },
             "nav": {
                 "shows": "Espectáculos",
+                "events": "Eventos",
                 "classes": "Clases",
                 "jury": "Jueces",
                 "stats": "Cifras",
@@ -94,26 +95,29 @@
                         "id": "corporate",
                         "title": "Magia para empresas",
                         "description": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
-                        "image": "/images/shows/show1.webp"
+                        "image": "/images/shows/show1.webp",
+                        "href": "/es/eventos/empresas"
                     },
                     {
                         "id": "reception",
                         "title": "Magia de recepción",
                         "description": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
-                        "image": "/images/shows/show2.webp"
+                        "image": "/images/shows/show2.webp",
+                        "href": "/es/eventos/magia-de-cerca"
                     },
                     {
                         "id": "main-show",
                         "title": "Show central",
                         "description": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
-                        "image": "/images/shows/show3.webp"
+                        "image": "/images/shows/show3.webp",
+                        "href": "/es/eventos/espectaculo"
                     },
                     {
                         "id": "magic-experience",
                         "title": "Experiencia mágica",
                         "description": "Un show íntimo para solo 12 personas en una exclusiva sala Speak Easy. Magia de alto nivel, muy cerca, en una de las mejores cocktailerías de Europa.",
                         "image": "/images/shows/show4.webp",
-                        "href": "https://chapmagic.dinaticket.com/es/"
+                        "href": "/es/entradas"
                     }
                 ]
             },
@@ -166,11 +170,6 @@
                         "prefix": "+"
                     }
                 ]
-            },
-            "tickets": {
-                "sectionTitle": "Entradas",
-                "subtitle": "No te pierdas mis próximos shows públicos. Próximas fechas disponibles.",
-                "cta": "Comprar Entradas"
             },
             "contact": {
                 "sectionTitle": "Contacto",
@@ -433,7 +432,6 @@
                     "emptySubtitle": "Estoy cerrando las próximas funciones. Escríbeme y te aviso en cuanto se abran las entradas.",
                     "calendarCta": "Ver fechas",
                     "showsCta": "Ver espectáculos",
-                    "homeCta": "Ver calendario completo",
                     "privateTitle": "¿Buscas magia para tu evento?",
                     "privateBody": "Bodas, eventos de empresa y celebraciones privadas se contratan aparte, sin pasar por taquilla.",
                     "privateCta": "Escríbeme"
@@ -447,6 +445,7 @@
             },
             "nav": {
                 "shows": "Shows",
+                "events": "Events",
                 "classes": "Classes",
                 "jury": "Judges",
                 "stats": "Numbers",
@@ -477,26 +476,29 @@
                         "id": "corporate",
                         "title": "Corporate Magic",
                         "description": "Chap creates magical experiences for corporate events worldwide. Custom-designed tech magic and mentalism to generate impact, connection, and brand recall.",
-                        "image": "/images/shows/show1.webp"
+                        "image": "/images/shows/show1.webp",
+                        "href": "/en/eventos/empresas"
                     },
                     {
                         "id": "reception",
                         "title": "Reception Magic",
                         "description": "Magic happens inches from your eyes. Chap surprises small groups with modern and technological illusions, creating an intimate and unforgettable experience.",
-                        "image": "/images/shows/show2.webp"
+                        "image": "/images/shows/show2.webp",
+                        "href": "/en/eventos/magia-de-cerca"
                     },
                     {
                         "id": "main-show",
                         "title": "Main Show",
                         "description": "A show that combines comedy and impactful magic. Different formats adaptable to family, social, and corporate events.",
-                        "image": "/images/shows/show3.webp"
+                        "image": "/images/shows/show3.webp",
+                        "href": "/en/eventos/espectaculo"
                     },
                     {
                         "id": "magic-experience",
                         "title": "Magic Experience",
                         "description": "An intimate show for only 12 people in an exclusive Speak Easy room. High-level magic, up close, in one of the best cocktail bars in Europe.",
                         "image": "/images/shows/show4.webp",
-                        "href": "https://chapmagic.dinaticket.com/es/"
+                        "href": "/en/entradas"
                     }
                 ]
             },
@@ -549,11 +551,6 @@
                         "prefix": "+"
                     }
                 ]
-            },
-            "tickets": {
-                "sectionTitle": "Tickets",
-                "subtitle": "Don't miss my upcoming public shows. Next dates available.",
-                "cta": "Get Tickets"
             },
             "contact": {
                 "sectionTitle": "Contact",
@@ -816,7 +813,6 @@
                     "emptySubtitle": "I am closing the next dates. Write to me and I will let you know as soon as tickets go on sale.",
                     "calendarCta": "See dates",
                     "showsCta": "See shows",
-                    "homeCta": "See full calendar",
                     "privateTitle": "Looking for magic at your event?",
                     "privateBody": "Weddings, corporate events and private celebrations are booked separately, outside the box office.",
                     "privateCta": "Write to me"

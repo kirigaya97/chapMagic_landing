@@ -1,0 +1,64 @@
+---
+import siteConfig from "../../../data/site-config.json";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import SmoothScroll from "../../../components/SmoothScroll.astro";
+import WhatsAppButton from "../../../components/WhatsAppButton.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import SectionHeading from "../../../components/ui/SectionHeading.astro";
+import TrustSlider from "../../../components/sections/TrustSlider.astro";
+import EventsHero from "../../../components/events/EventsHero.astro";
+import EventTypeCards from "../../../components/events/EventTypeCards.astro";
+import EventsProcess from "../../../components/events/EventsProcess.astro";
+import EventsQuote from "../../../components/events/EventsQuote.astro";
+import { getEventsStrings, getEventTypes, type Lang } from "../../../lib/events";
+
+/**
+ * Private events hub: every hireable format, linking to its own landing
+ * (/<lang>/eventos/<slug>), plus the quote form. No ticket sales here.
+ */
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const t = siteConfig.translations[lang];
+const ev = getEventsStrings(lang);
+const types = getEventTypes(lang);
+
+const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, "");
+const whatsappHref = `https://wa.me/${waPhone}?text=${encodeURIComponent(ev.common.whatsappMessage)}`;
+---
+
+<BaseLayout lang={lang} title={ev.hub.metaTitle} description={ev.hub.metaDescription}>
+    <SmoothScroll />
+    <Navbar currentLang={lang} />
+    <WhatsAppButton whatsapp={siteConfig.contact.whatsapp} message={ev.common.whatsappMessage} />
+
+    <main data-page-type="events_hub">
+        <EventsHero
+            kicker={ev.hub.kicker}
+            title={ev.hub.title}
+            titleAccent={ev.hub.titleAccent}
+            subtitle={ev.hub.subtitle}
+            image="/images/shows/show1.webp"
+            imagePosition="object-top"
+            quoteCta={ev.common.quoteCta}
+            whatsappCta={ev.common.whatsappCta}
+            whatsappHref={whatsappHref}
+        />
+
+        <section class="bg-obsidian px-6 py-section-mobile md:py-section">
+            <div class="mx-auto max-w-6xl">
+                <SectionHeading title={ev.hub.typesTitle} subtitle={ev.hub.typesSubtitle} />
+                <EventTypeCards lang={lang} types={types} cta={ev.hub.typeCta} location="hub_grid" />
+            </div>
+        </section>
+
+        <EventsProcess common={ev.common} />
+        <TrustSlider t={{ sectionTitle: ev.common.clientsTitle }} />
+        <EventsQuote strings={ev} types={types} formId="events-hub-form" whatsappHref={whatsappHref} />
+    </main>
+
+    <Footer t={t.footer} lang={lang} />
+</BaseLayout>

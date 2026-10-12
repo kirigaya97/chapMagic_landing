@@ -190,6 +190,13 @@ const jsonLd = {
       document.addEventListener("astro:page-load", () => {
         initRevealAnimations();
       });
+    </script>
+
+    <!-- Analytics: campaign attribution and data-track clicks (lib/analytics.ts) -->
+    <script>
+      import { initAnalytics } from "../lib/analytics";
+
+      document.addEventListener("astro:page-load", initAnalytics);
 
     </script>
 

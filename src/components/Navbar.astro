@@ -26,12 +26,12 @@ const langHref = (target: "es" | "en") => {
     id="main-nav"
     class="fixed top-0 left-0 w-full z-[100] transition-all duration-500 -translate-y-full opacity-0 pt-6"
 >
-    <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-6">
         <!-- Desktop Pill Menu -->
         <nav
-            class="hidden lg:flex items-center justify-between bg-obsidian-light/80 backdrop-blur-xl border border-white/10 px-8 py-3 rounded-full shadow-2xl shadow-black/50"
+            class="hidden lg:flex items-center justify-between gap-6 bg-obsidian-light/80 backdrop-blur-xl border border-white/10 px-6 xl:px-8 py-3 rounded-full shadow-2xl shadow-black/50"
         >
-            <div class="flex items-center gap-12">
+            <div class="flex items-center gap-6 xl:gap-10">
                 <a
                     href={`/${currentLang}/`}
                     class="text-xl font-heading font-bold text-ivory tracking-tighter"
@@ -39,13 +39,13 @@ const langHref = (target: "es" | "en") => {
                     CHAP<span class="text-gold">MAGIC</span>
                 </a>
 
-                <ul class="flex items-center gap-8">
+                <ul class="flex items-center gap-4 xl:gap-7">
                     {
                         navigation.map((item) => (
                             <li>
                                 <a
                                     href={`/${currentLang}/${item.href}`}
-                                    class="text-sm font-body uppercase tracking-widest text-ivory-muted hover:text-gold transition-colors duration-300"
+                                    class="whitespace-nowrap text-xs xl:text-sm font-body uppercase tracking-wider xl:tracking-widest text-ivory-muted hover:text-gold transition-colors duration-300"
                                 >
                                     {t[item.id as keyof typeof t]}
                                 </a>
@@ -55,7 +55,7 @@ const langHref = (target: "es" | "en") => {
                 </ul>
             </div>
 
-            <div class="flex items-center gap-6">
+            <div class="flex shrink-0 items-center gap-3 xl:gap-4">
                 <!-- Integrated Language Toggle -->
                 <div
                     class="flex bg-obsidian/50 rounded-full border border-gold/10 p-1"
@@ -74,10 +74,19 @@ const langHref = (target: "es" | "en") => {
                     </a>
                 </div>
 
+                {/* Ticket sales live only on /entradas, never on the home */}
+                <Button
+                    href={`/${currentLang}/entradas`}
+                    variant="outline"
+                    class="whitespace-nowrap py-2! px-5! text-sm"
+                >
+                    {t.tickets}
+                </Button>
+
                 <Button
                     href={`/${currentLang}/#contact`}
                     variant="gold"
-                    class="py-2 px-6 text-sm"
+                    class="whitespace-nowrap py-2! px-5! text-sm"
                 >
                     {t.bookNow}
                 </Button>
@@ -150,6 +159,15 @@ const langHref = (target: "es" | "en") => {
                 ))
             }
             <li class="mobile-nav-item opacity-0 translate-y-4 pt-8">
+                <Button
+                    href={`/${currentLang}/entradas`}
+                    variant="outline"
+                    class="text-xl px-12 py-5"
+                >
+                    {t.tickets}
+                </Button>
+            </li>
+            <li class="mobile-nav-item opacity-0 translate-y-4">
                 <Button
                     href={`/${currentLang}/#contact`}
                     variant="gold"

@@ -81,7 +81,7 @@ const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, '');
                                             </p>
                                         </div>
                                         {show.href ? (
-                                            <a href={show.href} target="_blank" rel="noopener noreferrer" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 cursor-pointer">
+                                            <a href={show.href} data-track="show_card_click" data-track-show-id={show.id} data-track-cta-location="home_shows" class="mas-info-btn inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest border-b border-gold/30 pb-1 cursor-pointer">
                                                 {t.moreInfoButton}
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"

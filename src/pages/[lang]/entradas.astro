@@ -19,8 +19,8 @@ import { localeOf } from "../../lib/ticketing/i18n";
 
 /**
  * Full ticket listing: every show with dates, and the calendar with a buy
- * button per performance. The home keeps a teaser (cards only) that links
- * here; each show's own landing lives at /<lang>/shows/<id>.
+ * button per performance. The home has no ticketing at all (kept apart for
+ * analytics); the navbar links here. Each show has its own landing at /<lang>/shows/<id>.
  *
  * Same slug in both languages, like /clases, so BaseLayout's hreflang swap
  * (/es/ <-> /en/) resolves to a real page.

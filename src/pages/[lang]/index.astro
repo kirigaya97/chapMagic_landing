@@ -7,7 +7,6 @@ import Hero from "../../components/sections/Hero.astro";
 import Shows from "../../components/sections/Shows.astro";
 import JuryVIP from "../../components/sections/JuryVIP.astro";
 import Stats from "../../components/sections/Stats.astro";
-import Tickets from "../../components/sections/Tickets.astro";
 import VideoSection from "../../components/sections/VideoSection.astro";
 import Contact from "../../components/sections/Contact.astro";
 import TrustSlider from "../../components/sections/TrustSlider.astro";
@@ -47,7 +46,6 @@ const t = siteConfig.translations[lang as "es" | "en"];
         <JuryVIP t={t.jury} />
         <Stats t={t.stats} />
         <TrustSlider t={t.clients} />
-        <Tickets t={t.tickets} lang={lang} ticketing={t.ticketing} />
         <Contact t={t.contact} />
     </main>
 

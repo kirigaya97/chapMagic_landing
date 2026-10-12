@@ -1,0 +1,40 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import Reveal from "../ui/Reveal.astro";
+import EventInquiryForm from "./EventInquiryForm.astro";
+import type { EventsStrings, EventTypeView } from "../../lib/events";
+
+/** Quote section, the anchor (#presupuesto) every "request a quote" CTA points to. */
+interface Props {
+    strings: EventsStrings;
+    types: EventTypeView[];
+    selected?: string;
+    formId: string;
+    whatsappHref: string;
+}
+
+const { strings, types, selected, formId, whatsappHref } = Astro.props;
+const f = strings.form;
+---
+
+<section id="presupuesto" class="scroll-mt-28 bg-obsidian-light px-6 py-section-mobile md:py-section">
+    <div class="mx-auto max-w-4xl">
+        <SectionHeading title={f.title} subtitle={f.subtitle} />
+        <Reveal>
+            <EventInquiryForm formId={formId} strings={f} types={types} selected={selected} />
+        </Reveal>
+        <p class="mt-8 text-center text-sm text-ivory-muted">
+            <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gold hover:underline"
+                data-track="contact_click"
+                data-track-method="whatsapp"
+                data-track-cta-location="quote_section"
+            >
+                {strings.common.whatsappCta}
+            </a>
+        </p>
+    </div>
+</section>

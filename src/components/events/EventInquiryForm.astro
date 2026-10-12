@@ -1,0 +1,174 @@
+---
+import Button from "../ui/Button.astro";
+import type { EventsStrings, EventTypeView } from "../../lib/events";
+
+/**
+ * Quote request for private events. Posts to /api/send-email with the event
+ * details plus the campaign that brought the visitor (lib/analytics), and
+ * sends `lead_form_start` / `generate_lead` / `lead_form_error` to GA4.
+ *
+ * `selected` preselects the type on a type landing; the visitor can change it
+ * and the lead is reported with what they finally chose.
+ */
+interface Props {
+    formId: string;
+    strings: EventsStrings["form"];
+    types: EventTypeView[];
+    selected?: string;
+}
+
+const { formId, strings: f, types, selected } = Astro.props;
+const id = (field: string) => `${formId}-${field}`;
+
+const input =
+    "w-full bg-obsidian border border-smoke p-4 rounded-card text-ivory placeholder:text-smoke focus:outline-none focus:border-gold/50 transition-colors";
+const label = "block text-xs font-body uppercase tracking-widest text-gold";
+---
+
+<form
+    id={formId}
+    class="space-y-6"
+    data-inquiry-form
+    data-error-text={f.error}
+    data-success-text={f.success}
+>
+    <!-- Honeypot: invisible to humans, bots fill this -->
+    <div class="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
+        <label for={id("website")}>Website</label>
+        <input type="text" id={id("website")} name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div class="space-y-2">
+            <label for={id("name")} class={label}>{f.nameLabel}</label>
+            <input type="text" id={id("name")} name="name" required autocomplete="name" placeholder={f.namePlaceholder} class={input} />
+        </div>
+        <div class="space-y-2">
+            <label for={id("email")} class={label}>{f.emailLabel}</label>
+            <input type="email" id={id("email")} name="email" required autocomplete="email" placeholder={f.emailPlaceholder} class={input} />
+        </div>
+        <div class="space-y-2">
+            <label for={id("phone")} class={label}>{f.phoneLabel}</label>
+            <input type="tel" id={id("phone")} name="phone" autocomplete="tel" placeholder={f.phonePlaceholder} class={input} />
+        </div>
+        <div class="space-y-2">
+            <label for={id("type")} class={label}>{f.typeLabel}</label>
+            <select id={id("type")} name="eventType" required class={input}>
+                <option value="" disabled selected={!selected}>{f.typePlaceholder}</option>
+                {
+                    types.map((type) => (
+                        <option value={type.analyticsId} selected={type.analyticsId === selected}>
+                            {type.name}
+                        </option>
+                    ))
+                }
+            </select>
+        </div>
+        <div class="space-y-2">
+            <label for={id("date")} class={label}>{f.dateLabel}</label>
+            <input type="date" id={id("date")} name="eventDate" class={`${input} [color-scheme:dark]`} />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+                <label for={id("city")} class={label}>{f.cityLabel}</label>
+                <input type="text" id={id("city")} name="city" autocomplete="address-level2" placeholder={f.cityPlaceholder} class={input} />
+            </div>
+            <div class="space-y-2">
+                <label for={id("guests")} class={label}>{f.guestsLabel}</label>
+                <select id={id("guests")} name="guests" class={input}>
+                    <option value="" selected>{f.guestsPlaceholder}</option>
+                    {f.guests.map((range) => <option value={range}>{range}</option>)}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-2">
+        <label for={id("message")} class={label}>{f.messageLabel}</label>
+        <textarea id={id("message")} name="message" rows="4" placeholder={f.messagePlaceholder} class={`${input} resize-none`}></textarea>
+    </div>
+
+    <div class="text-center">
+        <Button type="submit" variant="gold" class="w-full px-16 md:w-auto" data-submitting-text={f.submitting}>
+            {f.submit}
+        </Button>
+    </div>
+
+    <p class="hidden text-center" role="status" data-feedback></p>
+</form>
+
+<script>
+    import { track, getAttribution } from "../../lib/analytics";
+
+    function initInquiryForms() {
+        document.querySelectorAll<HTMLFormElement>("form[data-inquiry-form]").forEach((form) => {
+            if (form.dataset.ready) return;
+            form.dataset.ready = "1";
+
+            const loadTimestamp = Date.now();
+            const feedback = form.querySelector<HTMLElement>("[data-feedback]")!;
+            const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+            const originalText = submitBtn.textContent;
+            const typeSelect = form.querySelector<HTMLSelectElement>("select[name=eventType]")!;
+            const formId = form.id;
+
+            let started = false;
+            form.addEventListener("focusin", () => {
+                if (started) return;
+                started = true;
+                track("lead_form_start", { form_id: formId, event_type: typeSelect.value || undefined });
+            });
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                feedback.classList.remove("text-green-500", "text-red-500", "hidden");
+                feedback.textContent = "";
+                submitBtn.disabled = true;
+                submitBtn.textContent = submitBtn.dataset.submittingText ?? originalText;
+
+                const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+                const eventType = data.eventType || undefined;
+
+                try {
+                    const response = await fetch("/api/send-email", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            ...data,
+                            eventTypeLabel: typeSelect.selectedOptions[0]?.textContent?.trim(),
+                            page: window.location.pathname,
+                            attribution: getAttribution(),
+                            _timestamp: loadTimestamp.toString(),
+                        }),
+                    });
+                    if (!response.ok) throw new Error(`http_${response.status}`);
+
+                    track("generate_lead", {
+                        form_id: formId,
+                        event_type: eventType,
+                        lead_source: "events_form",
+                        guests: data.guests || undefined,
+                        event_month: data.eventDate ? data.eventDate.slice(0, 7) : undefined,
+                    });
+                    feedback.textContent = form.dataset.successText ?? "";
+                    feedback.classList.add("text-green-500");
+                    form.reset();
+                    started = false;
+                } catch (err) {
+                    track("lead_form_error", {
+                        form_id: formId,
+                        event_type: eventType,
+                        error_type: err instanceof Error ? err.message : "unknown",
+                    });
+                    feedback.textContent = form.dataset.errorText ?? "";
+                    feedback.classList.add("text-red-500");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", initInquiryForms);
+</script>

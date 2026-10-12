@@ -71,6 +71,9 @@ const currentYear = new Date().getFullYear();
                 <p class="text-ivory">
                     Email: <a
                         href={`mailto:${siteConfig.contact.email}`}
+                        data-track="contact_click"
+                        data-track-method="email"
+                        data-track-cta-location="footer"
                         class="text-gold hover:underline"
                         >{siteConfig.contact.email}</a
                     >
@@ -78,6 +81,9 @@ const currentYear = new Date().getFullYear();
                 <p class="text-ivory mt-2">
                     WhatsApp: <a
                         href={`https://wa.me/${siteConfig.contact.whatsapp.replace("+", "")}`}
+                        data-track="contact_click"
+                        data-track-method="whatsapp"
+                        data-track-cta-location="footer"
                         class="text-gold hover:underline"
                         >{siteConfig.contact.whatsapp}</a
                     >

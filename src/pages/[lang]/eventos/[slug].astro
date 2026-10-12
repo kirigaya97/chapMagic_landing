@@ -1,0 +1,120 @@
+---
+import siteConfig from "../../../data/site-config.json";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import SmoothScroll from "../../../components/SmoothScroll.astro";
+import WhatsAppButton from "../../../components/WhatsAppButton.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import SectionHeading from "../../../components/ui/SectionHeading.astro";
+import Reveal from "../../../components/ui/Reveal.astro";
+import Button from "../../../components/ui/Button.astro";
+import TrustSlider from "../../../components/sections/TrustSlider.astro";
+import EventsHero from "../../../components/events/EventsHero.astro";
+import EventTypeCards from "../../../components/events/EventTypeCards.astro";
+import EventsProcess from "../../../components/events/EventsProcess.astro";
+import EventsQuote from "../../../components/events/EventsQuote.astro";
+import { getEventsStrings, getEventTypes, type Lang } from "../../../lib/events";
+import events from "../../../data/events.json";
+
+/**
+ * One landing per event type, meant as the destination of that type's ads:
+ * its own URL, title and copy, the form preselected, and `event_type` on
+ * <main> so every GA4 event fired here is attributed to the type.
+ */
+export function getStaticPaths() {
+    return (["es", "en"] as const).flatMap((lang) =>
+        events.types.map((type) => ({ params: { lang, slug: type.slug } })),
+    );
+}
+
+const lang = Astro.params.lang as Lang;
+const t = siteConfig.translations[lang];
+const ev = getEventsStrings(lang);
+const types = getEventTypes(lang);
+const type = types.find((x) => x.slug === Astro.params.slug)!;
+const others = types.filter((x) => x.slug !== type.slug);
+
+const waPhone = siteConfig.contact.whatsapp.replace(/[^0-9]/g, "");
+const waMessage = `${ev.common.whatsappMessage} ${type.name}`;
+const whatsappHref = `https://wa.me/${waPhone}?text=${encodeURIComponent(waMessage)}`;
+---
+
+<BaseLayout lang={lang} title={type.metaTitle} description={type.metaDescription} ogImage={`https://chapmagic.com${type.image}`}>
+    <SmoothScroll />
+    <Navbar currentLang={lang} />
+    <WhatsAppButton whatsapp={siteConfig.contact.whatsapp} message={waMessage} />
+
+    <main data-page-type="events_landing" data-event-type={type.analyticsId}>
+        <EventsHero
+            kicker={type.kicker}
+            title={type.title}
+            titleAccent={type.titleAccent}
+            subtitle={type.intro}
+            image={type.image}
+            imagePosition={type.imagePosition}
+            quoteCta={ev.common.quoteCta}
+            whatsappCta={ev.common.whatsappCta}
+            whatsappHref={whatsappHref}
+        />
+
+        <!-- HIGHLIGHTS + IDEAL FOR -->
+        <section class="bg-obsidian px-6 py-section-mobile md:py-section">
+            <div class="mx-auto max-w-6xl">
+                <SectionHeading title={ev.common.highlightsTitle} subtitle={type.name} />
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+                    {
+                        type.highlights.map((h) => (
+                            <Reveal class="h-full">
+                                <div class="h-full rounded-card border border-gold/15 bg-obsidian-light p-8">
+                                    <span class="block h-1 w-10 bg-gold" aria-hidden="true" />
+                                    <p class="mt-5 font-heading text-xl text-ivory">{h.title}</p>
+                                    <p class="mt-2 text-sm leading-relaxed text-ivory-muted">{h.body}</p>
+                                </div>
+                            </Reveal>
+                        ))
+                    }
+                </div>
+
+                <Reveal class="mt-16 rounded-card border border-gold/20 bg-obsidian-light px-6 py-10 text-center md:px-12">
+                    <p class="text-xs uppercase tracking-[0.3em] text-gold">{ev.common.idealForTitle}</p>
+                    <ul class="mt-6 flex flex-wrap justify-center gap-3">
+                        {
+                            type.idealFor.map((item) => (
+                                <li class="rounded-full border border-gold/30 px-5 py-2 text-sm text-ivory">{item}</li>
+                            ))
+                        }
+                    </ul>
+                    <Button
+                        variant="gold"
+                        href="#presupuesto"
+                        class="mt-8"
+                        data-track="quote_click"
+                        data-track-cta-location="ideal_for"
+                    >
+                        {ev.common.quoteCta}
+                    </Button>
+                </Reveal>
+            </div>
+        </section>
+
+        <EventsProcess common={ev.common} />
+        <TrustSlider t={{ sectionTitle: ev.common.clientsTitle }} />
+        <EventsQuote
+            strings={ev}
+            types={types}
+            selected={type.analyticsId}
+            formId={`events-${type.analyticsId}-form`}
+            whatsappHref={whatsappHref}
+        />
+
+        <!-- OTHER TYPES -->
+        <section class="bg-obsidian px-6 py-section-mobile md:py-section">
+            <div class="mx-auto max-w-6xl">
+                <SectionHeading title={ev.common.otherTypesTitle} />
+                <EventTypeCards lang={lang} types={others} cta={ev.hub.typeCta} location="other_types" />
+            </div>
+        </section>
+    </main>
+
+    <Footer t={t.footer} lang={lang} />
+</BaseLayout>

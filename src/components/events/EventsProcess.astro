@@ -1,0 +1,30 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import Reveal from "../ui/Reveal.astro";
+import type { EventsStrings } from "../../lib/events";
+
+interface Props {
+    common: EventsStrings["common"];
+}
+
+const { common } = Astro.props;
+---
+
+<section class="bg-obsidian-light px-6 py-section-mobile md:py-section">
+    <div class="mx-auto max-w-6xl">
+        <SectionHeading title={common.processTitle} subtitle={common.processSubtitle} />
+        <ol class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {
+                common.process.map((step, i) => (
+                    <Reveal class="h-full">
+                        <li class="h-full rounded-card border border-gold/15 bg-obsidian p-8">
+                            <span class="font-heading text-4xl text-gold">{String(i + 1).padStart(2, "0")}</span>
+                            <p class="mt-4 font-heading text-xl text-ivory">{step.title}</p>
+                            <p class="mt-2 text-sm leading-relaxed text-ivory-muted">{step.body}</p>
+                        </li>
+                    </Reveal>
+                ))
+            }
+        </ol>
+    </div>
+</section>
