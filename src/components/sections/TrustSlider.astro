@@ -100,9 +100,24 @@ const logos = [
 </style>
 
 <script>
-    function initMarquee() {
+    async function initMarquee() {
         const track = document.querySelector<HTMLElement>('.marquee-track');
         if (!track) return;
+
+        // Wait for this track's logos so dimensions are accurate. Not window
+        // "load": with the ClientRouter that only fires on a full page load,
+        // so arriving from another page left the marquee paused.
+        // (img.decode() is avoided: it stalls while the tab is in the background.)
+        await Promise.all(
+            [...track.querySelectorAll('img')].map((img) =>
+                img.complete
+                    ? null
+                    : new Promise((done) => {
+                          img.addEventListener('load', done, { once: true });
+                          img.addEventListener('error', done, { once: true });
+                      }),
+            ),
+        );
 
         // Both sets are identical; scrollWidth / 2 = exact pixel width of one set
         const halfWidth = track.scrollWidth / 2;
@@ -110,10 +125,5 @@ const logos = [
         track.classList.add('ready');
     }
 
-    // Wait for all images to load so dimensions are accurate
-    if (document.readyState === 'complete') {
-        initMarquee();
-    } else {
-        window.addEventListener('load', initMarquee);
-    }
+    document.addEventListener('astro:page-load', initMarquee);
 </script>
