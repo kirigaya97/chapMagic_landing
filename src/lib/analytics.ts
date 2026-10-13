@@ -134,6 +134,25 @@ export function getAttribution(): Record<string, string> {
   }
 }
 
+/**
+ * Google Ads conversions (tag AW-18484854871), sent straight to gtag so the
+ * siteTrack hook can't swallow them. Consent Mode decides what gtag stores.
+ */
+const ADS_CONVERSION = {
+  whatsapp: { send_to: "AW-18484854871/XUu7CJup25sdENeAou5E", value: 1.0, currency: "EUR" },
+  lead_form: { send_to: "AW-18484854871/SNdTCJip25sdENeAou5E" },
+};
+const WHATSAPP_LINK = "wa.me/34691665388";
+
+function adsConversion(kind: keyof typeof ADS_CONVERSION) {
+  (window as Win).gtag?.("event", "conversion", ADS_CONVERSION[kind]);
+}
+
+/** Call once a lead form (events quote or home contact) has been sent. */
+export function trackLeadFormConversion() {
+  adsConversion("lead_form");
+}
+
 let listening = false;
 
 /**
@@ -160,6 +179,11 @@ export function initAnalytics() {
   document.addEventListener(
     "click",
     (e) => {
+      // Any WhatsApp link: floating button, hero/quote CTAs, footer, classes...
+      if ((e.target as Element | null)?.closest(`a[href*="${WHATSAPP_LINK}"]`)) {
+        adsConversion("whatsapp");
+      }
+
       const el = (e.target as Element | null)?.closest<HTMLElement>("[data-track]");
       if (!el?.dataset.track) return;
       const params = paramsFromDataset(el);

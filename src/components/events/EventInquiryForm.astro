@@ -98,7 +98,7 @@ const label = "block text-xs font-body uppercase tracking-widest text-gold";
 </form>
 
 <script>
-    import { track, getAttribution } from "../../lib/analytics";
+    import { track, getAttribution, trackLeadFormConversion } from "../../lib/analytics";
 
     function initInquiryForms() {
         document.querySelectorAll<HTMLFormElement>("form[data-inquiry-form]").forEach((form) => {
@@ -143,6 +143,7 @@ const label = "block text-xs font-body uppercase tracking-widest text-gold";
                     });
                     if (!response.ok) throw new Error(`http_${response.status}`);
 
+                    trackLeadFormConversion();
                     track("generate_lead", {
                         form_id: formId,
                         event_type: eventType,

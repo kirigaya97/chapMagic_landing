@@ -117,6 +117,8 @@ const { t } = Astro.props;
 </section>
 
 <script>
+    import { trackLeadFormConversion } from "../../lib/analytics";
+
     function initContactForm() {
         const form = document.getElementById("contact-form") as HTMLFormElement;
         const feedback = document.getElementById("form-feedback");
@@ -161,6 +163,7 @@ const { t } = Astro.props;
                 const result = await response.json();
 
                 if (response.ok) {
+                    trackLeadFormConversion();
                     feedback.textContent = "¡Mensaje enviado con éxito!";
                     feedback.classList.add("text-green-500");
                     form.reset();
