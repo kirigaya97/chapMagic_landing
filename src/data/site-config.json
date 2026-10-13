@@ -190,17 +190,24 @@
             "whatsapp": {
                 "prefillMessage": "Hola ChapMagic, me gustaría recibir información sobre tus espectáculos para un evento."
             },
+            "cookies": {
+                "text": "Usamos cookies de Google para medir qué anuncios funcionan. Solo se activan si las aceptas.",
+                "accept": "Aceptar",
+                "reject": "Rechazar",
+                "policy": "Más información"
+            },
             "footer": {
                 "copyright": "© 2026 ChapMagic. Todos los derechos reservados.",
                 "privacyPolicy": "Política de Privacidad",
                 "termsOfService": "Términos de Servicio",
+                "cookieSettings": "Configurar cookies",
                 "madeBy": "Hecho",
                 "with": "con",
                 "in": "en"
             },
             "privacy": {
                 "title": "Política de Privacidad",
-                "lastUpdated": "Última actualización: Febrero 2026",
+                "lastUpdated": "Última actualización: Octubre 2026",
                 "sections": [
                     {
                         "h3": "Responsable del Tratamiento",
@@ -208,7 +215,7 @@
                     },
                     {
                         "h3": "Datos Recogidos",
-                        "p": "Recogemos su nombre y correo electrónico únicamente cuando rellena el formulario de contacto para solicitar información sobre espectáculos."
+                        "p": "Recogemos su nombre y correo electrónico, y opcionalmente su teléfono y los datos de su evento (tipo, fecha, ciudad y número de invitados), únicamente cuando rellena un formulario de contacto o de presupuesto."
                     },
                     {
                         "h3": "Finalidad",
@@ -217,6 +224,10 @@
                     {
                         "h3": "Derechos",
                         "p": "Puede ejercer sus derechos de acceso, rectificación o supresión contactando con nosotros a través del correo electrónico info@chapmagic.com."
+                    },
+                    {
+                        "h3": "Cookies",
+                        "p": "Con su consentimiento, usamos cookies de Google (etiqueta de Google Ads) para medir qué anuncios traen visitas y solicitudes de presupuesto. Si las rechaza, no se guardan cookies publicitarias. Puede cambiar su elección en cualquier momento desde «Configurar cookies», al pie de cada página."
                     }
                 ]
             },
@@ -571,17 +582,24 @@
             "whatsapp": {
                 "prefillMessage": "Hi ChapMagic, I'd like to get information about your shows for an event."
             },
+            "cookies": {
+                "text": "We use Google cookies to measure which ads work. They are only enabled if you accept.",
+                "accept": "Accept",
+                "reject": "Decline",
+                "policy": "Learn more"
+            },
             "footer": {
                 "copyright": "© 2026 ChapMagic. All rights reserved.",
                 "privacyPolicy": "Privacy Policy",
                 "termsOfService": "Terms of Service",
+                "cookieSettings": "Cookie settings",
                 "madeBy": "Made",
                 "with": "with",
                 "in": "in"
             },
             "privacy": {
                 "title": "Privacy Policy",
-                "lastUpdated": "Last updated: February 2026",
+                "lastUpdated": "Last updated: October 2026",
                 "sections": [
                     {
                         "h3": "Data Controller",
@@ -589,7 +607,7 @@
                     },
                     {
                         "h3": "Data Collected",
-                        "p": "We only collect your name and email when you fill out the contact form to request information about shows."
+                        "p": "We collect your name and email, and optionally your phone number and event details (type, date, city and number of guests), only when you fill out a contact or quote form."
                     },
                     {
                         "h3": "Purpose",
@@ -598,6 +616,10 @@
                     {
                         "h3": "Rights",
                         "p": "You can exercise your rights of access, rectification or deletion by contacting us via email at info@chapmagic.com."
+                    },
+                    {
+                        "h3": "Cookies",
+                        "p": "With your consent, we use Google cookies (Google Ads tag) to measure which ads bring visits and quote requests. If you decline, no advertising cookies are stored. You can change your choice at any time from \"Cookie settings\" at the bottom of every page."
                     }
                 ]
             },

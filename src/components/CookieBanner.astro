@@ -1,0 +1,109 @@
+---
+import siteConfig from "../data/site-config.json";
+
+/**
+ * Cookie consent for the Google tag (Consent Mode v2, defaults set in
+ * BaseLayout's <head>). Accept and Decline are equally prominent, as the
+ * Spanish DPA (AEPD) requires. The choice is kept in localStorage under
+ * `chapmagic:consent` ("granted" | "denied"); any `[data-cookie-settings]`
+ * element (the footer link) reopens the banner.
+ */
+interface Props {
+    lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = siteConfig.translations[lang].cookies;
+---
+
+<div
+    id="cookie-banner"
+    role="dialog"
+    aria-live="polite"
+    aria-label="Cookies"
+    hidden
+    class="fixed inset-x-4 bottom-4 z-[90] mx-auto max-w-xl rounded-card border border-gold/25 bg-obsidian-light/95 p-5 shadow-2xl shadow-black/60 backdrop-blur-xl md:inset-x-auto md:right-6 md:bottom-28 md:p-6"
+>
+    <p class="text-sm leading-relaxed text-ivory-muted">
+        {t.text}
+        <a href={`/${lang}/privacy`} class="text-gold underline decoration-gold/30 underline-offset-4 hover:decoration-gold">{t.policy}</a>
+    </p>
+    <div class="mt-4 grid grid-cols-2 gap-3">
+        <button
+            type="button"
+            data-consent="denied"
+            class="cursor-pointer rounded-full border border-gold px-5 py-2.5 text-sm font-semibold text-gold transition-colors hover:bg-gold hover:text-obsidian"
+        >
+            {t.reject}
+        </button>
+        <button
+            type="button"
+            data-consent="granted"
+            class="cursor-pointer rounded-full border border-gold bg-gold px-5 py-2.5 text-sm font-semibold text-obsidian transition-colors hover:bg-gold-light"
+        >
+            {t.accept}
+        </button>
+    </div>
+</div>
+
+<script>
+    const KEY = "chapmagic:consent";
+    type Choice = "granted" | "denied";
+
+    function stored(): Choice | null {
+        try {
+            const value = localStorage.getItem(KEY);
+            return value === "granted" || value === "denied" ? value : null;
+        } catch {
+            return null;
+        }
+    }
+
+    function apply(choice: Choice) {
+        try {
+            localStorage.setItem(KEY, choice);
+        } catch {
+            // Storage blocked: the choice holds for this page view only.
+        }
+        const w = window as Window & { gtag?: (...args: unknown[]) => void };
+        w.gtag?.("consent", "update", {
+            ad_storage: choice,
+            ad_user_data: choice,
+            ad_personalization: choice,
+            analytics_storage: choice,
+        });
+    }
+
+    let listening = false;
+
+    function initCookieBanner() {
+        const banner = document.getElementById("cookie-banner");
+        if (!banner) return;
+        banner.hidden = stored() !== null;
+
+        if (listening) return;
+        listening = true;
+
+        // Delegated on document: the banner and footer are re-rendered on
+        // every ClientRouter navigation, the listener is added once.
+        document.addEventListener("click", (e) => {
+            const target = e.target as Element | null;
+            const current = document.getElementById("cookie-banner");
+            if (!current) return;
+
+            const button = target?.closest<HTMLElement>("#cookie-banner [data-consent]");
+            if (button) {
+                apply(button.dataset.consent as Choice);
+                current.hidden = true;
+                return;
+            }
+
+            if (target?.closest("[data-cookie-settings]")) {
+                e.preventDefault();
+                current.hidden = false;
+            }
+        });
+    }
+
+    document.addEventListener("astro:page-load", initCookieBanner);
+</script>

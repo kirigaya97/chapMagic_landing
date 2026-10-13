@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
+import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
   title: string;
@@ -73,11 +74,32 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google tag (gtag.js). is:inline keeps gtag global and unbundled; the
-         ClientRouter keeps it across navigations (page views: lib/analytics). -->
+         ClientRouter keeps it across navigations (page views: lib/analytics).
+         Consent Mode: everything denied until the visitor accepts in
+         CookieBanner; a choice saved on an earlier visit is applied here,
+         before `config`, so the first hit already respects it. -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18484854871"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      try {
+        if (localStorage.getItem('chapmagic:consent') === 'granted') {
+          gtag('consent', 'update', {
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            analytics_storage: 'granted'
+          });
+        }
+      } catch (e) {}
       gtag('js', new Date());
 
       gtag('config', 'AW-18484854871');
@@ -162,6 +184,7 @@ const jsonLd = {
     >
     </div>
     <slot />
+    <CookieBanner lang={lang === "en" ? "en" : "es"} />
 
     <!-- Scripts that need to run on page load and after every transition -->
     <script>

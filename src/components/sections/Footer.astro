@@ -6,6 +6,7 @@ interface Props {
         copyright: string;
         privacyPolicy: string;
         termsOfService: string;
+        cookieSettings: string;
         madeBy: string;
         with: string;
         in: string;
@@ -107,6 +108,12 @@ const currentYear = new Date().getFullYear();
                     href={`/${lang}/terms`}
                     class="hover:text-gold transition-colors"
                     >{t.termsOfService}</a
+                >
+                <button
+                    type="button"
+                    data-cookie-settings
+                    class="cursor-pointer hover:text-gold transition-colors"
+                    >{t.cookieSettings}</button
                 >
             </div>
         </div>
