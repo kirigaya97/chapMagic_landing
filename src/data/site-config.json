@@ -191,7 +191,7 @@
                 "prefillMessage": "Hola ChapMagic, me gustaría recibir información sobre tus espectáculos para un evento."
             },
             "cookies": {
-                "text": "Usamos cookies de Google para medir qué anuncios funcionan. Solo se activan si las aceptas.",
+                "text": "Usamos cookies propias y de terceros para analizar el uso de la web y mejorar nuestros servicios.",
                 "accept": "Aceptar",
                 "reject": "Rechazar",
                 "policy": "Más información"
@@ -583,7 +583,7 @@
                 "prefillMessage": "Hi ChapMagic, I'd like to get information about your shows for an event."
             },
             "cookies": {
-                "text": "We use Google cookies to measure which ads work. They are only enabled if you accept.",
+                "text": "We use our own and third-party cookies to analyse how the site is used and improve our services.",
                 "accept": "Accept",
                 "reject": "Decline",
                 "policy": "Learn more"
