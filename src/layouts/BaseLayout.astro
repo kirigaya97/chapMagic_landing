@@ -1,7 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
-import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
   title: string;
@@ -73,12 +72,9 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google tag (gtag.js). is:inline keeps gtag global and unbundled; the
-         ClientRouter keeps it across navigations (page views: lib/analytics).
-         Consent Mode: everything denied until the visitor accepts in
-         CookieBanner; a choice saved on an earlier visit is applied here,
-         before `config`, so the first hit already respects it. -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18484854871"></script>
+    <!-- Consent Mode defaults: everything denied until the visitor accepts.
+         Must run before CookieHub and the Google tag; CookieHub sends the
+         `consent update` (also for a choice saved on an earlier visit). -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -90,16 +86,22 @@ const jsonLd = {
         wait_for_update: 500
       });
       gtag('set', 'ads_data_redaction', true);
-      try {
-        if (localStorage.getItem('chapmagic:consent') === 'granted') {
-          gtag('consent', 'update', {
-            ad_storage: 'granted',
-            ad_user_data: 'granted',
-            ad_personalization: 'granted',
-            analytics_storage: 'granted'
-          });
-        }
-      } catch (e) {}
+    </script>
+
+    <!-- CookieHub (cookie banner). Its UI is injected into <body>; see the
+         astro:before-swap handler below to keep it across navigations. -->
+    <script is:inline src="https://cdn.cookiehub.eu/c2/e6ae9521.js"></script>
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function(event) {
+        var cpm = {};
+        window.cookiehub.load(cpm);
+      });
+    </script>
+
+    <!-- Google tag (gtag.js). is:inline keeps gtag global and unbundled; the
+         ClientRouter keeps it across navigations (page views: lib/analytics). -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18484854871"></script>
+    <script is:inline>
       gtag('js', new Date());
 
       gtag('config', 'AW-18484854871');
@@ -184,7 +186,6 @@ const jsonLd = {
     >
     </div>
     <slot />
-    <CookieBanner lang={lang === "en" ? "en" : "es"} />
 
     <!-- Scripts that need to run on page load and after every transition -->
     <script>
@@ -223,6 +224,26 @@ const jsonLd = {
 
       document.addEventListener("astro:page-load", () => {
         initRevealAnimations();
+      });
+    </script>
+
+    <!-- CookieHub: its UI (body > .ch2) is not part of the page markup, so
+         the ClientRouter's body swap would drop it (an unanswered banner
+         would vanish on the first click). Carry it into the next page.
+         [data-cookie-settings] (footer link) opens its settings. -->
+    <script>
+      type CookieHub = { openSettings?: () => void };
+
+      document.addEventListener("astro:before-swap", (e) => {
+        document
+          .querySelectorAll("body > .ch2")
+          .forEach((el) => e.newDocument.body.appendChild(el));
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!(e.target as Element | null)?.closest("[data-cookie-settings]")) return;
+        e.preventDefault();
+        (window as Window & { cookiehub?: CookieHub }).cookiehub?.openSettings?.();
       });
     </script>
 
