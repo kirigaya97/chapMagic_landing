@@ -136,10 +136,25 @@ export function getAttribution(): Record<string, string> {
 
 let listening = false;
 
+/**
+ * The ClientRouter swaps pages without reloading, so gtag's `config` only
+ * counts the first one. Later navigations send their own page_view.
+ */
+function trackPageView() {
+  (window as Win).gtag?.("event", "page_view", {
+    page_location: window.location.href,
+    page_path: window.location.pathname,
+    page_title: document.title,
+  });
+}
+
 /** Call on every `astro:page-load`; the click listener is only added once. */
 export function initAnalytics() {
   captureAttribution();
-  if (listening) return;
+  if (listening) {
+    trackPageView();
+    return;
+  }
   listening = true;
 
   document.addEventListener(
