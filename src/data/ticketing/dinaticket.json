@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-10-13T16:58:15.984Z",
+  "scrapedAt": "2026-10-16T16:42:11.208Z",
   "known": {
     "ours": [
       4948919,
@@ -464,91 +464,6 @@
       "poster": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-01.jpg",
       "banner": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-01.jpg",
       "hero": "la-magia-del-pase-de-oro-de-got-talent/la-magia-del-pase-de-oro-de-got-talent-04.jpg"
-    },
-    {
-      "id": "magia-a-la-carta-cena-show",
-      "name": "Magia a la carta - Cena Show",
-      "sourceName": "Magia a la carta - Cena Show",
-      "artist": "",
-      "ticketing": {
-        "provider": 20845,
-        "event": 4952501
-      },
-      "category": "Magia",
-      "description": [
-        "Magia, cena y una noche para disfrutar e ilusionarte.",
-        "Vive una experiencia que combina el show de Chap Magic, Pase de Oro de Risto Mejide en Got Talent, con la gastronomía de Casa Úrsula en el centro comercial ABC Serrano.",
-        "La entrada incluye Comida + Bebida + Show"
-      ],
-      "highlights": [],
-      "venue": "Centro Comercial ABC Serrano",
-      "venueAddress": "Calle de Serrano, 61",
-      "location": "Madrid",
-      "geo": {
-        "lat": 40.43224,
-        "lon": -3.68616
-      },
-      "duration": 100,
-      "minAge": null,
-      "priceFrom": 30,
-      "priceFull": 38,
-      "performances": [
-        {
-          "date": "2026-10-17",
-          "time": "21:00",
-          "status": "available",
-          "venue": "Centro Comercial ABC Serrano",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-17/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-17/"
-        },
-        {
-          "date": "2026-10-31",
-          "time": "21:00",
-          "status": "available",
-          "venue": "Centro Comercial ABC Serrano",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-31/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501/fecha-2026-10-31/"
-        }
-      ],
-      "sources": [
-        {
-          "provider": 20845,
-          "event": 4952501,
-          "sourceUrl": "https://www.dinaticket.com/es/provider/20845/event/4952501",
-          "venue": "Centro Comercial ABC Serrano"
-        }
-      ],
-      "venues": [
-        "Centro Comercial ABC Serrano"
-      ],
-      "images": [
-        {
-          "file": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-01.jpg",
-          "h": 462,
-          "w": 880,
-          "orient": "landscape",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/2501/1822956/vertic_880_0.jpg"
-        },
-        {
-          "file": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-02.jpg",
-          "h": 462,
-          "w": 880,
-          "orient": "landscape",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/2501/1822960/vertic_880_0.jpg"
-        },
-        {
-          "file": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-03.jpg",
-          "h": 400,
-          "w": 300,
-          "orient": "portrait",
-          "source": "https://cdn.atrapalo.com/common/photo/event/4/9/5/2501/1822958/si_880_267.jpg"
-        }
-      ],
-      "poster": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-03.jpg",
-      "banner": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-01.jpg",
-      "hero": "magia-a-la-carta-cena-show/magia-a-la-carta-cena-show-02.jpg"
     }
   ]
 }
