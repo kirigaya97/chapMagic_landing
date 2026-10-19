@@ -1,833 +1,833 @@
 {
-    "branding": {
-        "siteName": "ChapMagic",
-        "logo": "/favicon.svg",
-        "colors": {
-            "primary": "#0A0A0A",
-            "secondary": "#1A1A1A",
-            "accent": "#D4AF37",
-            "text": "#F5F0E8",
-            "textMuted": "#D9D0C0"
-        },
-        "fonts": {
-            "heading": "Playfair Display",
-            "body": "Inter"
-        }
+  "branding": {
+    "siteName": "ChapMagic",
+    "logo": "/favicon.svg",
+    "colors": {
+      "primary": "#0A0A0A",
+      "secondary": "#1A1A1A",
+      "accent": "#D4AF37",
+      "text": "#F5F0E8",
+      "textMuted": "#D9D0C0"
     },
-    "navigation": [
-        {
-            "id": "shows",
-            "href": "#shows"
-        },
-        {
-            "id": "events",
-            "href": "eventos"
-        },
-        {
-            "id": "classes",
-            "href": "clases"
-        },
-        {
-            "id": "jury",
-            "href": "#jury"
-        },
-        {
-            "id": "stats",
-            "href": "#stats"
-        },
-        {
-            "id": "contact",
-            "href": "#contact"
-        }
-    ],
-    "contact": {
-        "whatsapp": "+34691665388",
-        "email": "info@chapmagic.com",
-        "formDestinationEmail": "info@chapmagic.com"
-    },
-    "links": {
-        "atrapalo": "https://chapmagic.dinaticket.com/es/",
-        "instagram": "https://www.instagram.com/chapmagic",
-        "youtube": "https://www.youtube.com/@chapmagic",
-        "heroVideoSrc": "/videos/golden-button.mp4",
-        "heroVimeoDesktop": "1164377259",
-        "heroVimeoMobile": "1167528458",
-        "sectionVimeoDesktop": "1164377259",
-        "sectionVimeoMobile": "1167529998",
-        "classesVimeo": "1164377259"
-    },
-    "translations": {
-        "es": {
-            "meta": {
-                "title": "ChapMagic · Mago y Mentalista | Experiencias Imposibles",
-                "description": "Descubre el mentalismo y la magia de ChapMagic. Espectáculos corporativos, eventos privados y shows teatrales que desafían la lógica."
-            },
-            "nav": {
-                "shows": "Espectáculos",
-                "events": "Eventos",
-                "classes": "Clases",
-                "jury": "Jueces",
-                "stats": "Cifras",
-                "tickets": "Entradas",
-                "about": "Sobre Mí",
-                "contact": "Contacto",
-                "bookNow": "Reservar"
-            },
-            "hero": {
-                "title": "Magia Que Desafía Lo Imposible",
-                "subtitle": "Mentalismo · Ilusionismo · Experiencias Únicas",
-                "cta": "Reservar Ahora",
-                "hoverPrompt": "Hover para magia",
-                "tapPrompt": "Toca para magia",
-                "tooltipDesktop": "Hover para magia ✨",
-                "tooltipMobile": "Toca aquí ✨",
-                "circleFontSize": {
-                    "desktop": 21,
-                    "mobile": 15.7
-                }
-            },
-            "shows": {
-                "sectionTitle": "Espectáculos",
-                "moreInfoButton": "Más información",
-                "whatsappTemplate": "¡Hola Chap! Me gustaría saber más sobre",
-                "items": [
-                    {
-                        "id": "corporate",
-                        "title": "Magia para empresas",
-                        "description": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
-                        "image": "/images/shows/show1.webp",
-                        "href": "/es/eventos/empresas"
-                    },
-                    {
-                        "id": "reception",
-                        "title": "Magia de recepción",
-                        "description": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
-                        "image": "/images/shows/show2.webp",
-                        "href": "/es/eventos/magia-de-cerca"
-                    },
-                    {
-                        "id": "main-show",
-                        "title": "Show central",
-                        "description": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
-                        "image": "/images/shows/show3.webp",
-                        "href": "/es/eventos/espectaculo"
-                    },
-                    {
-                        "id": "magic-experience",
-                        "title": "Experiencia mágica",
-                        "description": "Un show íntimo para solo 12 personas en una exclusiva sala Speak Easy. Magia de alto nivel, muy cerca, en una de las mejores cocktailerías de Europa.",
-                        "image": "/images/shows/show4.webp",
-                        "href": "/es/entradas"
-                    }
-                ]
-            },
-            "jury": {
-                "sectionTitle": "Lo Que Dicen Los Jueces",
-                "quotes": [
-                    {
-                        "text": "Es mago de verdad, tiene poderes.",
-                        "author": "Santi Millán",
-                        "role": "Juez de AGT"
-                    },
-                    {
-                        "text": "Es que flipo. Me ha encantado.",
-                        "author": "Lorena Castell",
-                        "role": "Juez de AGT"
-                    },
-                    {
-                        "text": "Me fascina, me estoy volviendo loca.",
-                        "author": "Paula Echevarría",
-                        "role": "Juez de AGT"
-                    },
-                    {
-                        "text": "Con un número de esos ya era pase de oro, ¡que hizo 4!",
-                        "author": "Risto Meijide",
-                        "role": "Juez de AGT"
-                    }
-                ]
-            },
-            "stats": {
-                "sectionTitle": "En Números",
-                "items": [
-                    {
-                        "value": 14,
-                        "label": "Países",
-                        "prefix": "+"
-                    },
-                    {
-                        "value": 2000,
-                        "label": "Shows",
-                        "prefix": "+"
-                    },
-                    {
-                        "value": 40000,
-                        "label": "Espectadores",
-                        "prefix": "+"
-                    },
-                    {
-                        "value": 15,
-                        "label": "Años de Magia",
-                        "prefix": "+"
-                    }
-                ]
-            },
-            "contact": {
-                "sectionTitle": "Contacto",
-                "nameLabel": "Nombre",
-                "namePlaceholder": "Tu nombre completo",
-                "emailLabel": "Email",
-                "emailPlaceholder": "tu@email.com",
-                "messageLabel": "Mensaje",
-                "messagePlaceholder": "Cuéntanos sobre tu evento (fecha, lugar, tipo de público)...",
-                "submitButton": "Enviar Mensaje",
-                "submitting": "Enviando...",
-                "successMessage": "¡Mensaje enviado! Me pondré en contacto contigo pronto.",
-                "errorMessage": "Hubo un error al enviar. Por favor, inténtalo de nuevo."
-            },
-            "clients": {
-                "sectionTitle": "Confiaron en mí"
-            },
-            "whatsapp": {
-                "prefillMessage": "Hola ChapMagic, me gustaría recibir información sobre tus espectáculos para un evento."
-            },
-            "footer": {
-                "copyright": "© 2026 ChapMagic. Todos los derechos reservados.",
-                "privacyPolicy": "Política de Privacidad",
-                "termsOfService": "Términos de Servicio",
-                "cookieSettings": "Configurar cookies",
-                "madeBy": "Hecho",
-                "with": "con",
-                "in": "en"
-            },
-            "privacy": {
-                "title": "Política de Privacidad",
-                "lastUpdated": "Última actualización: Octubre 2026",
-                "sections": [
-                    {
-                        "h3": "Responsable del Tratamiento",
-                        "p": "ChapMagic es el responsable de los datos personales recogidos a través de este sitio web."
-                    },
-                    {
-                        "h3": "Datos Recogidos",
-                        "p": "Recogemos su nombre y correo electrónico, y opcionalmente su teléfono y los datos de su evento (tipo, fecha, ciudad y número de invitados), únicamente cuando rellena un formulario de contacto o de presupuesto."
-                    },
-                    {
-                        "h3": "Finalidad",
-                        "p": "Los datos se utilizarán exclusivamente para responder a sus consultas y gestionar la contratación de los servicios de magia y mentalismo."
-                    },
-                    {
-                        "h3": "Derechos",
-                        "p": "Puede ejercer sus derechos de acceso, rectificación o supresión contactando con nosotros a través del correo electrónico info@chapmagic.com."
-                    },
-                    {
-                        "h3": "Cookies",
-                        "p": "Con su consentimiento, usamos cookies de Google (etiqueta de Google Ads) para medir qué anuncios traen visitas y solicitudes de presupuesto. Si las rechaza, no se guardan cookies publicitarias. Puede cambiar su elección en cualquier momento desde «Configurar cookies», al pie de cada página."
-                    }
-                ]
-            },
-            "terms": {
-                "title": "Términos del Servicio",
-                "lastUpdated": "Última actualización: Febrero 2026",
-                "sections": [
-                    {
-                        "h3": "Uso del Sitio",
-                        "p": "Este sitio web proporciona información sobre los servicios profesionales de ChapMagic."
-                    },
-                    {
-                        "h3": "Reservas",
-                        "p": "Cualquier solicitud de reserva a través del formulario está sujeta a confirmación de disponibilidad y presupuesto final."
-                    },
-                    {
-                        "h3": "Propiedad Intelectual",
-                        "p": "Todo el contenido, incluyendo textos, imágenes y vídeos de los espectáculos, es propiedad de ChapMagic y está protegido por ley."
-                    },
-                    {
-                        "h3": "Limitación de Responsabilidad",
-                        "p": "ChapMagic no se hace responsable de las interrupciones técnicas del servicio o de errores tipográficos en el contenido."
-                    }
-                ]
-            },
-            "classes": {
-                "meta": {
-                    "title": "Clases de Magia en Madrid | Curso con ChapMagic",
-                    "description": "Aprende magia con el Pase de Oro de Got Talent España. Curso de 3 meses, grupal, presencial en Madrid u online. Para todas las edades, sin experiencia previa."
-                },
-                "cta": "¡Comienza ahora!",
-                "whatsappMessage": "¡Hola Chap! Me interesa el curso de magia. ¿Me das más información?",
-                "hero": {
-                    "eyebrow": "Octubre · Nuevo curso",
-                    "titleLine1": "Aprende",
-                    "titleLine2": "Magia",
-                    "description": "Con el <strong>Pase de Oro de Got Talent España</strong>. Un curso de 3 meses para descubrir el arte de la magia, en el corazón de Madrid.",
-                    "tags": [
-                        "Presencial",
-                        "Online",
-                        "Todas las edades"
-                    ]
-                },
-                "facts": [
-                    {
-                        "label": "Curso",
-                        "value": "3 meses",
-                        "icon": "calendar"
-                    },
-                    {
-                        "label": "Formato",
-                        "value": "Grupal",
-                        "icon": "users"
-                    },
-                    {
-                        "label": "Sede",
-                        "value": "Madrid",
-                        "icon": "pin"
-                    },
-                    {
-                        "label": "Alcance",
-                        "value": "Online global",
-                        "icon": "globe"
-                    }
-                ],
-                "course": {
-                    "eyebrow": "El curso",
-                    "title": "Magia pro",
-                    "paragraphs": [
-                        "12 clases repartidas en 3 meses, pensadas para que desde el día 1 puedas sorprender e ilusionar a todo el mundo. Magia de alto nivel.",
-                        "Las clases son <strong>grupales</strong>, pero si prefieres un formato a medida, también puedes <strong>consultar por clases privadas</strong>."
-                    ],
-                    "features": [
-                        "12 clases en total, una vez por semana",
-                        "Grupos reducidos, todas las edades",
-                        "Sin experiencia previa necesaria",
-                        "Clases privadas disponibles bajo consulta"
-                    ]
-                },
-                "video": {
-                    "eyebrow": "Mira el impacto",
-                    "title": "Así se vive la magia en directo"
-                },
-                "pricing": {
-                    "eyebrow": "De 12 a 99 años",
-                    "title": "Elige cómo pagarlo",
-                    "intro": "Mismo curso, dos formas de organizarlo. La segunda te conviene si ya sabes que vas a hacer las 12 clases.",
-                    "recommendedLabel": "Recomendado",
-                    "plans": [
-                        {
-                            "name": "Plan mensual",
-                            "price": "140€",
-                            "unit": "/ mes",
-                            "highlight": "3 pagos de 140€, 420€ en total",
-                            "features": [
-                                "4 clases por mes",
-                                "Pagas mes a mes",
-                                "Ideal si quieres probar primero"
-                            ],
-                            "recommended": false
-                        },
-                        {
-                            "name": "Pack completo (adelantado)",
-                            "price": "300€",
-                            "unit": "/ curso",
-                            "highlight": "Ahorras 120€ frente al plan mensual",
-                            "features": [
-                                "12 clases, pago único por adelantado",
-                                "100€ cada 4 clases",
-                                "El mejor precio del curso"
-                            ],
-                            "recommended": true
-                        }
-                    ],
-                    "privateNote": "Consulta precios y disponibilidad de clases privadas escribiendo por WhatsApp o email."
-                },
-                "kids": {
-                    "eyebrow": "Curso para niños de 8 a 11 años",
-                    "title": "Magia para los más pequeños",
-                    "plans": [
-                        {
-                            "name": "Pack completo (adelantado)",
-                            "price": "280€",
-                            "unit": "/ 3 meses",
-                            "highlight": "100€ cada 4 clases",
-                            "features": [
-                                "12 clases, pago único por adelantado",
-                                "Mismo formato grupal, adaptado a niños"
-                            ],
-                            "recommended": true
-                        }
-                    ]
-                },
-                "finalCta": {
-                    "title": "El escenario te espera",
-                    "text": "Las plazas son limitadas por grupo. Reserva tu plaza y empieza a aprender magia de verdad."
-                }
-            },
-            "ticketing": {
-                "calendarKicker": "Agenda",
-                "calendarTitle": "Calendario de funciones",
-                "prevMonth": "Mes anterior",
-                "nextMonth": "Mes siguiente",
-                "weekdays": [
-                    "L",
-                    "M",
-                    "X",
-                    "J",
-                    "V",
-                    "S",
-                    "D"
-                ],
-                "daysWithShows": "Días con función",
-                "seeDay": "Ver funciones del",
-                "upcoming": "Próximas funciones",
-                "noMore": "No quedan funciones publicadas.",
-                "buy": "Comprar",
-                "few": "Últimas entradas",
-                "soldout": "Agotado",
-                "hourSuffix": "h",
-                "emptyTitle": "Todavía no hay fechas publicadas",
-                "emptyBody": "Estoy cerrando las próximas funciones. Escríbeme y te aviso en cuanto se abran las entradas.",
-                "emptyCta": "Avísame de las fechas",
-                "cardsKicker": "Cartelera",
-                "cardsTitle": "Espectáculos en cartel",
-                "from": "Desde",
-                "performance": "función",
-                "performances": "funciones",
-                "seeAndBuy": "Ver y comprar",
-                "widgetKicker": "Entradas",
-                "widgetTitle": "Elige tu función",
-                "datesLabel": "Fechas disponibles",
-                "widgetFrameTitle": "Compra de entradas",
-                "widgetNote": "La compra la gestiona Dinaticket. Recibirás la entrada por email.",
-                "widgetEscape": "¿No carga? Ábrelo aparte",
-                "noDates": "No hay fechas a la venta ahora mismo. Escríbeme y te aviso en cuanto se abra la siguiente tanda.",
-                "modalTitle": "Entradas",
-                "modalFrameTitle": "Compra de entradas",
-                "modalClose": "Cerrar",
-                "modalHelp": "¿No carga? Ábrela en una pestaña nueva.",
-                "modalOpen": "Abrir compra",
-                "nextPerformance": "Próxima función",
-                "duration": "Duración",
-                "minutes": "minutos",
-                "venue": "Sala",
-                "where": "Dónde",
-                "age": "Edad",
-                "allAges": "Todos los públicos",
-                "fromAge": "A partir de {n} años",
-                "discount": "{n}% menos que en taquilla",
-                "taglineFormat": "{category} en {city}",
-                "landing": {
-                    "buyCta": "Comprar entradas",
-                    "aboutCta": "Qué vas a ver",
-                    "notifyCta": "Avísame de las fechas",
-                    "aboutKicker": "El espectáculo",
-                    "galleryKicker": "Así se vive",
-                    "mobileBuy": "Comprar",
-                    "closingTitle": "¿Vienes en grupo o lo quieres en tu evento?",
-                    "closingBody": "Los grupos grandes y las contrataciones privadas se organizan aparte, sin pasar por taquilla. Escríbeme y lo vemos.",
-                    "closingWhatsapp": "Escribir por WhatsApp",
-                    "closingAll": "Ver todas las fechas",
-                    "whatsappNotify": "¡Hola Chap! ¿Cuándo son las próximas funciones de {show}?",
-                    "whatsappAbout": "¡Hola Chap! Te escribo por {show}."
-                },
-                "page": {
-                    "metaTitle": "Entradas | ChapMagic, espectáculos de magia en Madrid",
-                    "metaDescription": "Próximas funciones de Chap, Pase de Oro en Got Talent, en Madrid. Consulta el calendario y compra tus entradas online.",
-                    "kicker": "Entradas",
-                    "title": "Magia en directo",
-                    "titleAccent": "en Madrid",
-                    "subtitle": "Elige tu espectáculo y tu fecha. Las entradas se compran aquí mismo, sin salir de la página.",
-                    "emptySubtitle": "Estoy cerrando las próximas funciones. Escríbeme y te aviso en cuanto se abran las entradas.",
-                    "calendarCta": "Ver fechas",
-                    "showsCta": "Ver espectáculos",
-                    "privateTitle": "¿Buscas magia para tu evento?",
-                    "privateBody": "Bodas, eventos de empresa y celebraciones privadas se contratan aparte, sin pasar por taquilla.",
-                    "privateCta": "Escríbeme"
-                }
-            }
-        },
-        "en": {
-            "meta": {
-                "title": "ChapMagic · Magician & Mentalist | Impossible Experiences",
-                "description": "Discover the mentalism and magic of ChapMagic. Corporate shows, private events, and theater performances that defy logic."
-            },
-            "nav": {
-                "shows": "Shows",
-                "events": "Events",
-                "classes": "Classes",
-                "jury": "Judges",
-                "stats": "Numbers",
-                "tickets": "Tickets",
-                "about": "About",
-                "contact": "Contact",
-                "bookNow": "Book Now"
-            },
-            "hero": {
-                "title": "Magic That Defies The Impossible",
-                "subtitle": "Mentalism · Illusion · Unique Experiences",
-                "cta": "Book Now",
-                "hoverPrompt": "Hover for magic",
-                "tapPrompt": "Tap for magic",
-                "tooltipDesktop": "Hover for magic ✨",
-                "tooltipMobile": "Tap here ✨",
-                "circleFontSize": {
-                    "desktop": 23,
-                    "mobile": 19
-                }
-            },
-            "shows": {
-                "sectionTitle": "Shows",
-                "moreInfoButton": "More info",
-                "whatsappTemplate": "Hey Chap! I'd like to know more about",
-                "items": [
-                    {
-                        "id": "corporate",
-                        "title": "Corporate Magic",
-                        "description": "Chap creates magical experiences for corporate events worldwide. Custom-designed tech magic and mentalism to generate impact, connection, and brand recall.",
-                        "image": "/images/shows/show1.webp",
-                        "href": "/en/eventos/empresas"
-                    },
-                    {
-                        "id": "reception",
-                        "title": "Reception Magic",
-                        "description": "Magic happens inches from your eyes. Chap surprises small groups with modern and technological illusions, creating an intimate and unforgettable experience.",
-                        "image": "/images/shows/show2.webp",
-                        "href": "/en/eventos/magia-de-cerca"
-                    },
-                    {
-                        "id": "main-show",
-                        "title": "Main Show",
-                        "description": "A show that combines comedy and impactful magic. Different formats adaptable to family, social, and corporate events.",
-                        "image": "/images/shows/show3.webp",
-                        "href": "/en/eventos/espectaculo"
-                    },
-                    {
-                        "id": "magic-experience",
-                        "title": "Magic Experience",
-                        "description": "An intimate show for only 12 people in an exclusive Speak Easy room. High-level magic, up close, in one of the best cocktail bars in Europe.",
-                        "image": "/images/shows/show4.webp",
-                        "href": "/en/entradas"
-                    }
-                ]
-            },
-            "jury": {
-                "sectionTitle": "What The Judges Say",
-                "quotes": [
-                    {
-                        "text": "He's a real magician, he has powers.",
-                        "author": "Santi Millán",
-                        "role": "AGT Judge"
-                    },
-                    {
-                        "text": "I'm blown away. I absolutely loved it.",
-                        "author": "Lorena Castell",
-                        "role": "AGT Judge"
-                    },
-                    {
-                        "text": "I'm fascinated, it's driving me crazy!",
-                        "author": "Paula Echevarría",
-                        "role": "AGT Judge"
-                    },
-                    {
-                        "text": "With one of those acts it was already a golden buzzer, and he did four!!!",
-                        "author": "Risto Meijide",
-                        "role": "AGT Judge"
-                    }
-                ]
-            },
-            "stats": {
-                "sectionTitle": "In Numbers",
-                "items": [
-                    {
-                        "value": 14,
-                        "label": "Countries",
-                        "prefix": "+"
-                    },
-                    {
-                        "value": 2000,
-                        "label": "Shows",
-                        "prefix": "+"
-                    },
-                    {
-                        "value": 40000,
-                        "label": "Spectators",
-                        "prefix": "+"
-                    },
-                    {
-                        "value": 15,
-                        "label": "Years of Magic",
-                        "prefix": "+"
-                    }
-                ]
-            },
-            "contact": {
-                "sectionTitle": "Contact",
-                "nameLabel": "Name",
-                "namePlaceholder": "Your full name",
-                "emailLabel": "Email",
-                "emailPlaceholder": "your@email.com",
-                "messageLabel": "Message",
-                "messagePlaceholder": "Tell us about your event (date, location, audience)...",
-                "submitButton": "Send Message",
-                "submitting": "Sending...",
-                "successMessage": "Message sent! I'll get back to you soon.",
-                "errorMessage": "Something went wrong. Please try again."
-            },
-            "clients": {
-                "sectionTitle": "Those who trust my work"
-            },
-            "whatsapp": {
-                "prefillMessage": "Hi ChapMagic, I'd like to get information about your shows for an event."
-            },
-            "footer": {
-                "copyright": "© 2026 ChapMagic. All rights reserved.",
-                "privacyPolicy": "Privacy Policy",
-                "termsOfService": "Terms of Service",
-                "cookieSettings": "Cookie settings",
-                "madeBy": "Made",
-                "with": "with",
-                "in": "in"
-            },
-            "privacy": {
-                "title": "Privacy Policy",
-                "lastUpdated": "Last updated: October 2026",
-                "sections": [
-                    {
-                        "h3": "Data Controller",
-                        "p": "ChapMagic is responsible for the personal data collected through this website."
-                    },
-                    {
-                        "h3": "Data Collected",
-                        "p": "We collect your name and email, and optionally your phone number and event details (type, date, city and number of guests), only when you fill out a contact or quote form."
-                    },
-                    {
-                        "h3": "Purpose",
-                        "p": "The data will be used exclusively to respond to your inquiries and manage the hiring of magic and mentalism services."
-                    },
-                    {
-                        "h3": "Rights",
-                        "p": "You can exercise your rights of access, rectification or deletion by contacting us via email at info@chapmagic.com."
-                    },
-                    {
-                        "h3": "Cookies",
-                        "p": "With your consent, we use Google cookies (Google Ads tag) to measure which ads bring visits and quote requests. If you decline, no advertising cookies are stored. You can change your choice at any time from \"Cookie settings\" at the bottom of every page."
-                    }
-                ]
-            },
-            "terms": {
-                "title": "Terms of Service",
-                "lastUpdated": "Last updated: February 2026",
-                "sections": [
-                    {
-                        "h3": "Website Use",
-                        "p": "This website provides information about ChapMagic's professional services."
-                    },
-                    {
-                        "h3": "Bookings",
-                        "p": "Any booking request made through the form is subject to confirmation of availability and final quote."
-                    },
-                    {
-                        "h3": "Intellectual Property",
-                        "p": "All content, including text, images, and videos of the shows, is property of ChapMagic and protected by law."
-                    },
-                    {
-                        "h3": "Limitation of Liability",
-                        "p": "ChapMagic is not responsible for technical service interruptions or typographical errors in the content."
-                    }
-                ]
-            },
-            "classes": {
-                "meta": {
-                    "title": "Magic Classes in Madrid | Course with ChapMagic",
-                    "description": "Learn magic with a Got Talent Spain Golden Buzzer winner. 3-month group course, in person in Madrid or online. All ages, no previous experience needed."
-                },
-                "cta": "Start now!",
-                "whatsappMessage": "Hi Chap! I'm interested in the magic course. Could you send me more info?",
-                "hero": {
-                    "eyebrow": "October · New course",
-                    "titleLine1": "Learn",
-                    "titleLine2": "Magic",
-                    "description": "With a <strong>Got Talent Spain Golden Buzzer</strong> winner. A 3-month course to discover the art of magic, in the heart of Madrid.",
-                    "tags": [
-                        "In person",
-                        "Online",
-                        "All ages"
-                    ]
-                },
-                "facts": [
-                    {
-                        "label": "Course",
-                        "value": "3 months",
-                        "icon": "calendar"
-                    },
-                    {
-                        "label": "Format",
-                        "value": "Group",
-                        "icon": "users"
-                    },
-                    {
-                        "label": "Venue",
-                        "value": "Madrid",
-                        "icon": "pin"
-                    },
-                    {
-                        "label": "Reach",
-                        "value": "Online worldwide",
-                        "icon": "globe"
-                    }
-                ],
-                "course": {
-                    "eyebrow": "The course",
-                    "title": "Pro magic",
-                    "paragraphs": [
-                        "12 classes over 3 months, designed so that from day one you can amaze and delight everyone around you. High-level magic.",
-                        "Classes are held in <strong>groups</strong>, but if you prefer a tailored format, you can also <strong>ask about private lessons</strong>."
-                    ],
-                    "features": [
-                        "12 classes in total, once a week",
-                        "Small groups, all ages",
-                        "No previous experience needed",
-                        "Private lessons available on request"
-                    ]
-                },
-                "video": {
-                    "eyebrow": "See the impact",
-                    "title": "This is what live magic feels like"
-                },
-                "pricing": {
-                    "eyebrow": "Ages 12 to 99",
-                    "title": "Choose how to pay",
-                    "intro": "Same course, two ways to organise it. The second one is for you if you already know you'll take all 12 classes.",
-                    "recommendedLabel": "Recommended",
-                    "plans": [
-                        {
-                            "name": "Monthly plan",
-                            "price": "€140",
-                            "unit": "/ month",
-                            "highlight": "3 payments of €140, €420 in total",
-                            "features": [
-                                "4 classes per month",
-                                "Pay month by month",
-                                "Ideal if you want to try it first"
-                            ],
-                            "recommended": false
-                        },
-                        {
-                            "name": "Full pack (upfront)",
-                            "price": "€300",
-                            "unit": "/ course",
-                            "highlight": "Save €120 compared to the monthly plan",
-                            "features": [
-                                "12 classes, single upfront payment",
-                                "€100 every 4 classes",
-                                "The best price for the course"
-                            ],
-                            "recommended": true
-                        }
-                    ],
-                    "privateNote": "Ask about prices and availability for private lessons via WhatsApp or email."
-                },
-                "kids": {
-                    "eyebrow": "Course for kids aged 8 to 11",
-                    "title": "Magic for the little ones",
-                    "plans": [
-                        {
-                            "name": "Full pack (upfront)",
-                            "price": "€280",
-                            "unit": "/ 3 months",
-                            "highlight": "€100 every 4 classes",
-                            "features": [
-                                "12 classes, single upfront payment",
-                                "Same group format, adapted for kids"
-                            ],
-                            "recommended": true
-                        }
-                    ]
-                },
-                "finalCta": {
-                    "title": "The stage awaits you",
-                    "text": "Places are limited per group. Book your spot and start learning real magic."
-                }
-            },
-            "ticketing": {
-                "calendarKicker": "Schedule",
-                "calendarTitle": "Show calendar",
-                "prevMonth": "Previous month",
-                "nextMonth": "Next month",
-                "weekdays": [
-                    "M",
-                    "T",
-                    "W",
-                    "T",
-                    "F",
-                    "S",
-                    "S"
-                ],
-                "daysWithShows": "Days with a show",
-                "seeDay": "See shows on the",
-                "upcoming": "Upcoming shows",
-                "noMore": "No more shows published.",
-                "buy": "Buy",
-                "few": "Last tickets",
-                "soldout": "Sold out",
-                "hourSuffix": "",
-                "emptyTitle": "No dates published yet",
-                "emptyBody": "I am closing the next dates. Write to me and I will let you know as soon as tickets go on sale.",
-                "emptyCta": "Notify me",
-                "cardsKicker": "Now showing",
-                "cardsTitle": "Shows on stage",
-                "from": "From",
-                "performance": "date",
-                "performances": "dates",
-                "seeAndBuy": "See and buy",
-                "widgetKicker": "Tickets",
-                "widgetTitle": "Pick your date",
-                "datesLabel": "Available dates",
-                "widgetFrameTitle": "Ticket purchase",
-                "widgetNote": "Tickets are sold by Dinaticket. You will receive them by email.",
-                "widgetEscape": "Not loading? Open it separately",
-                "noDates": "No dates on sale right now. Write to me and I will let you know when the next ones open.",
-                "modalTitle": "Tickets",
-                "modalFrameTitle": "Ticket purchase",
-                "modalClose": "Close",
-                "modalHelp": "Not loading? Open it in a new tab.",
-                "modalOpen": "Open checkout",
-                "nextPerformance": "Next show",
-                "duration": "Duration",
-                "minutes": "minutes",
-                "venue": "Venue",
-                "where": "Address",
-                "age": "Age",
-                "allAges": "All ages",
-                "fromAge": "Ages {n}+",
-                "discount": "{n}% off the box office price",
-                "taglineFormat": "{category} in {city}",
-                "landing": {
-                    "buyCta": "Get tickets",
-                    "aboutCta": "What you will see",
-                    "notifyCta": "Notify me of new dates",
-                    "aboutKicker": "The show",
-                    "galleryKicker": "The experience",
-                    "mobileBuy": "Buy",
-                    "closingTitle": "Coming as a group or want it at your event?",
-                    "closingBody": "Large groups and private bookings are arranged separately, outside the box office. Write to me and we will sort it out.",
-                    "closingWhatsapp": "Message on WhatsApp",
-                    "closingAll": "See all dates",
-                    "whatsappNotify": "Hi Chap! When are the next dates for {show}?",
-                    "whatsappAbout": "Hi Chap! I am writing about {show}."
-                },
-                "page": {
-                    "metaTitle": "Tickets | ChapMagic, live magic shows in Madrid",
-                    "metaDescription": "Upcoming shows by Chap, Golden Buzzer on Got Talent, in Madrid. Check the calendar and buy your tickets online.",
-                    "kicker": "Tickets",
-                    "title": "Live magic",
-                    "titleAccent": "in Madrid",
-                    "subtitle": "Pick your show and your date. Tickets are bought right here, without leaving the page.",
-                    "emptySubtitle": "I am closing the next dates. Write to me and I will let you know as soon as tickets go on sale.",
-                    "calendarCta": "See dates",
-                    "showsCta": "See shows",
-                    "privateTitle": "Looking for magic at your event?",
-                    "privateBody": "Weddings, corporate events and private celebrations are booked separately, outside the box office.",
-                    "privateCta": "Write to me"
-                }
-            }
-        }
+    "fonts": {
+      "heading": "Playfair Display",
+      "body": "Inter"
     }
+  },
+  "navigation": [
+    {
+      "id": "shows",
+      "href": "#shows"
+    },
+    {
+      "id": "events",
+      "href": "eventos"
+    },
+    {
+      "id": "classes",
+      "href": "clases"
+    },
+    {
+      "id": "jury",
+      "href": "#jury"
+    },
+    {
+      "id": "stats",
+      "href": "#stats"
+    },
+    {
+      "id": "contact",
+      "href": "#contact"
+    }
+  ],
+  "contact": {
+    "whatsapp": "+34691665388",
+    "email": "info@chapmagic.com",
+    "formDestinationEmail": "info@chapmagic.com"
+  },
+  "links": {
+    "atrapalo": "https://chapmagic.dinaticket.com/es/",
+    "instagram": "https://www.instagram.com/chapmagic",
+    "youtube": "https://www.youtube.com/@chapmagic",
+    "heroVideoSrc": "/videos/golden-button.mp4",
+    "heroVimeoDesktop": "1164377259",
+    "heroVimeoMobile": "1167528458",
+    "sectionVimeoDesktop": "1164377259",
+    "sectionVimeoMobile": "1167529998",
+    "classesVimeo": "1164377259"
+  },
+  "translations": {
+    "es": {
+      "meta": {
+        "title": "ChapMagic · Mago y Mentalista | Experiencias Imposibles",
+        "description": "Descubre el mentalismo y la magia de ChapMagic. Espectáculos corporativos, eventos privados y shows teatrales que desafían la lógica."
+      },
+      "nav": {
+        "shows": "Espectáculos",
+        "events": "Eventos",
+        "classes": "Clases",
+        "jury": "Jueces",
+        "stats": "Cifras",
+        "tickets": "Entradas",
+        "about": "Sobre Mí",
+        "contact": "Contacto",
+        "bookNow": "Reservar"
+      },
+      "hero": {
+        "title": "Magia Que Desafía Lo Imposible",
+        "subtitle": "Mentalismo · Ilusionismo · Experiencias Únicas",
+        "cta": "Reservar Ahora",
+        "hoverPrompt": "Hover para magia",
+        "tapPrompt": "Toca para magia",
+        "tooltipDesktop": "Hover para magia ✨",
+        "tooltipMobile": "Toca aquí ✨",
+        "circleFontSize": {
+          "desktop": 21,
+          "mobile": 15.7
+        }
+      },
+      "shows": {
+        "sectionTitle": "Espectáculos",
+        "moreInfoButton": "Más información",
+        "whatsappTemplate": "¡Hola Chap! Me gustaría saber más sobre",
+        "items": [
+          {
+            "id": "corporate",
+            "title": "Magia para empresas",
+            "description": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
+            "image": "/images/shows/show1.webp",
+            "href": "/es/eventos/empresas"
+          },
+          {
+            "id": "reception",
+            "title": "Magia de recepción",
+            "description": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
+            "image": "/images/shows/show2.webp",
+            "href": "/es/eventos/magia-de-cerca"
+          },
+          {
+            "id": "main-show",
+            "title": "Show central",
+            "description": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
+            "image": "/images/shows/show3.webp",
+            "href": "/es/eventos/espectaculo"
+          },
+          {
+            "id": "magic-experience",
+            "title": "Experiencia mágica",
+            "description": "Un show íntimo para solo 12 personas en una exclusiva sala Speak Easy. Magia de alto nivel, muy cerca, en una de las mejores cocktailerías de Europa.",
+            "image": "/images/shows/show4.webp",
+            "href": "/es/entradas"
+          }
+        ]
+      },
+      "jury": {
+        "sectionTitle": "Lo Que Dicen Los Jueces",
+        "quotes": [
+          {
+            "text": "Es mago de verdad, tiene poderes.",
+            "author": "Santi Millán",
+            "role": "Juez de AGT"
+          },
+          {
+            "text": "Es que flipo. Me ha encantado.",
+            "author": "Lorena Castell",
+            "role": "Juez de AGT"
+          },
+          {
+            "text": "Me fascina, me estoy volviendo loca.",
+            "author": "Paula Echevarría",
+            "role": "Juez de AGT"
+          },
+          {
+            "text": "Con un número de esos ya era pase de oro, ¡que hizo 4!",
+            "author": "Risto Meijide",
+            "role": "Juez de AGT"
+          }
+        ]
+      },
+      "stats": {
+        "sectionTitle": "En Números",
+        "items": [
+          {
+            "value": 14,
+            "label": "Países",
+            "prefix": "+"
+          },
+          {
+            "value": 2000,
+            "label": "Shows",
+            "prefix": "+"
+          },
+          {
+            "value": 40000,
+            "label": "Espectadores",
+            "prefix": "+"
+          },
+          {
+            "value": 15,
+            "label": "Años de Magia",
+            "prefix": "+"
+          }
+        ]
+      },
+      "contact": {
+        "sectionTitle": "Contacto",
+        "nameLabel": "Nombre",
+        "namePlaceholder": "Tu nombre completo",
+        "emailLabel": "Email",
+        "emailPlaceholder": "tu@email.com",
+        "messageLabel": "Mensaje",
+        "messagePlaceholder": "Cuéntanos sobre tu evento (fecha, lugar, tipo de público)...",
+        "submitButton": "Enviar Mensaje",
+        "submitting": "Enviando...",
+        "successMessage": "¡Mensaje enviado! Me pondré en contacto contigo pronto.",
+        "errorMessage": "Hubo un error al enviar. Por favor, inténtalo de nuevo."
+      },
+      "clients": {
+        "sectionTitle": "Confiaron en mí"
+      },
+      "whatsapp": {
+        "prefillMessage": "Hola ChapMagic, me gustaría recibir información sobre tus espectáculos para un evento."
+      },
+      "footer": {
+        "copyright": "© 2026 ChapMagic. Todos los derechos reservados.",
+        "privacyPolicy": "Política de Privacidad",
+        "termsOfService": "Términos de Servicio",
+        "cookieSettings": "Configurar cookies",
+        "madeBy": "Hecho",
+        "with": "con",
+        "in": "en"
+      },
+      "privacy": {
+        "title": "Política de Privacidad",
+        "lastUpdated": "Última actualización: Octubre 2026",
+        "sections": [
+          {
+            "h3": "Responsable del Tratamiento",
+            "p": "ChapMagic es el responsable de los datos personales recogidos a través de este sitio web."
+          },
+          {
+            "h3": "Datos Recogidos",
+            "p": "Recogemos su nombre y correo electrónico, y opcionalmente su teléfono y los datos de su evento (tipo, fecha, ciudad y número de invitados), únicamente cuando rellena un formulario de contacto o de presupuesto."
+          },
+          {
+            "h3": "Finalidad",
+            "p": "Los datos se utilizarán exclusivamente para responder a sus consultas y gestionar la contratación de los servicios de magia y mentalismo."
+          },
+          {
+            "h3": "Derechos",
+            "p": "Puede ejercer sus derechos de acceso, rectificación o supresión contactando con nosotros a través del correo electrónico info@chapmagic.com."
+          },
+          {
+            "h3": "Cookies",
+            "p": "Con su consentimiento, usamos cookies de Google (etiqueta de Google Ads) para medir qué anuncios traen visitas y solicitudes de presupuesto. Si las rechaza, no se guardan cookies publicitarias. Puede cambiar su elección en cualquier momento desde «Configurar cookies», al pie de cada página."
+          }
+        ]
+      },
+      "terms": {
+        "title": "Términos del Servicio",
+        "lastUpdated": "Última actualización: Febrero 2026",
+        "sections": [
+          {
+            "h3": "Uso del Sitio",
+            "p": "Este sitio web proporciona información sobre los servicios profesionales de ChapMagic."
+          },
+          {
+            "h3": "Reservas",
+            "p": "Cualquier solicitud de reserva a través del formulario está sujeta a confirmación de disponibilidad y presupuesto final."
+          },
+          {
+            "h3": "Propiedad Intelectual",
+            "p": "Todo el contenido, incluyendo textos, imágenes y vídeos de los espectáculos, es propiedad de ChapMagic y está protegido por ley."
+          },
+          {
+            "h3": "Limitación de Responsabilidad",
+            "p": "ChapMagic no se hace responsable de las interrupciones técnicas del servicio o de errores tipográficos en el contenido."
+          }
+        ]
+      },
+      "classes": {
+        "meta": {
+          "title": "Clases de Magia en Madrid | Curso con ChapMagic",
+          "description": "Aprende magia con el Pase de Oro de Got Talent España. Curso de 3 meses, grupal, presencial en Madrid u online. Para todas las edades, sin experiencia previa."
+        },
+        "cta": "¡Comienza ahora!",
+        "whatsappMessage": "¡Hola Chap! Me interesa el curso de magia. ¿Me das más información?",
+        "hero": {
+          "eyebrow": "Octubre · Nuevo curso",
+          "titleLine1": "Aprende",
+          "titleLine2": "Magia",
+          "description": "Con el <strong>Pase de Oro de Got Talent España</strong>. Un curso de 3 meses para descubrir el arte de la magia, en el corazón de Madrid.",
+          "tags": [
+            "Presencial",
+            "Online",
+            "Todas las edades"
+          ]
+        },
+        "facts": [
+          {
+            "label": "Curso",
+            "value": "3 meses",
+            "icon": "calendar"
+          },
+          {
+            "label": "Formato",
+            "value": "Grupal",
+            "icon": "users"
+          },
+          {
+            "label": "Sede",
+            "value": "Madrid",
+            "icon": "pin"
+          },
+          {
+            "label": "Alcance",
+            "value": "Online global",
+            "icon": "globe"
+          }
+        ],
+        "course": {
+          "eyebrow": "El curso",
+          "title": "Magia pro",
+          "paragraphs": [
+            "12 clases repartidas en 3 meses, pensadas para que desde el día 1 puedas sorprender e ilusionar a todo el mundo. Magia de alto nivel.",
+            "Las clases son <strong>grupales</strong>, pero si prefieres un formato a medida, también puedes <strong>consultar por clases privadas</strong>."
+          ],
+          "features": [
+            "12 clases en total, una vez por semana",
+            "Grupos reducidos, todas las edades",
+            "Sin experiencia previa necesaria",
+            "Clases privadas disponibles bajo consulta"
+          ]
+        },
+        "video": {
+          "eyebrow": "Mira el impacto",
+          "title": "Así se vive la magia en directo"
+        },
+        "pricing": {
+          "eyebrow": "De 12 a 99 años",
+          "title": "Elige cómo pagarlo",
+          "intro": "Mismo curso, dos formas de organizarlo. La segunda te conviene si ya sabes que vas a hacer las 12 clases.",
+          "recommendedLabel": "Recomendado",
+          "plans": [
+            {
+              "name": "Plan mensual",
+              "price": "140€",
+              "unit": "/ mes",
+              "highlight": "3 pagos de 140€, 420€ en total",
+              "features": [
+                "4 clases por mes",
+                "Pagas mes a mes",
+                "Ideal si quieres probar primero"
+              ],
+              "recommended": false
+            },
+            {
+              "name": "Pack completo (adelantado)",
+              "price": "300€",
+              "unit": "/ curso",
+              "highlight": "Ahorras 120€ frente al plan mensual",
+              "features": [
+                "12 clases, pago único por adelantado",
+                "100€ cada 4 clases",
+                "El mejor precio del curso"
+              ],
+              "recommended": true
+            }
+          ],
+          "privateNote": "Consulta precios y disponibilidad de clases privadas escribiendo por WhatsApp o email."
+        },
+        "kids": {
+          "eyebrow": "Curso para niños de 8 a 11 años",
+          "title": "Magia para los más pequeños",
+          "plans": [
+            {
+              "name": "Pack completo (adelantado)",
+              "price": "280€",
+              "unit": "/ 3 meses",
+              "highlight": "100€ cada 4 clases",
+              "features": [
+                "12 clases, pago único por adelantado",
+                "Mismo formato grupal, adaptado a niños"
+              ],
+              "recommended": true
+            }
+          ]
+        },
+        "finalCta": {
+          "title": "El escenario te espera",
+          "text": "Las plazas son limitadas por grupo. Reserva tu plaza y empieza a aprender magia de verdad."
+        }
+      },
+      "ticketing": {
+        "calendarKicker": "Agenda",
+        "calendarTitle": "Calendario de funciones",
+        "prevMonth": "Mes anterior",
+        "nextMonth": "Mes siguiente",
+        "weekdays": [
+          "L",
+          "M",
+          "X",
+          "J",
+          "V",
+          "S",
+          "D"
+        ],
+        "daysWithShows": "Días con función",
+        "seeDay": "Ver funciones del",
+        "upcoming": "Próximas funciones",
+        "noMore": "No quedan funciones publicadas.",
+        "buy": "Comprar",
+        "few": "Últimas entradas",
+        "soldout": "Agotado",
+        "hourSuffix": "h",
+        "emptyTitle": "Todavía no hay fechas publicadas",
+        "emptyBody": "Estoy cerrando las próximas funciones. Escríbeme y te aviso en cuanto se abran las entradas.",
+        "emptyCta": "Avísame de las fechas",
+        "cardsKicker": "Cartelera",
+        "cardsTitle": "Espectáculos en cartel",
+        "from": "Desde",
+        "performance": "función",
+        "performances": "funciones",
+        "seeAndBuy": "Ver y comprar",
+        "widgetKicker": "Entradas",
+        "widgetTitle": "Elige tu función",
+        "datesLabel": "Fechas disponibles",
+        "widgetFrameTitle": "Compra de entradas",
+        "widgetNote": "La compra la gestiona Dinaticket. Recibirás la entrada por email.",
+        "widgetEscape": "¿No carga? Ábrelo aparte",
+        "noDates": "No hay fechas a la venta ahora mismo. Escríbeme y te aviso en cuanto se abra la siguiente tanda.",
+        "modalTitle": "Entradas",
+        "modalFrameTitle": "Compra de entradas",
+        "modalClose": "Cerrar",
+        "modalHelp": "¿No carga? Ábrela en una pestaña nueva.",
+        "modalOpen": "Abrir compra",
+        "nextPerformance": "Próxima función",
+        "duration": "Duración",
+        "minutes": "minutos",
+        "venue": "Sala",
+        "where": "Dónde",
+        "age": "Edad",
+        "allAges": "Todos los públicos",
+        "fromAge": "A partir de {n} años",
+        "discount": "{n}% menos que en taquilla",
+        "taglineFormat": "{category} en {city}",
+        "landing": {
+          "buyCta": "Comprar entradas",
+          "aboutCta": "Qué vas a ver",
+          "notifyCta": "Avísame de las fechas",
+          "aboutKicker": "El espectáculo",
+          "galleryKicker": "Así se vive",
+          "mobileBuy": "Comprar",
+          "closingTitle": "¿Vienes en grupo o lo quieres en tu evento?",
+          "closingBody": "Los grupos grandes y las contrataciones privadas se organizan aparte, sin pasar por taquilla. Escríbeme y lo vemos.",
+          "closingWhatsapp": "Escribir por WhatsApp",
+          "closingAll": "Ver todas las fechas",
+          "whatsappNotify": "¡Hola Chap! ¿Cuándo son las próximas funciones de {show}?",
+          "whatsappAbout": "¡Hola Chap! Te escribo por {show}."
+        },
+        "page": {
+          "metaTitle": "Entradas | ChapMagic, espectáculos de magia en Madrid",
+          "metaDescription": "Próximas funciones de Chap, Pase de Oro en Got Talent, en Madrid. Consulta el calendario y compra tus entradas online.",
+          "kicker": "Entradas",
+          "title": "Magia en directo",
+          "titleAccent": "en Madrid",
+          "subtitle": "Elige tu espectáculo y tu fecha. Las entradas se compran aquí mismo, sin salir de la página.",
+          "emptySubtitle": "Estoy cerrando las próximas funciones. Escríbeme y te aviso en cuanto se abran las entradas.",
+          "calendarCta": "Ver fechas",
+          "showsCta": "Ver espectáculos",
+          "privateTitle": "¿Buscas magia para tu evento?",
+          "privateBody": "Bodas, eventos de empresa y celebraciones privadas se contratan aparte, sin pasar por taquilla.",
+          "privateCta": "Escríbeme"
+        }
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "ChapMagic · Magician & Mentalist | Impossible Experiences",
+        "description": "Discover the mentalism and magic of ChapMagic. Corporate shows, private events, and theater performances that defy logic."
+      },
+      "nav": {
+        "shows": "Shows",
+        "events": "Events",
+        "classes": "Classes",
+        "jury": "Judges",
+        "stats": "Numbers",
+        "tickets": "Tickets",
+        "about": "About",
+        "contact": "Contact",
+        "bookNow": "Book Now"
+      },
+      "hero": {
+        "title": "Magic That Defies The Impossible",
+        "subtitle": "Mentalism · Illusion · Unique Experiences",
+        "cta": "Book Now",
+        "hoverPrompt": "Hover for magic",
+        "tapPrompt": "Tap for magic",
+        "tooltipDesktop": "Hover for magic ✨",
+        "tooltipMobile": "Tap here ✨",
+        "circleFontSize": {
+          "desktop": 23,
+          "mobile": 19
+        }
+      },
+      "shows": {
+        "sectionTitle": "Shows",
+        "moreInfoButton": "More info",
+        "whatsappTemplate": "Hey Chap! I'd like to know more about",
+        "items": [
+          {
+            "id": "corporate",
+            "title": "Corporate Magic",
+            "description": "Chap creates magical experiences for corporate events worldwide. Custom-designed tech magic and mentalism to generate impact, connection, and brand recall.",
+            "image": "/images/shows/show1.webp",
+            "href": "/en/eventos/empresas"
+          },
+          {
+            "id": "reception",
+            "title": "Reception Magic",
+            "description": "Magic happens inches from your eyes. Chap surprises small groups with modern and technological illusions, creating an intimate and unforgettable experience.",
+            "image": "/images/shows/show2.webp",
+            "href": "/en/eventos/magia-de-cerca"
+          },
+          {
+            "id": "main-show",
+            "title": "Main Show",
+            "description": "A show that combines comedy and impactful magic. Different formats adaptable to family, social, and corporate events.",
+            "image": "/images/shows/show3.webp",
+            "href": "/en/eventos/espectaculo"
+          },
+          {
+            "id": "magic-experience",
+            "title": "Magic Experience",
+            "description": "An intimate show for only 12 people in an exclusive Speak Easy room. High-level magic, up close, in one of the best cocktail bars in Europe.",
+            "image": "/images/shows/show4.webp",
+            "href": "/en/entradas"
+          }
+        ]
+      },
+      "jury": {
+        "sectionTitle": "What The Judges Say",
+        "quotes": [
+          {
+            "text": "He's a real magician, he has powers.",
+            "author": "Santi Millán",
+            "role": "AGT Judge"
+          },
+          {
+            "text": "I'm blown away. I absolutely loved it.",
+            "author": "Lorena Castell",
+            "role": "AGT Judge"
+          },
+          {
+            "text": "I'm fascinated, it's driving me crazy!",
+            "author": "Paula Echevarría",
+            "role": "AGT Judge"
+          },
+          {
+            "text": "With one of those acts it was already a golden buzzer, and he did four!!!",
+            "author": "Risto Meijide",
+            "role": "AGT Judge"
+          }
+        ]
+      },
+      "stats": {
+        "sectionTitle": "In Numbers",
+        "items": [
+          {
+            "value": 14,
+            "label": "Countries",
+            "prefix": "+"
+          },
+          {
+            "value": 2000,
+            "label": "Shows",
+            "prefix": "+"
+          },
+          {
+            "value": 40000,
+            "label": "Spectators",
+            "prefix": "+"
+          },
+          {
+            "value": 15,
+            "label": "Years of Magic",
+            "prefix": "+"
+          }
+        ]
+      },
+      "contact": {
+        "sectionTitle": "Contact",
+        "nameLabel": "Name",
+        "namePlaceholder": "Your full name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "your@email.com",
+        "messageLabel": "Message",
+        "messagePlaceholder": "Tell us about your event (date, location, audience)...",
+        "submitButton": "Send Message",
+        "submitting": "Sending...",
+        "successMessage": "Message sent! I'll get back to you soon.",
+        "errorMessage": "Something went wrong. Please try again."
+      },
+      "clients": {
+        "sectionTitle": "Those who trust my work"
+      },
+      "whatsapp": {
+        "prefillMessage": "Hi ChapMagic, I'd like to get information about your shows for an event."
+      },
+      "footer": {
+        "copyright": "© 2026 ChapMagic. All rights reserved.",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service",
+        "cookieSettings": "Cookie settings",
+        "madeBy": "Made",
+        "with": "with",
+        "in": "in"
+      },
+      "privacy": {
+        "title": "Privacy Policy",
+        "lastUpdated": "Last updated: October 2026",
+        "sections": [
+          {
+            "h3": "Data Controller",
+            "p": "ChapMagic is responsible for the personal data collected through this website."
+          },
+          {
+            "h3": "Data Collected",
+            "p": "We collect your name and email, and optionally your phone number and event details (type, date, city and number of guests), only when you fill out a contact or quote form."
+          },
+          {
+            "h3": "Purpose",
+            "p": "The data will be used exclusively to respond to your inquiries and manage the hiring of magic and mentalism services."
+          },
+          {
+            "h3": "Rights",
+            "p": "You can exercise your rights of access, rectification or deletion by contacting us via email at info@chapmagic.com."
+          },
+          {
+            "h3": "Cookies",
+            "p": "With your consent, we use Google cookies (Google Ads tag) to measure which ads bring visits and quote requests. If you decline, no advertising cookies are stored. You can change your choice at any time from \"Cookie settings\" at the bottom of every page."
+          }
+        ]
+      },
+      "terms": {
+        "title": "Terms of Service",
+        "lastUpdated": "Last updated: February 2026",
+        "sections": [
+          {
+            "h3": "Website Use",
+            "p": "This website provides information about ChapMagic's professional services."
+          },
+          {
+            "h3": "Bookings",
+            "p": "Any booking request made through the form is subject to confirmation of availability and final quote."
+          },
+          {
+            "h3": "Intellectual Property",
+            "p": "All content, including text, images, and videos of the shows, is property of ChapMagic and protected by law."
+          },
+          {
+            "h3": "Limitation of Liability",
+            "p": "ChapMagic is not responsible for technical service interruptions or typographical errors in the content."
+          }
+        ]
+      },
+      "classes": {
+        "meta": {
+          "title": "Magic Classes in Madrid | Course with ChapMagic",
+          "description": "Learn magic with a Got Talent Spain Golden Buzzer winner. 3-month group course, in person in Madrid or online. All ages, no previous experience needed."
+        },
+        "cta": "Start now!",
+        "whatsappMessage": "Hi Chap! I'm interested in the magic course. Could you send me more info?",
+        "hero": {
+          "eyebrow": "October · New course",
+          "titleLine1": "Learn",
+          "titleLine2": "Magic",
+          "description": "With a <strong>Got Talent Spain Golden Buzzer</strong> winner. A 3-month course to discover the art of magic, in the heart of Madrid.",
+          "tags": [
+            "In person",
+            "Online",
+            "All ages"
+          ]
+        },
+        "facts": [
+          {
+            "label": "Course",
+            "value": "3 months",
+            "icon": "calendar"
+          },
+          {
+            "label": "Format",
+            "value": "Group",
+            "icon": "users"
+          },
+          {
+            "label": "Venue",
+            "value": "Madrid",
+            "icon": "pin"
+          },
+          {
+            "label": "Reach",
+            "value": "Online worldwide",
+            "icon": "globe"
+          }
+        ],
+        "course": {
+          "eyebrow": "The course",
+          "title": "Pro magic",
+          "paragraphs": [
+            "12 classes over 3 months, designed so that from day one you can amaze and delight everyone around you. High-level magic.",
+            "Classes are held in <strong>groups</strong>, but if you prefer a tailored format, you can also <strong>ask about private lessons</strong>."
+          ],
+          "features": [
+            "12 classes in total, once a week",
+            "Small groups, all ages",
+            "No previous experience needed",
+            "Private lessons available on request"
+          ]
+        },
+        "video": {
+          "eyebrow": "See the impact",
+          "title": "This is what live magic feels like"
+        },
+        "pricing": {
+          "eyebrow": "Ages 12 to 99",
+          "title": "Choose how to pay",
+          "intro": "Same course, two ways to organise it. The second one is for you if you already know you'll take all 12 classes.",
+          "recommendedLabel": "Recommended",
+          "plans": [
+            {
+              "name": "Monthly plan",
+              "price": "€140",
+              "unit": "/ month",
+              "highlight": "3 payments of €140, €420 in total",
+              "features": [
+                "4 classes per month",
+                "Pay month by month",
+                "Ideal if you want to try it first"
+              ],
+              "recommended": false
+            },
+            {
+              "name": "Full pack (upfront)",
+              "price": "€300",
+              "unit": "/ course",
+              "highlight": "Save €120 compared to the monthly plan",
+              "features": [
+                "12 classes, single upfront payment",
+                "€100 every 4 classes",
+                "The best price for the course"
+              ],
+              "recommended": true
+            }
+          ],
+          "privateNote": "Ask about prices and availability for private lessons via WhatsApp or email."
+        },
+        "kids": {
+          "eyebrow": "Course for kids aged 8 to 11",
+          "title": "Magic for the little ones",
+          "plans": [
+            {
+              "name": "Full pack (upfront)",
+              "price": "€280",
+              "unit": "/ 3 months",
+              "highlight": "€100 every 4 classes",
+              "features": [
+                "12 classes, single upfront payment",
+                "Same group format, adapted for kids"
+              ],
+              "recommended": true
+            }
+          ]
+        },
+        "finalCta": {
+          "title": "The stage awaits you",
+          "text": "Places are limited per group. Book your spot and start learning real magic."
+        }
+      },
+      "ticketing": {
+        "calendarKicker": "Schedule",
+        "calendarTitle": "Show calendar",
+        "prevMonth": "Previous month",
+        "nextMonth": "Next month",
+        "weekdays": [
+          "M",
+          "T",
+          "W",
+          "T",
+          "F",
+          "S",
+          "S"
+        ],
+        "daysWithShows": "Days with a show",
+        "seeDay": "See shows on the",
+        "upcoming": "Upcoming shows",
+        "noMore": "No more shows published.",
+        "buy": "Buy",
+        "few": "Last tickets",
+        "soldout": "Sold out",
+        "hourSuffix": "",
+        "emptyTitle": "No dates published yet",
+        "emptyBody": "I am closing the next dates. Write to me and I will let you know as soon as tickets go on sale.",
+        "emptyCta": "Notify me",
+        "cardsKicker": "Now showing",
+        "cardsTitle": "Shows on stage",
+        "from": "From",
+        "performance": "date",
+        "performances": "dates",
+        "seeAndBuy": "See and buy",
+        "widgetKicker": "Tickets",
+        "widgetTitle": "Pick your date",
+        "datesLabel": "Available dates",
+        "widgetFrameTitle": "Ticket purchase",
+        "widgetNote": "Tickets are sold by Dinaticket. You will receive them by email.",
+        "widgetEscape": "Not loading? Open it separately",
+        "noDates": "No dates on sale right now. Write to me and I will let you know when the next ones open.",
+        "modalTitle": "Tickets",
+        "modalFrameTitle": "Ticket purchase",
+        "modalClose": "Close",
+        "modalHelp": "Not loading? Open it in a new tab.",
+        "modalOpen": "Open checkout",
+        "nextPerformance": "Next show",
+        "duration": "Duration",
+        "minutes": "minutes",
+        "venue": "Venue",
+        "where": "Address",
+        "age": "Age",
+        "allAges": "All ages",
+        "fromAge": "Ages {n}+",
+        "discount": "{n}% off the box office price",
+        "taglineFormat": "{category} in {city}",
+        "landing": {
+          "buyCta": "Get tickets",
+          "aboutCta": "What you will see",
+          "notifyCta": "Notify me of new dates",
+          "aboutKicker": "The show",
+          "galleryKicker": "The experience",
+          "mobileBuy": "Buy",
+          "closingTitle": "Coming as a group or want it at your event?",
+          "closingBody": "Large groups and private bookings are arranged separately, outside the box office. Write to me and we will sort it out.",
+          "closingWhatsapp": "Message on WhatsApp",
+          "closingAll": "See all dates",
+          "whatsappNotify": "Hi Chap! When are the next dates for {show}?",
+          "whatsappAbout": "Hi Chap! I am writing about {show}."
+        },
+        "page": {
+          "metaTitle": "Tickets | ChapMagic, live magic shows in Madrid",
+          "metaDescription": "Upcoming shows by Chap, Golden Buzzer on Got Talent, in Madrid. Check the calendar and buy your tickets online.",
+          "kicker": "Tickets",
+          "title": "Live magic",
+          "titleAccent": "in Madrid",
+          "subtitle": "Pick your show and your date. Tickets are bought right here, without leaving the page.",
+          "emptySubtitle": "I am closing the next dates. Write to me and I will let you know as soon as tickets go on sale.",
+          "calendarCta": "See dates",
+          "showsCta": "See shows",
+          "privateTitle": "Looking for magic at your event?",
+          "privateBody": "Weddings, corporate events and private celebrations are booked separately, outside the box office.",
+          "privateCta": "Write to me"
+        }
+      }
+    }
+  }
 }

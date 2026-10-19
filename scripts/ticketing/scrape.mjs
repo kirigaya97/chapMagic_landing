@@ -52,9 +52,11 @@ export function loadConfig(file = CONFIG_FILE) {
     process.exit(1);
   }
 
+  // The Keystatic panel stores these ids as text: a number field shows "20,845" and a +/- spinner.
+  const id = (v) => (typeof v === 'string' && /^\d+$/.test(v.trim()) ? Number(v) : v);
   const targets = (raw.targets ?? [])
     .filter((t) => t.active !== false)
-    .map((t) => ({ ...t, type: TYPES[t.type] }));
+    .map((t) => ({ ...t, type: TYPES[t.type], provider: id(t.provider), event: id(t.event), exclude: t.exclude?.map(id) }));
 
   for (const t of targets) {
     if (!t.type) {

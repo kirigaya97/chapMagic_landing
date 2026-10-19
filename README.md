@@ -23,6 +23,18 @@ A premium, high-performance landing page for ChapMagic, featuring state-of-the-a
 
 ---
 
+## ✏️ Content panel (Keystatic Cloud)
+
+`/keystatic` (or `/admin`), Keystatic Cloud project `chapmagic/chapmagic` (team "ChapMagic"). It edits:
+
+- **Web: textos y ajustes** → `src/data/site-config.json` and **Eventos privados** → `src/data/events.json`. Their panel fields are derived from the JSON itself (`keystatic.config.ts`), so a new key shows up in the panel on its own.
+- **Dinaticket: fuentes** → `ticketing.config.json` (a save there triggers the scraper workflow).
+- **Dinaticket: textos de cada show** → `src/data/ticketing/overrides/<id>.json` (Spanish fields plus `locales.en`).
+
+Every save is a commit to `main`, so `git pull --rebase` before pushing. `npm run dev` uses local files. To invite the client: Keystatic Cloud → team ChapMagic → Users.
+
+---
+
 ## 🏗️ Project Structure
 
 ```bash

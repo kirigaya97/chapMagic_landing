@@ -1,306 +1,484 @@
 {
-    "types": [
-        {
-            "slug": "empresas",
-            "analyticsId": "corporate",
-            "image": "/images/shows/show1.webp",
-            "imagePosition": "object-top"
-        },
-        {
-            "slug": "magia-de-cerca",
-            "analyticsId": "close_up",
-            "image": "/images/shows/show2.webp",
-            "imagePosition": "object-center"
-        },
-        {
-            "slug": "espectaculo",
-            "analyticsId": "stage_show",
-            "image": "/images/shows/show3.webp",
-            "imagePosition": "object-center"
-        },
-        {
-            "slug": "bodas",
-            "analyticsId": "wedding",
-            "image": "/images/shows/show2.webp",
-            "imagePosition": "object-center"
-        },
-        {
-            "slug": "fiestas-privadas",
-            "analyticsId": "private_party",
-            "image": "/images/hero-poster.jpg",
-            "imagePosition": "object-center"
-        }
-    ],
-    "translations": {
-        "es": {
-            "hub": {
-                "metaTitle": "Mago para eventos privados y de empresa | ChapMagic",
-                "metaDescription": "Contrata a Chap, Golden Buzzer de Got Talent, para tu evento: empresas, magia de cerca, show de escenario, bodas y fiestas privadas. Pide presupuesto.",
-                "kicker": "Eventos privados",
-                "title": "Magia a medida",
-                "titleAccent": "para tu evento",
-                "subtitle": "Empresas, bodas, celebraciones privadas. Mentalismo y magia tecnológica diseñados para tu público, tu espacio y tu momento.",
-                "typesTitle": "¿Qué tipo de evento organizas?",
-                "typesSubtitle": "Elige un formato o combínalos",
-                "typeCta": "Ver formato"
-            },
-            "common": {
-                "quoteCta": "Pedir presupuesto",
-                "whatsappCta": "Escribir por WhatsApp",
-                "whatsappMessage": "¡Hola Chap! Me gustaría pedir presupuesto para un evento:",
-                "idealForTitle": "Ideal para",
-                "highlightsTitle": "Qué incluye la experiencia",
-                "otherTypesTitle": "Otros formatos",
-                "processTitle": "Cómo funciona",
-                "processSubtitle": "De la primera consulta al aplauso final",
-                "process": [
-                    { "title": "Cuéntame tu evento", "body": "Fecha, lugar, número de invitados y lo que quieres conseguir." },
-                    { "title": "Propuesta a medida", "body": "Te propongo el formato y la duración que mejor encajan, con presupuesto cerrado." },
-                    { "title": "Magia en directo", "body": "Me coordino con tu equipo o tu wedding planner para que todo fluya el día del evento." }
-                ],
-                "clientsTitle": "Han confiado en Chap"
-            },
-            "form": {
-                "title": "Pide tu presupuesto",
-                "subtitle": "Respuesta en menos de 24 horas",
-                "nameLabel": "Nombre",
-                "namePlaceholder": "Tu nombre",
-                "emailLabel": "Email",
-                "emailPlaceholder": "tu@email.com",
-                "phoneLabel": "Teléfono (opcional)",
-                "phonePlaceholder": "+34 600 000 000",
-                "typeLabel": "Tipo de evento",
-                "typePlaceholder": "Selecciona una opción",
-                "dateLabel": "Fecha aproximada",
-                "cityLabel": "Ciudad",
-                "cityPlaceholder": "Madrid",
-                "guestsLabel": "Invitados",
-                "guestsPlaceholder": "Selecciona",
-                "guests": ["<50", "50-150", "150-300", "300+"],
-                "messageLabel": "Cuéntame más (opcional)",
-                "messagePlaceholder": "Tipo de público, horario, lo que quieres conseguir...",
-                "submit": "Solicitar presupuesto",
-                "submitting": "Enviando...",
-                "success": "¡Recibido! Te respondo en menos de 24 horas.",
-                "error": "No se pudo enviar. Inténtalo de nuevo o escríbeme por WhatsApp."
-            },
-            "types": {
-                "empresas": {
-                    "name": "Eventos de empresa",
-                    "kicker": "Magia corporativa",
-                    "title": "Magia para empresas",
-                    "titleAccent": "que se recuerda",
-                    "summary": "Convenciones, cenas de gala, lanzamientos y team building con magia tecnológica y mentalismo a medida.",
-                    "intro": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
-                    "metaTitle": "Mago para eventos de empresa | ChapMagic",
-                    "metaDescription": "Magia y mentalismo para convenciones, cenas de empresa, lanzamientos y team building. Golden Buzzer de Got Talent. Pide presupuesto.",
-                    "highlights": [
-                        { "title": "Tu marca en el truco", "body": "Producto, logo o mensaje clave integrados en la magia para que el público se lo lleve a casa." },
-                        { "title": "Magia tecnológica", "body": "Ilusiones modernas con dispositivos y pantallas que conectan con públicos exigentes." },
-                        { "title": "Formato flexible", "body": "Show de escenario, magia de cerca durante el cóctel o ambos en el mismo evento." }
-                    ],
-                    "idealFor": ["Convenciones y congresos", "Cenas de empresa y de Navidad", "Lanzamientos de producto", "Ferias y stands", "Team building e incentivos"]
-                },
-                "magia-de-cerca": {
-                    "name": "Magia de cerca",
-                    "kicker": "Close-up y recepción",
-                    "title": "Magia a centímetros",
-                    "titleAccent": "de tus invitados",
-                    "summary": "Magia itinerante durante el cóctel o la recepción: pequeños grupos, asombro máximo.",
-                    "intro": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
-                    "metaTitle": "Mago de cerca para cócteles y recepciones | ChapMagic",
-                    "metaDescription": "Magia de cerca itinerante para cócteles, recepciones y aperitivos. Rompe el hielo y sorprende a tus invitados. Pide presupuesto.",
-                    "highlights": [
-                        { "title": "Rompe el hielo", "body": "Los invitados se mezclan y conversan alrededor de la magia." },
-                        { "title": "Sin escenario", "body": "Solo necesita a tus invitados: funciona en cualquier espacio." },
-                        { "title": "Para todos", "body": "Se adapta a cada grupo, desde directivos hasta familias." }
-                    ],
-                    "idealFor": ["Cócteles y recepciones", "Aperitivos de boda", "Inauguraciones", "Eventos de networking", "Cenas privadas"]
-                },
-                "espectaculo": {
-                    "name": "Show de escenario",
-                    "kicker": "Show central",
-                    "title": "El momento central",
-                    "titleAccent": "de tu evento",
-                    "summary": "Un espectáculo que combina comedia y magia impactante, con participación del público.",
-                    "intro": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
-                    "metaTitle": "Espectáculo de magia y mentalismo para eventos | ChapMagic",
-                    "metaDescription": "Show de magia y mentalismo con comedia para cenas de gala, convenciones y celebraciones. Golden Buzzer de Got Talent. Pide presupuesto.",
-                    "highlights": [
-                        { "title": "Comedia y asombro", "body": "Risas y momentos imposibles con el público como protagonista." },
-                        { "title": "Duración a medida", "body": "Desde una intervención corta hasta el show completo." },
-                        { "title": "Golden Buzzer", "body": "El show de un artista reconocido en Got Talent." }
-                    ],
-                    "idealFor": ["Cenas de gala", "Convenciones", "Fiestas de fin de año", "Eventos familiares", "Festivales"]
-                },
-                "bodas": {
-                    "name": "Bodas",
-                    "kicker": "Magia para bodas",
-                    "title": "Una boda",
-                    "titleAccent": "de la que todos hablen",
-                    "summary": "Magia durante el cóctel, entre mesas o como sorpresa en el banquete.",
-                    "intro": "Magia de cerca durante el cóctel, entre plato y plato o como sorpresa para los novios. Un recuerdo que tus invitados no van a olvidar.",
-                    "metaTitle": "Mago para bodas | ChapMagic",
-                    "metaDescription": "Mago para bodas: magia de cerca en el cóctel, entre mesas o un show sorpresa en el banquete. Pide presupuesto para tu boda.",
-                    "highlights": [
-                        { "title": "Cóctel inolvidable", "body": "Entretiene a los invitados mientras los novios hacen las fotos." },
-                        { "title": "Un momento para los novios", "body": "Un efecto personalizado con vuestra historia." },
-                        { "title": "Sin complicaciones", "body": "Coordinado con tu wedding planner y el timing del banquete." }
-                    ],
-                    "idealFor": ["Cóctel de bienvenida", "Entre mesas en el banquete", "Sorpresa para los novios", "Preboda", "Bodas destino"]
-                },
-                "fiestas-privadas": {
-                    "name": "Fiestas privadas",
-                    "kicker": "Celebraciones",
-                    "title": "Tu celebración,",
-                    "titleAccent": "imposible de olvidar",
-                    "summary": "Cumpleaños, aniversarios y reuniones especiales con magia de cerca o un show privado.",
-                    "intro": "Cumpleaños, aniversarios, comuniones o una cena especial en casa. Magia y mentalismo pensados para tus invitados.",
-                    "metaTitle": "Mago para fiestas privadas y cumpleaños | ChapMagic",
-                    "metaDescription": "Magia para cumpleaños, aniversarios y celebraciones privadas, en casa o en un espacio. Pide presupuesto.",
-                    "highlights": [
-                        { "title": "En tu espacio", "body": "En casa, en un restaurante o en una finca." },
-                        { "title": "Para todas las edades", "body": "Se adapta a adultos, niños y públicos mixtos." },
-                        { "title": "El protagonista eres tú", "body": "Magia personalizada para quien celebra." }
-                    ],
-                    "idealFor": ["Cumpleaños", "Aniversarios", "Comuniones", "Cenas privadas", "Despedidas"]
-                }
-            }
-        },
-        "en": {
-            "hub": {
-                "metaTitle": "Magician for private and corporate events | ChapMagic",
-                "metaDescription": "Book Chap, Got Talent Golden Buzzer, for your event: corporate, close-up magic, stage show, weddings and private parties. Request a quote.",
-                "kicker": "Private events",
-                "title": "Tailor-made magic",
-                "titleAccent": "for your event",
-                "subtitle": "Companies, weddings, private celebrations. Mentalism and technological magic designed for your audience, your venue and your moment.",
-                "typesTitle": "What kind of event are you planning?",
-                "typesSubtitle": "Pick a format or combine them",
-                "typeCta": "See format"
-            },
-            "common": {
-                "quoteCta": "Request a quote",
-                "whatsappCta": "Message on WhatsApp",
-                "whatsappMessage": "Hi Chap! I'd like a quote for an event:",
-                "idealForTitle": "Ideal for",
-                "highlightsTitle": "What the experience includes",
-                "otherTypesTitle": "Other formats",
-                "processTitle": "How it works",
-                "processSubtitle": "From first enquiry to final applause",
-                "process": [
-                    { "title": "Tell me about your event", "body": "Date, venue, number of guests and what you want to achieve." },
-                    { "title": "Tailor-made proposal", "body": "I suggest the format and length that fit best, with a fixed quote." },
-                    { "title": "Live magic", "body": "I coordinate with your team or wedding planner so everything flows on the day." }
-                ],
-                "clientsTitle": "Trusted by"
-            },
-            "form": {
-                "title": "Request your quote",
-                "subtitle": "Reply within 24 hours",
-                "nameLabel": "Name",
-                "namePlaceholder": "Your name",
-                "emailLabel": "Email",
-                "emailPlaceholder": "you@email.com",
-                "phoneLabel": "Phone (optional)",
-                "phonePlaceholder": "+34 600 000 000",
-                "typeLabel": "Event type",
-                "typePlaceholder": "Choose an option",
-                "dateLabel": "Approximate date",
-                "cityLabel": "City",
-                "cityPlaceholder": "Madrid",
-                "guestsLabel": "Guests",
-                "guestsPlaceholder": "Choose",
-                "guests": ["<50", "50-150", "150-300", "300+"],
-                "messageLabel": "Tell me more (optional)",
-                "messagePlaceholder": "Audience, schedule, what you want to achieve...",
-                "submit": "Request quote",
-                "submitting": "Sending...",
-                "success": "Got it! I will reply within 24 hours.",
-                "error": "It could not be sent. Try again or message me on WhatsApp."
-            },
-            "types": {
-                "empresas": {
-                    "name": "Corporate events",
-                    "kicker": "Corporate magic",
-                    "title": "Corporate magic",
-                    "titleAccent": "people remember",
-                    "summary": "Conventions, gala dinners, launches and team building with tailor-made technological magic and mentalism.",
-                    "intro": "Chap creates magical experiences for corporate events around the world. Technological magic and mentalism designed to create impact, connection and brand recall.",
-                    "metaTitle": "Corporate event magician | ChapMagic",
-                    "metaDescription": "Magic and mentalism for conventions, company dinners, product launches and team building. Got Talent Golden Buzzer. Request a quote.",
-                    "highlights": [
-                        { "title": "Your brand in the trick", "body": "Product, logo or key message built into the magic so the audience takes it home." },
-                        { "title": "Technological magic", "body": "Modern illusions with devices and screens that win over demanding audiences." },
-                        { "title": "Flexible format", "body": "Stage show, close-up during the cocktail, or both at the same event." }
-                    ],
-                    "idealFor": ["Conventions and congresses", "Company and Christmas dinners", "Product launches", "Trade fairs and booths", "Team building and incentives"]
-                },
-                "magia-de-cerca": {
-                    "name": "Close-up magic",
-                    "kicker": "Close-up and reception",
-                    "title": "Magic inches away",
-                    "titleAccent": "from your guests",
-                    "summary": "Strolling magic during the cocktail or reception: small groups, maximum astonishment.",
-                    "intro": "Magic happens inches from your eyes. Chap amazes small groups with modern, technological illusions, creating an intimate and unforgettable experience.",
-                    "metaTitle": "Close-up magician for cocktails and receptions | ChapMagic",
-                    "metaDescription": "Strolling close-up magic for cocktails, receptions and drinks. Break the ice and amaze your guests. Request a quote.",
-                    "highlights": [
-                        { "title": "Breaks the ice", "body": "Guests mingle and talk around the magic." },
-                        { "title": "No stage needed", "body": "All it needs is your guests: it works in any venue." },
-                        { "title": "For everyone", "body": "Adapts to each group, from executives to families." }
-                    ],
-                    "idealFor": ["Cocktails and receptions", "Wedding drinks", "Openings", "Networking events", "Private dinners"]
-                },
-                "espectaculo": {
-                    "name": "Stage show",
-                    "kicker": "Main show",
-                    "title": "The highlight",
-                    "titleAccent": "of your event",
-                    "summary": "A show that blends comedy and striking magic, with audience participation.",
-                    "intro": "A show that blends comedy and striking magic. Different formats adaptable to family, social and corporate events.",
-                    "metaTitle": "Magic and mentalism show for events | ChapMagic",
-                    "metaDescription": "Magic and mentalism show with comedy for gala dinners, conventions and celebrations. Got Talent Golden Buzzer. Request a quote.",
-                    "highlights": [
-                        { "title": "Comedy and wonder", "body": "Laughs and impossible moments with the audience as the star." },
-                        { "title": "Tailored length", "body": "From a short act to the full show." },
-                        { "title": "Golden Buzzer", "body": "The show of an artist recognised on Got Talent." }
-                    ],
-                    "idealFor": ["Gala dinners", "Conventions", "Year-end parties", "Family events", "Festivals"]
-                },
-                "bodas": {
-                    "name": "Weddings",
-                    "kicker": "Wedding magic",
-                    "title": "A wedding",
-                    "titleAccent": "everyone talks about",
-                    "summary": "Magic during the cocktail, between tables or as a surprise at the banquet.",
-                    "intro": "Close-up magic during the cocktail, between courses or as a surprise for the couple. A memory your guests will never forget.",
-                    "metaTitle": "Wedding magician | ChapMagic",
-                    "metaDescription": "Wedding magician: close-up magic at the cocktail, between tables or a surprise show at the banquet. Request a quote for your wedding.",
-                    "highlights": [
-                        { "title": "An unforgettable cocktail", "body": "Keeps guests entertained while the couple takes photos." },
-                        { "title": "A moment for the couple", "body": "A personalised effect built around your story." },
-                        { "title": "Hassle-free", "body": "Coordinated with your wedding planner and the banquet timing." }
-                    ],
-                    "idealFor": ["Welcome cocktail", "Between tables at the banquet", "Surprise for the couple", "Pre-wedding party", "Destination weddings"]
-                },
-                "fiestas-privadas": {
-                    "name": "Private parties",
-                    "kicker": "Celebrations",
-                    "title": "Your celebration,",
-                    "titleAccent": "impossible to forget",
-                    "summary": "Birthdays, anniversaries and special gatherings with close-up magic or a private show.",
-                    "intro": "Birthdays, anniversaries, communions or a special dinner at home. Magic and mentalism designed for your guests.",
-                    "metaTitle": "Magician for private parties and birthdays | ChapMagic",
-                    "metaDescription": "Magic for birthdays, anniversaries and private celebrations, at home or at a venue. Request a quote.",
-                    "highlights": [
-                        { "title": "At your place", "body": "At home, in a restaurant or at a country estate." },
-                        { "title": "For all ages", "body": "Adapts to adults, children and mixed audiences." },
-                        { "title": "You are the star", "body": "Personalised magic for whoever is celebrating." }
-                    ],
-                    "idealFor": ["Birthdays", "Anniversaries", "Communions", "Private dinners", "Bachelor parties"]
-                }
-            }
-        }
+  "types": [
+    {
+      "slug": "empresas",
+      "analyticsId": "corporate",
+      "image": "/images/shows/show1.webp",
+      "imagePosition": "object-top"
+    },
+    {
+      "slug": "magia-de-cerca",
+      "analyticsId": "close_up",
+      "image": "/images/shows/show2.webp",
+      "imagePosition": "object-center"
+    },
+    {
+      "slug": "espectaculo",
+      "analyticsId": "stage_show",
+      "image": "/images/shows/show3.webp",
+      "imagePosition": "object-center"
+    },
+    {
+      "slug": "bodas",
+      "analyticsId": "wedding",
+      "image": "/images/shows/show2.webp",
+      "imagePosition": "object-center"
+    },
+    {
+      "slug": "fiestas-privadas",
+      "analyticsId": "private_party",
+      "image": "/images/hero-poster.jpg",
+      "imagePosition": "object-center"
     }
+  ],
+  "translations": {
+    "es": {
+      "hub": {
+        "metaTitle": "Mago para eventos privados y de empresa | ChapMagic",
+        "metaDescription": "Contrata a Chap, Golden Buzzer de Got Talent, para tu evento: empresas, magia de cerca, show de escenario, bodas y fiestas privadas. Pide presupuesto.",
+        "kicker": "Eventos privados",
+        "title": "Magia a medida",
+        "titleAccent": "para tu evento",
+        "subtitle": "Empresas, bodas, celebraciones privadas. Mentalismo y magia tecnológica diseñados para tu público, tu espacio y tu momento.",
+        "typesTitle": "¿Qué tipo de evento organizas?",
+        "typesSubtitle": "Elige un formato o combínalos",
+        "typeCta": "Ver formato"
+      },
+      "common": {
+        "quoteCta": "Pedir presupuesto",
+        "whatsappCta": "Escribir por WhatsApp",
+        "whatsappMessage": "¡Hola Chap! Me gustaría pedir presupuesto para un evento:",
+        "idealForTitle": "Ideal para",
+        "highlightsTitle": "Qué incluye la experiencia",
+        "otherTypesTitle": "Otros formatos",
+        "processTitle": "Cómo funciona",
+        "processSubtitle": "De la primera consulta al aplauso final",
+        "process": [
+          {
+            "title": "Cuéntame tu evento",
+            "body": "Fecha, lugar, número de invitados y lo que quieres conseguir."
+          },
+          {
+            "title": "Propuesta a medida",
+            "body": "Te propongo el formato y la duración que mejor encajan, con presupuesto cerrado."
+          },
+          {
+            "title": "Magia en directo",
+            "body": "Me coordino con tu equipo o tu wedding planner para que todo fluya el día del evento."
+          }
+        ],
+        "clientsTitle": "Han confiado en Chap"
+      },
+      "form": {
+        "title": "Pide tu presupuesto",
+        "subtitle": "Respuesta en menos de 24 horas",
+        "nameLabel": "Nombre",
+        "namePlaceholder": "Tu nombre",
+        "emailLabel": "Email",
+        "emailPlaceholder": "tu@email.com",
+        "phoneLabel": "Teléfono (opcional)",
+        "phonePlaceholder": "+34 600 000 000",
+        "typeLabel": "Tipo de evento",
+        "typePlaceholder": "Selecciona una opción",
+        "dateLabel": "Fecha aproximada",
+        "cityLabel": "Ciudad",
+        "cityPlaceholder": "Madrid",
+        "guestsLabel": "Invitados",
+        "guestsPlaceholder": "Selecciona",
+        "guests": [
+          "<50",
+          "50-150",
+          "150-300",
+          "300+"
+        ],
+        "messageLabel": "Cuéntame más (opcional)",
+        "messagePlaceholder": "Tipo de público, horario, lo que quieres conseguir...",
+        "submit": "Solicitar presupuesto",
+        "submitting": "Enviando...",
+        "success": "¡Recibido! Te respondo en menos de 24 horas.",
+        "error": "No se pudo enviar. Inténtalo de nuevo o escríbeme por WhatsApp."
+      },
+      "types": {
+        "empresas": {
+          "name": "Eventos de empresa",
+          "kicker": "Magia corporativa",
+          "title": "Magia para empresas",
+          "titleAccent": "que se recuerda",
+          "summary": "Convenciones, cenas de gala, lanzamientos y team building con magia tecnológica y mentalismo a medida.",
+          "intro": "Chap crea experiencias mágicas para eventos corporativos en todo el mundo. Magia tecnológica y mentalismo diseñados a medida para generar impacto, conexión y recuerdo de marca.",
+          "metaTitle": "Mago para eventos de empresa | ChapMagic",
+          "metaDescription": "Magia y mentalismo para convenciones, cenas de empresa, lanzamientos y team building. Golden Buzzer de Got Talent. Pide presupuesto.",
+          "highlights": [
+            {
+              "title": "Tu marca en el truco",
+              "body": "Producto, logo o mensaje clave integrados en la magia para que el público se lo lleve a casa."
+            },
+            {
+              "title": "Magia tecnológica",
+              "body": "Ilusiones modernas con dispositivos y pantallas que conectan con públicos exigentes."
+            },
+            {
+              "title": "Formato flexible",
+              "body": "Show de escenario, magia de cerca durante el cóctel o ambos en el mismo evento."
+            }
+          ],
+          "idealFor": [
+            "Convenciones y congresos",
+            "Cenas de empresa y de Navidad",
+            "Lanzamientos de producto",
+            "Ferias y stands",
+            "Team building e incentivos"
+          ]
+        },
+        "magia-de-cerca": {
+          "name": "Magia de cerca",
+          "kicker": "Close-up y recepción",
+          "title": "Magia a centímetros",
+          "titleAccent": "de tus invitados",
+          "summary": "Magia itinerante durante el cóctel o la recepción: pequeños grupos, asombro máximo.",
+          "intro": "La magia sucede a centímetros de tus ojos. Chap sorprende a pequeños grupos con ilusiones modernas y tecnológicas, creando una experiencia íntima e inolvidable.",
+          "metaTitle": "Mago de cerca para cócteles y recepciones | ChapMagic",
+          "metaDescription": "Magia de cerca itinerante para cócteles, recepciones y aperitivos. Rompe el hielo y sorprende a tus invitados. Pide presupuesto.",
+          "highlights": [
+            {
+              "title": "Rompe el hielo",
+              "body": "Los invitados se mezclan y conversan alrededor de la magia."
+            },
+            {
+              "title": "Sin escenario",
+              "body": "Solo necesita a tus invitados: funciona en cualquier espacio."
+            },
+            {
+              "title": "Para todos",
+              "body": "Se adapta a cada grupo, desde directivos hasta familias."
+            }
+          ],
+          "idealFor": [
+            "Cócteles y recepciones",
+            "Aperitivos de boda",
+            "Inauguraciones",
+            "Eventos de networking",
+            "Cenas privadas"
+          ]
+        },
+        "espectaculo": {
+          "name": "Show de escenario",
+          "kicker": "Show central",
+          "title": "El momento central",
+          "titleAccent": "de tu evento",
+          "summary": "Un espectáculo que combina comedia y magia impactante, con participación del público.",
+          "intro": "Un espectáculo que combina comedia y magia impactante. Diferentes formatos adaptables a eventos familiares, sociales y corporativos.",
+          "metaTitle": "Espectáculo de magia y mentalismo para eventos | ChapMagic",
+          "metaDescription": "Show de magia y mentalismo con comedia para cenas de gala, convenciones y celebraciones. Golden Buzzer de Got Talent. Pide presupuesto.",
+          "highlights": [
+            {
+              "title": "Comedia y asombro",
+              "body": "Risas y momentos imposibles con el público como protagonista."
+            },
+            {
+              "title": "Duración a medida",
+              "body": "Desde una intervención corta hasta el show completo."
+            },
+            {
+              "title": "Golden Buzzer",
+              "body": "El show de un artista reconocido en Got Talent."
+            }
+          ],
+          "idealFor": [
+            "Cenas de gala",
+            "Convenciones",
+            "Fiestas de fin de año",
+            "Eventos familiares",
+            "Festivales"
+          ]
+        },
+        "bodas": {
+          "name": "Bodas",
+          "kicker": "Magia para bodas",
+          "title": "Una boda",
+          "titleAccent": "de la que todos hablen",
+          "summary": "Magia durante el cóctel, entre mesas o como sorpresa en el banquete.",
+          "intro": "Magia de cerca durante el cóctel, entre plato y plato o como sorpresa para los novios. Un recuerdo que tus invitados no van a olvidar.",
+          "metaTitle": "Mago para bodas | ChapMagic",
+          "metaDescription": "Mago para bodas: magia de cerca en el cóctel, entre mesas o un show sorpresa en el banquete. Pide presupuesto para tu boda.",
+          "highlights": [
+            {
+              "title": "Cóctel inolvidable",
+              "body": "Entretiene a los invitados mientras los novios hacen las fotos."
+            },
+            {
+              "title": "Un momento para los novios",
+              "body": "Un efecto personalizado con vuestra historia."
+            },
+            {
+              "title": "Sin complicaciones",
+              "body": "Coordinado con tu wedding planner y el timing del banquete."
+            }
+          ],
+          "idealFor": [
+            "Cóctel de bienvenida",
+            "Entre mesas en el banquete",
+            "Sorpresa para los novios",
+            "Preboda",
+            "Bodas destino"
+          ]
+        },
+        "fiestas-privadas": {
+          "name": "Fiestas privadas",
+          "kicker": "Celebraciones",
+          "title": "Tu celebración,",
+          "titleAccent": "imposible de olvidar",
+          "summary": "Cumpleaños, aniversarios y reuniones especiales con magia de cerca o un show privado.",
+          "intro": "Cumpleaños, aniversarios, comuniones o una cena especial en casa. Magia y mentalismo pensados para tus invitados.",
+          "metaTitle": "Mago para fiestas privadas y cumpleaños | ChapMagic",
+          "metaDescription": "Magia para cumpleaños, aniversarios y celebraciones privadas, en casa o en un espacio. Pide presupuesto.",
+          "highlights": [
+            {
+              "title": "En tu espacio",
+              "body": "En casa, en un restaurante o en una finca."
+            },
+            {
+              "title": "Para todas las edades",
+              "body": "Se adapta a adultos, niños y públicos mixtos."
+            },
+            {
+              "title": "El protagonista eres tú",
+              "body": "Magia personalizada para quien celebra."
+            }
+          ],
+          "idealFor": [
+            "Cumpleaños",
+            "Aniversarios",
+            "Comuniones",
+            "Cenas privadas",
+            "Despedidas"
+          ]
+        }
+      }
+    },
+    "en": {
+      "hub": {
+        "metaTitle": "Magician for private and corporate events | ChapMagic",
+        "metaDescription": "Book Chap, Got Talent Golden Buzzer, for your event: corporate, close-up magic, stage show, weddings and private parties. Request a quote.",
+        "kicker": "Private events",
+        "title": "Tailor-made magic",
+        "titleAccent": "for your event",
+        "subtitle": "Companies, weddings, private celebrations. Mentalism and technological magic designed for your audience, your venue and your moment.",
+        "typesTitle": "What kind of event are you planning?",
+        "typesSubtitle": "Pick a format or combine them",
+        "typeCta": "See format"
+      },
+      "common": {
+        "quoteCta": "Request a quote",
+        "whatsappCta": "Message on WhatsApp",
+        "whatsappMessage": "Hi Chap! I'd like a quote for an event:",
+        "idealForTitle": "Ideal for",
+        "highlightsTitle": "What the experience includes",
+        "otherTypesTitle": "Other formats",
+        "processTitle": "How it works",
+        "processSubtitle": "From first enquiry to final applause",
+        "process": [
+          {
+            "title": "Tell me about your event",
+            "body": "Date, venue, number of guests and what you want to achieve."
+          },
+          {
+            "title": "Tailor-made proposal",
+            "body": "I suggest the format and length that fit best, with a fixed quote."
+          },
+          {
+            "title": "Live magic",
+            "body": "I coordinate with your team or wedding planner so everything flows on the day."
+          }
+        ],
+        "clientsTitle": "Trusted by"
+      },
+      "form": {
+        "title": "Request your quote",
+        "subtitle": "Reply within 24 hours",
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@email.com",
+        "phoneLabel": "Phone (optional)",
+        "phonePlaceholder": "+34 600 000 000",
+        "typeLabel": "Event type",
+        "typePlaceholder": "Choose an option",
+        "dateLabel": "Approximate date",
+        "cityLabel": "City",
+        "cityPlaceholder": "Madrid",
+        "guestsLabel": "Guests",
+        "guestsPlaceholder": "Choose",
+        "guests": [
+          "<50",
+          "50-150",
+          "150-300",
+          "300+"
+        ],
+        "messageLabel": "Tell me more (optional)",
+        "messagePlaceholder": "Audience, schedule, what you want to achieve...",
+        "submit": "Request quote",
+        "submitting": "Sending...",
+        "success": "Got it! I will reply within 24 hours.",
+        "error": "It could not be sent. Try again or message me on WhatsApp."
+      },
+      "types": {
+        "empresas": {
+          "name": "Corporate events",
+          "kicker": "Corporate magic",
+          "title": "Corporate magic",
+          "titleAccent": "people remember",
+          "summary": "Conventions, gala dinners, launches and team building with tailor-made technological magic and mentalism.",
+          "intro": "Chap creates magical experiences for corporate events around the world. Technological magic and mentalism designed to create impact, connection and brand recall.",
+          "metaTitle": "Corporate event magician | ChapMagic",
+          "metaDescription": "Magic and mentalism for conventions, company dinners, product launches and team building. Got Talent Golden Buzzer. Request a quote.",
+          "highlights": [
+            {
+              "title": "Your brand in the trick",
+              "body": "Product, logo or key message built into the magic so the audience takes it home."
+            },
+            {
+              "title": "Technological magic",
+              "body": "Modern illusions with devices and screens that win over demanding audiences."
+            },
+            {
+              "title": "Flexible format",
+              "body": "Stage show, close-up during the cocktail, or both at the same event."
+            }
+          ],
+          "idealFor": [
+            "Conventions and congresses",
+            "Company and Christmas dinners",
+            "Product launches",
+            "Trade fairs and booths",
+            "Team building and incentives"
+          ]
+        },
+        "magia-de-cerca": {
+          "name": "Close-up magic",
+          "kicker": "Close-up and reception",
+          "title": "Magic inches away",
+          "titleAccent": "from your guests",
+          "summary": "Strolling magic during the cocktail or reception: small groups, maximum astonishment.",
+          "intro": "Magic happens inches from your eyes. Chap amazes small groups with modern, technological illusions, creating an intimate and unforgettable experience.",
+          "metaTitle": "Close-up magician for cocktails and receptions | ChapMagic",
+          "metaDescription": "Strolling close-up magic for cocktails, receptions and drinks. Break the ice and amaze your guests. Request a quote.",
+          "highlights": [
+            {
+              "title": "Breaks the ice",
+              "body": "Guests mingle and talk around the magic."
+            },
+            {
+              "title": "No stage needed",
+              "body": "All it needs is your guests: it works in any venue."
+            },
+            {
+              "title": "For everyone",
+              "body": "Adapts to each group, from executives to families."
+            }
+          ],
+          "idealFor": [
+            "Cocktails and receptions",
+            "Wedding drinks",
+            "Openings",
+            "Networking events",
+            "Private dinners"
+          ]
+        },
+        "espectaculo": {
+          "name": "Stage show",
+          "kicker": "Main show",
+          "title": "The highlight",
+          "titleAccent": "of your event",
+          "summary": "A show that blends comedy and striking magic, with audience participation.",
+          "intro": "A show that blends comedy and striking magic. Different formats adaptable to family, social and corporate events.",
+          "metaTitle": "Magic and mentalism show for events | ChapMagic",
+          "metaDescription": "Magic and mentalism show with comedy for gala dinners, conventions and celebrations. Got Talent Golden Buzzer. Request a quote.",
+          "highlights": [
+            {
+              "title": "Comedy and wonder",
+              "body": "Laughs and impossible moments with the audience as the star."
+            },
+            {
+              "title": "Tailored length",
+              "body": "From a short act to the full show."
+            },
+            {
+              "title": "Golden Buzzer",
+              "body": "The show of an artist recognised on Got Talent."
+            }
+          ],
+          "idealFor": [
+            "Gala dinners",
+            "Conventions",
+            "Year-end parties",
+            "Family events",
+            "Festivals"
+          ]
+        },
+        "bodas": {
+          "name": "Weddings",
+          "kicker": "Wedding magic",
+          "title": "A wedding",
+          "titleAccent": "everyone talks about",
+          "summary": "Magic during the cocktail, between tables or as a surprise at the banquet.",
+          "intro": "Close-up magic during the cocktail, between courses or as a surprise for the couple. A memory your guests will never forget.",
+          "metaTitle": "Wedding magician | ChapMagic",
+          "metaDescription": "Wedding magician: close-up magic at the cocktail, between tables or a surprise show at the banquet. Request a quote for your wedding.",
+          "highlights": [
+            {
+              "title": "An unforgettable cocktail",
+              "body": "Keeps guests entertained while the couple takes photos."
+            },
+            {
+              "title": "A moment for the couple",
+              "body": "A personalised effect built around your story."
+            },
+            {
+              "title": "Hassle-free",
+              "body": "Coordinated with your wedding planner and the banquet timing."
+            }
+          ],
+          "idealFor": [
+            "Welcome cocktail",
+            "Between tables at the banquet",
+            "Surprise for the couple",
+            "Pre-wedding party",
+            "Destination weddings"
+          ]
+        },
+        "fiestas-privadas": {
+          "name": "Private parties",
+          "kicker": "Celebrations",
+          "title": "Your celebration,",
+          "titleAccent": "impossible to forget",
+          "summary": "Birthdays, anniversaries and special gatherings with close-up magic or a private show.",
+          "intro": "Birthdays, anniversaries, communions or a special dinner at home. Magic and mentalism designed for your guests.",
+          "metaTitle": "Magician for private parties and birthdays | ChapMagic",
+          "metaDescription": "Magic for birthdays, anniversaries and private celebrations, at home or at a venue. Request a quote.",
+          "highlights": [
+            {
+              "title": "At your place",
+              "body": "At home, in a restaurant or at a country estate."
+            },
+            {
+              "title": "For all ages",
+              "body": "Adapts to adults, children and mixed audiences."
+            },
+            {
+              "title": "You are the star",
+              "body": "Personalised magic for whoever is celebrating."
+            }
+          ],
+          "idealFor": [
+            "Birthdays",
+            "Anniversaries",
+            "Communions",
+            "Private dinners",
+            "Bachelor parties"
+          ]
+        }
+      }
+    }
+  }
 }
