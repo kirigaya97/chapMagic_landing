@@ -95,12 +95,21 @@ export default config({
   ui: {
     brand: { name: 'ChapMagic' },
     navigation: {
+      Ayuda: ['guia'],
       Web: ['web', 'eventos'],
       Entradas: ['ticketing', 'showsTextos'],
     },
   },
 
   singletons: {
+    // How-to for editors, first in the sidebar. Plain Markdown, so it also reads fine on GitHub.
+    guia: singleton({
+      label: 'Cómo usar este panel',
+      path: 'src/data/guia',
+      format: { contentField: 'contenido' },
+      schema: { contenido: fields.markdoc({ label: 'Guía', extension: 'md' }) },
+    }),
+
     web: singleton({
       label: 'Web: textos y ajustes',
       path: 'src/data/site-config',
