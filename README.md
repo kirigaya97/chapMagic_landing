@@ -33,6 +33,8 @@ A premium, high-performance landing page for ChapMagic, featuring state-of-the-a
 
 Every save is a commit to `main`, so `git pull --rebase` before pushing. `npm run dev` uses local files. To invite the client: Keystatic Cloud → team ChapMagic → Users.
 
+`src/lib/keystatic/` (field helpers, Dinaticket schemas, the panel's look) comes from the `astro-keystatic-panel` kit (`D:\web\astro-keystatic-panel`). Don't edit it here: upgrade with `node D:/web/astro-keystatic-panel/install.mjs D:/web/chapMagic_landing`. The guide shown at the top of the panel is `src/data/guia.md`.
+
 ---
 
 ## 🏗️ Project Structure
