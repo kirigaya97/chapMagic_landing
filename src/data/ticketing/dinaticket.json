@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-10-22T17:14:15.770Z",
+  "scrapedAt": "2026-10-23T11:43:52.854Z",
   "known": {
     "ours": [
       4948919,
@@ -36,8 +36,8 @@
       },
       "duration": 60,
       "minAge": null,
-      "priceFrom": 15,
-      "priceFull": 18,
+      "priceFrom": 12,
+      "priceFull": 15,
       "performances": [
         {
           "date": "2026-11-21",
