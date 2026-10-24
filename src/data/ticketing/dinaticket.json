@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-10-23T21:27:07.365Z",
+  "scrapedAt": "2026-10-24T20:53:16.381Z",
   "known": {
     "ours": [
       4948919,
@@ -316,15 +316,6 @@
           "city": "Madrid",
           "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-30/?widget",
           "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-10-30/"
-        },
-        {
-          "date": "2026-11-01",
-          "time": "18:30",
-          "status": "available",
-          "venue": "Teatro Escondido Gran Vía",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-11-01/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4948919/fecha-2026-11-01/"
         },
         {
           "date": "2026-11-06",
