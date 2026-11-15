@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-13T19:45:32.219Z",
+  "scrapedAt": "2026-11-15T22:51:48.821Z",
   "known": {
     "ours": [
       4948919,
@@ -130,15 +130,6 @@
           "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-20/"
         },
         {
-          "date": "2026-12-22",
-          "time": "12:30",
-          "status": "available",
-          "venue": "Teatro Escondido Gran Vía",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-22/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-22/"
-        },
-        {
           "date": "2026-12-23",
           "time": "12:30",
           "status": "available",
@@ -184,15 +175,6 @@
           "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-27/"
         },
         {
-          "date": "2026-12-29",
-          "time": "12:30",
-          "status": "available",
-          "venue": "Teatro Escondido Gran Vía",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-29/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-12-29/"
-        },
-        {
           "date": "2026-12-30",
           "time": "12:30",
           "status": "available",
@@ -218,6 +200,24 @@
           "city": "Madrid",
           "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-01/?widget",
           "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-01/"
+        },
+        {
+          "date": "2027-01-02",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-02/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-02/"
+        },
+        {
+          "date": "2027-01-03",
+          "time": "12:30",
+          "status": "available",
+          "venue": "Teatro Escondido Gran Vía",
+          "city": "Madrid",
+          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-03/?widget",
+          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2027-01-03/"
         }
       ],
       "sources": [
