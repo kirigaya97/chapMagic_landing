@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-20T20:25:42.801Z",
+  "scrapedAt": "2026-11-21T11:09:47.287Z",
   "known": {
     "ours": [
       4948919,
@@ -39,15 +39,6 @@
       "priceFrom": 12,
       "priceFull": 15,
       "performances": [
-        {
-          "date": "2026-11-21",
-          "time": "12:30",
-          "status": "available",
-          "venue": "Teatro Escondido Gran Vía",
-          "city": "Madrid",
-          "buyUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-21/?widget",
-          "externalUrl": "https://www.dinaticket.com/es/provider/20845/event/4955854/fecha-2026-11-21/"
-        },
         {
           "date": "2026-11-28",
           "time": "12:30",
